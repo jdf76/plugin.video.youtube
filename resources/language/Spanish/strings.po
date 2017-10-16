@@ -661,7 +661,7 @@ msgstr "Alto (4:3)"
 
 msgctxt "#31594"
 msgid "Safe Search"
-msgstr "Safe Search"
+msgstr "Filtrado SafeSearch"
 
 msgctxt "#31595"
 msgid "Moderate"
