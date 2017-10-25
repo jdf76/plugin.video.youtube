@@ -710,3 +710,4 @@ msgstr "Búsqueda rápida"
 msgctxt "#30606"
 msgid "Quick Search (Incognito)"
 msgstr "Búsqueda rápida (Incógnito)"
+
