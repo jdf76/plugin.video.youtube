@@ -9,6 +9,8 @@ def my_subscriptions_to_items(provider, context, json_data, do_filter=False):
     result = []
     video_id_dict = {}
 
+    incognito = str(context.get_param('incognito', False)).lower() == 'true'
+
     filter_list = []
     black_list = False
     if do_filter:
@@ -25,12 +27,16 @@ def my_subscriptions_to_items(provider, context, json_data, do_filter=False):
         if not do_filter or (do_filter and (not black_list) and (channel in filter_list)) or \
                 (do_filter and black_list and (channel not in filter_list)):
             video_id = item['id']
-            video_item = VideoItem(item['title'],
-                                   uri=context.create_uri(['play'], {'video_id': video_id}))
+            item_params = {'video_id': video_id}
+            if incognito:
+                item_params.update({'incognito': incognito})
+            item_uri = context.create_uri(['play'], item_params)
+            video_item = VideoItem(item['title'], uri=item_uri)
+            if incognito:
+                video_item.set_play_count(0)
             result.append(video_item)
 
             video_id_dict[video_id] = video_item
-        pass
 
     channel_item_dict = {}
     utils.update_video_infos(provider, context, video_id_dict, channel_items_dict=channel_item_dict)
@@ -49,6 +55,5 @@ def my_subscriptions_to_items(provider, context, json_data, do_filter=False):
         current_page = int(new_context.get_param('page', 1))
         next_page_item = kodion.items.NextPageItem(new_context, current_page, fanart=provider.get_fanart(new_context))
         result.append(next_page_item)
-        pass
 
     return result
