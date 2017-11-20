@@ -711,3 +711,10 @@ msgctxt "#30606"
 msgid "Quick Search (Incognito)"
 msgstr "Búsqueda rápida (Incógnito)"
 
+msgctxt "#30607"
+msgid "Audio Only"
+msgstr "Solo Audio"
+
+msgctxt "#30608"
+msgid "Allow developer keys"
+msgstr "Permitir claves API de desarrollador"
