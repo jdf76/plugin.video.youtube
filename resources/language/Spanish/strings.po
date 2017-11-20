@@ -717,4 +717,4 @@ msgstr "Solo Audio"
 
 msgctxt "#30608"
 msgid "Allow developer keys"
-msgstr "Permitir claves API de desarrollador"
+msgstr "Permitir claves API para desarrolladores"
