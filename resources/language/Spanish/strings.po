@@ -681,7 +681,7 @@ msgstr "Claves API personales habilitadas"
 
 msgctxt "#30599"
 msgid "Failed to enable personal API keys. Missing: %s"
-msgstr "Error al habilitar las claves API personales. Falta: %s"
+msgstr "Error al habilitar claves API personales. Ausente: %s"
 
 msgctxt "#30600"
 msgid "Configure subtitles"
@@ -697,7 +697,7 @@ msgstr "Sin autogenerado"
 
 msgctxt "#30603"
 msgid "Age gate"
-msgstr ""
+msgstr "Acceso por edad"
 
 msgctxt "#30604"
 msgid "Allow offensive content"
