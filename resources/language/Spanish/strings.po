@@ -235,11 +235,11 @@ msgstr "Confirme quitar"
 
 msgctxt "#30116"
 msgid "Delete \"%s\"?"
-msgstr "¿Desea borrar \"%s\"?"
+msgstr "¿Esta seguro de que desea borrar \"%s\"?"
 
 msgctxt "#30117"
 msgid "Remove \"%s\"?"
-msgstr "¿Desea quitar \"%s\"?"
+msgstr "¿Esta seguro de que desea quitar \"%s\"?"
 
 msgctxt "#30118"
 msgid "Delete"
@@ -377,11 +377,11 @@ msgstr "Nueva lista..."
 
 msgctxt "#30523"
 msgid "Language"
-msgstr "Lenguaje"
+msgstr "Idioma"
 
 msgctxt "#30524"
 msgid "Select language"
-msgstr "Seleccione lenguaje"
+msgstr "Seleccione el idioma"
 
 msgctxt "#30525"
 msgid "Select region"
@@ -393,7 +393,7 @@ msgstr "Ajustar"
 
 msgctxt "#30527"
 msgid "Language and region?"
-msgstr "¿Lenguaje y región?"
+msgstr "¿Idioma y región?"
 
 msgctxt "#30528"
 msgid "Rate..."
@@ -453,7 +453,7 @@ msgstr "Mostrar nombre del canal en la descripción"
 
 msgctxt "#30542"
 msgid "rtmpe streams are not supported"
-msgstr "streams rtmpe no soportados"
+msgstr "Los streams rtmpe no son soportados"
 
 msgctxt "#30543"
 msgid "Refresh"
@@ -521,11 +521,11 @@ msgstr "Historial de búsqueda"
 
 msgctxt "#30559"
 msgid "Delete settings.xml"
-msgstr "Eliminar settings.xml"
+msgstr "Eliminar ajustes personales (settings.xml)"
 
 msgctxt "#30560"
 msgid "Subtitle language"
-msgstr "Lenguaje de subtítulos"
+msgstr "Idioma para subtítulos"
 
 msgctxt "#30561"
 msgid "None"
@@ -601,7 +601,7 @@ msgstr "Forzar verificación de certificado SSL"
 
 msgctxt "#30579"
 msgid "MPEG-DASH is enabled in the YouTube settings, however inputstream.adaptive appears to be disabled. Would you like to enable inputstream.adaptive now?"
-msgstr "MPEG-DASH está activado en la configuración de YouTube, sin embargo inputstream.adaptive parece estar deshabilitado. ¿Quiere habilitar inputstream.adaptive ahora?"
+msgstr "MPEG-DASH está activado en la configuración de YouTube, sin embargo inputstream.adaptive parece estar deshabilitado. ¿Le gustaría habilitar inputstream.adaptive ahora?"
 
 msgctxt "#30580"
 msgid "Reset access manager"
