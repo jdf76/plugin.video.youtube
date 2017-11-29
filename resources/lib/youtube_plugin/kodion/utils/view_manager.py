@@ -107,15 +107,15 @@ class ViewManager(object):
         },
         'skin.estuary': {
             'default': [
-                {'name': 'Icon Wall', 'id': 52},
-                {'name': 'WideList', 'id': 55},
-            ],
-            'episodes': [
-                {'name': 'List', 'id': 50},
                 {'name': 'Shift', 'id': 53},
                 {'name': 'InfoWall', 'id': 54},
                 {'name': 'Wall', 'id': 500},
-                {'name': 'Fanart', 'id': 502}
+                {'name': 'WideList', 'id': 55},
+            ],
+            'episodes': [
+                {'name': 'InfoWall', 'id': 54},
+                {'name': 'Wall', 'id': 500},
+                {'name': 'WideList', 'id': 55},
             ]
         }
     }
