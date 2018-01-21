@@ -757,11 +757,11 @@ msgstr ""
 
 msgctxt "#30618"
 msgid "Enable mpeg-dash proxy"
-msgstr ""
+msgstr "Habilitar proxy mpeg-dash"
 
 msgctxt "#30619"
 msgid "Proxy port"
-msgstr ""
+msgstr "Puerto proxy"
 
 msgctxt "#30620"
 msgid "Port %s already in use. Cannot start proxy server."
