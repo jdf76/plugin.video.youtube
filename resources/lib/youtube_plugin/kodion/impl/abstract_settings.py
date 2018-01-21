@@ -115,9 +115,6 @@ class AbstractSettings(object):
     def age_gate(self):
         return self.get_bool(constants.setting.AGE_GATE, True)
 
-    def offensive_content(self):
-        return self.get_bool(constants.setting.OFFENSIVE_CONTENT, False)
-
     def verify_ssl(self):
         verify = self.get_bool(constants.setting.VERIFY_SSL, False)
         if sys.version_info <= (2, 7, 9):
@@ -126,3 +123,9 @@ class AbstractSettings(object):
 
     def allow_dev_keys(self):
         return self.get_bool(constants.setting.ALLOW_DEV_KEYS, True)
+
+    def use_dash_proxy(self):
+        return self.get_bool(constants.setting.DASH_PROXY, True)
+
+    def dash_proxy_port(self):
+        return self.get_int(constants.setting.DASH_PROXY_PORT, 50152)

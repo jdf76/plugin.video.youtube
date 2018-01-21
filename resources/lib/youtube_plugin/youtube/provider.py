@@ -646,7 +646,7 @@ class Provider(kodion.AbstractProvider):
         if switch == 'youtube':
             context._addon.openSettings()
         elif switch == 'mpd':
-            use_dash = context.addon_enabled('inputstream.adaptive') or settings.dash_support_builtin()
+            use_dash = context.addon_enabled('inputstream.adaptive')
             if settings.dash_support_addon() and not use_dash:
                 if context.get_ui().on_yes_no_input(context.get_name(), context.localize(self.LOCAL_MAP['youtube.dash.enable.confirm'])):
                     use_dash = context.set_addon_enabled('inputstream.adaptive')
@@ -878,9 +878,10 @@ class Provider(kodion.AbstractProvider):
             result.append(what_to_watch_item)
 
         # search
-        search_item = kodion.items.SearchItem(context, image=context.create_resource_path('media', 'search.png'),
-                                              fanart=self.get_fanart(context))
-        result.append(search_item)
+        if settings.get_bool('youtube.folder.search.show', True):
+            search_item = kodion.items.SearchItem(context, image=context.create_resource_path('media', 'search.png'),
+                                                  fanart=self.get_fanart(context))
+            result.append(search_item)
 
         if settings.get_bool('youtube.folder.quick_search.show', True):
             quick_search_item = kodion.items.NewSearchItem(context,

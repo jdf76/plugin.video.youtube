@@ -13,7 +13,6 @@ DASH_SUPPORT_ADDON = 'kodion.video.support.mpd.addon'  # (bool)
 USE_DASH = 'kodion.video.quality.mpd'  # (bool)
 AUDIO_ONLY = 'kodion.audio_only'  # (bool)
 AGE_GATE = 'kodion.age.gate'  # (bool)
-OFFENSIVE_CONTENT = 'kodion.offensive.content'  # (bool)
 SUBTITLE_LANGUAGE = 'kodion.subtitle.languages.num'  # (int)
 SETUP_WIZARD = 'kodion.setup_wizard'  # (bool)
 VERIFY_SSL = 'simple.requests.ssl.verify'  # (bool)
@@ -29,3 +28,6 @@ REFRESH_TOKEN = 'kodion.refresh_token'
 ACCESS_TOKEN_EXPIRES = 'kodion.access_token.expires'
 
 ALLOW_DEV_KEYS = 'youtube.allow.dev.keys'  # (bool)
+
+DASH_PROXY = 'kodion.mpd.proxy'  # (bool)
+DASH_PROXY_PORT = 'kodion.mpd.proxy.port'  # (number)
