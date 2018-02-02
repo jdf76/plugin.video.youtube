@@ -385,7 +385,7 @@ msgstr "Seleccione el idioma"
 
 msgctxt "#30525"
 msgid "Select region"
-msgstr "Seleccione región"
+msgstr "Seleccione una región"
 
 msgctxt "#30526"
 msgid "Adjust"
