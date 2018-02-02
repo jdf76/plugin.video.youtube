@@ -1,7 +1,7 @@
+__author__ = 'bromix'
+
 import random
 import re
-
-__author__ = 'bromix'
 
 from ... import kodion
 from ...kodion import constants
@@ -48,10 +48,11 @@ def play_video(provider, context, re_match):
             for i in items:
                 playlist.add(i)
 
+        title = video_stream.get('meta', {}).get('title', video_id)
         if is_video:
-            video_item = VideoItem(video_id, video_stream['url'])
+            video_item = VideoItem(title, video_stream['url'])
         else:
-            video_item = AudioVideoItem(video_id, video_stream['url'])
+            video_item = AudioVideoItem(title, video_stream['url'])
 
         if video_stream.get('meta', None):
             video_item.set_subtitles(video_stream['meta'].get('subtitles', None))
@@ -67,12 +68,14 @@ def play_video(provider, context, re_match):
             try:
                 if str(context.get_param('incognito', False)).lower() != 'true':
                     command = 'RunPlugin(%s)' % context.create_uri(['events', 'post_play'], {'video_id': video_id})
-                    context.execute(command)
+                    context.get_ui().set_home_window_property('post_play', command)
             except:
-                context.get_ui().show_notification('Failed to execute post play events.', time_milliseconds=5000)
+                context.log_debug('Failed to set post play events.')
+
+        context.get_ui().set_home_window_property('playing', video_id)
 
         return video_item
-    except YouTubeException, ex:
+    except YouTubeException as ex:
         message = ex.get_message()
         message = kodion.utils.strip_html_from_text(message)
         context.get_ui().show_notification(message, time_milliseconds=15000)

@@ -1,11 +1,12 @@
 __author__ = 'bromix'
 
+from six.moves import urllib
+
 import time
-import urlparse
 import requests
 from ...youtube.youtube_exceptions import LoginException
 from ...kodion import Context
-from __config__ import api, youtube_tv, keys_changed
+from .__config__ import api, youtube_tv, keys_changed
 
 context = Context()
 
@@ -51,7 +52,7 @@ class LoginClient(object):
         if self._log_error_callback:
             self._log_error_callback(text)
         else:
-            print text
+            print(text)
 
     def revoke(self, refresh_token):
         # https://developers.google.com/youtube/v3/guides/auth/devices
@@ -277,7 +278,7 @@ class LoginClient(object):
             raise LoginException('Login Failed')
 
         lines = result.text.replace('\n', '&')
-        params = dict(urlparse.parse_qsl(lines))
+        params = dict(urllib.parse.parse_qsl(lines))
         token = params.get('Auth', '')
         expires = int(params.get('Expiry', -1))
         if not token or expires == -1:

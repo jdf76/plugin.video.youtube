@@ -1,8 +1,11 @@
 __author__ = 'bromix'
+from six.moves import map
 
 import os
 import re
 import json
+import shutil
+
 from ..youtube.helper import yt_subscriptions
 from .. import kodion
 from ..kodion.utils import FunctionCache
@@ -11,6 +14,8 @@ from ..youtube.client import YouTube
 from .helper import v3, ResourceManager, yt_specials, yt_playlist, yt_login, yt_setup_wizard, yt_video, \
     yt_context_menu, yt_play, yt_old_actions, UrlResolver, UrlToItemConverter
 from .youtube_exceptions import LoginException
+
+import xbmc
 import xbmcaddon
 import xbmcvfs
 
@@ -558,6 +563,17 @@ class Provider(kodion.AbstractProvider):
                     json_data = client.add_video_to_playlist(history_playlist_id, video_id)
                     if not v3.handle_error(self, context, json_data):
                         return False
+
+                # rate video
+                if context.get_settings().get_bool('youtube.post.play.rate', False):
+                    json_data = client.get_video_rating(video_id)
+                    if not v3.handle_error(self, context, json_data):
+                        return False
+                    items = json_data.get('items', [{'rating': 'none'}])
+                    rating = items[0].get('rating', 'none')
+                    if rating == 'none':
+                        rating_match = re.search('/(?P<video_id>[^/]+)/(?P<rating>[^/]+)', '/%s/%s/' % (video_id, rating))
+                        yt_video.process('rate', self, context, rating_match)
         else:
             context.log_warning('Missing video ID for post play event')
         return True
@@ -741,7 +757,10 @@ class Provider(kodion.AbstractProvider):
                             refresh_tokens = access_manager.get_refresh_token().split('|')
                             refresh_tokens = list(set(refresh_tokens))
                             for refresh_token in refresh_tokens:
-                                client.revoke(refresh_token)
+                                try:
+                                    client.revoke(refresh_token)
+                                except:
+                                    pass
                         self.reset_client()
                         access_manager.update_access_token(access_token='', refresh_token='')
                         context.get_ui().refresh_container()
@@ -751,15 +770,32 @@ class Provider(kodion.AbstractProvider):
         elif action == 'delete':
             _maint_files = {'function_cache': 'cache.sqlite',
                             'search_cache': 'search.sqlite',
-                            'settings_xml': 'settings.xml'}
+                            'settings_xml': 'settings.xml',
+                            'temp_files': 'special://temp/plugin.video.youtube/'}
             _file = _maint_files.get(maint_type, '')
+            success = False
             if _file:
                 if 'sqlite' in _file:
                     _file_w_path = os.path.join(context._get_cache_path(), _file)
+                elif maint_type == 'temp_files':
+                    _file_w_path = _file
                 else:
                     _file_w_path = os.path.join(context._data_path, _file)
                 if context.get_ui().on_delete_content(_file):
-                    success = xbmcvfs.delete(_file_w_path)
+                    if maint_type == 'temp_files':
+                        _trans_path = xbmc.translatePath(_file_w_path)
+                        try:
+                            xbmcvfs.rmdir(_trans_path, force=True)
+                        except:
+                            pass
+                        if xbmcvfs.exists(_trans_path):
+                            try:
+                                shutil.rmtree(_trans_path)
+                            except:
+                                pass
+                        success = not xbmcvfs.exists(_trans_path)
+                    elif _file_w_path:
+                        success = xbmcvfs.delete(_file_w_path)
                     if success:
                         context.get_ui().show_notification(context.localize(self.LOCAL_MAP['youtube.succeeded']))
                     else:
@@ -900,10 +936,10 @@ class Provider(kodion.AbstractProvider):
         # subscriptions
         if self.is_logged_in():
             playlists = resource_manager.get_related_playlists(channel_id='mine')
-            if playlists.has_key('watchLater'):
+            if 'watchLater' in playlists:
                 cplid = settings.get_string('youtube.folder.watch_later.playlist', '').strip()
                 playlists['watchLater'] = cplid if cplid else ' WL'
-            if playlists.has_key('watchHistory'):
+            if 'watchHistory' in playlists:
                 cplid = settings.get_string('youtube.folder.history.playlist', '').strip()
                 playlists['watchHistory'] = cplid if cplid else 'HL'
 
@@ -1034,7 +1070,7 @@ class Provider(kodion.AbstractProvider):
         if isinstance(exception_to_handle, LoginException):
             context.get_access_manager().update_access_token('')
 
-            msg = message = exception_to_handle.message
+            msg = message = exception_to_handle.get_message()
             error = ''
             code = ''
 

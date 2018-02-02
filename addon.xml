@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.youtube" name="YouTube" version="5.5.0" provider-name="bromix">
+<addon id="plugin.video.youtube" name="YouTube" version="6.0.0~alpha3" provider-name="bromix">
     <requires>
         <import addon="xbmc.python" version="2.20.0"/>
+        <import addon="script.module.six"/>
         <import addon="script.module.requests" version="2.12.4"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="resources/lib/default.py">
@@ -11,33 +12,19 @@
     <extension point="xbmc.python.module" library="resources/lib/"/>
     <extension point="xbmc.addon.metadata">
         <news>
-[add] Saved Playlists
-[add] Audio only: Settings -> General
-[add] Age gate enforcement: Settings -> General
-[add] Quick search and Quick search (Incognito)
-    - Settings -> Folders
-    - incognito doesn't add to search history or run post play events (add to watch history)
-[add] Quick search to channels (no history)
-[add] Live folder to channels
-[fix] My Channel videos incl. private
-[fix] mpeg-dash vods, proxy required
-    - Settings - MPEG-DASH
-    - Thanks to Schtek for generating the needed mpd file
-[fix/upd] use select dialog for subtitle settings
-    - [add] Configure subtitles: Settings -> General
-    - [add] Current language with No auto-generated subtitles option
-[fix/upd] subtitles default to non asr track when possible
-[fix/upd] Watch Later
-    - Clear: Settings - Folders - Custom Watch Later playlist id
-    - Settings - Folders - Retrieve Watch Later playlist id
-[fix/upd] History
-    - cannot add to history from add-on
-    - Clear: Settings - Folders - Custom History playlist id
-[rem] SPMC mpeg-dash support
-[upd] Hebrew strings [Eng2Heb]
-[upd] Polish strings [Etharr]
-[upd] Italian strings [DjDiabolik]
-[upd] Hungarian strings [lacesz-sh]
+[add] Python 3 compat.
+[add] Settings -> Maintenance -> Delete temporary files
+[add] Settings -> General -> Rate video after watching
+[add] Settings -> API -> Enable API configuration page
+        - when enabled, visit http://ipaddress:port/api to configure API keys from a web browser
+        - port is configured in Settings - HTTP Server - Port
+[fix] context menu after playback
+[fix] alternative player, do not append headers
+[fix/upd] post play events happen post play
+[fix/upd] set title from metadata on play
+[upd] Dutch strings [MB1968]
+[upd] French strings [bubuleur]
+[upd] Greek strings [twilight0]
         </news>
         <assets>
             <icon>icon.png</icon>
@@ -45,6 +32,7 @@
         </assets>
         <summary lang="en_gb">Plugin for YouTube</summary>
         <description lang="en_gb">YouTube is one of the biggest video-sharing websites of the world.</description>
+        <disclaimer lang="en_gb">This plugin is not endorsed by Google</disclaimer>
         <summary lang="he_il">תוסף עבור YouTube</summary>
         <description lang="he_il">YouTube הוא אחד מאתרי שיתוף הווידאו הגדולים בעולם.</description>
         <summary lang="de_de">Plugin für YouTube</summary>
@@ -65,9 +53,9 @@
         <description lang="bg_bg">YouTube е един от най-големите уеб сайтове за споделяне на видео в целия свят.</description>
         <summary lang="el_gr">Πρόσθετο YouTube</summary>
         <description lang="el_gr">Το YouTube είναι μία από τις μεγαλύτερες ιστοσελίδες διαμοιρασμού βίντεο στον κόσμο.</description>
+        <disclaimer lang="el_gr">Η παρούσα μικροεφαρμογή δεν έχει υϊοθετηθεί από την Google</disclaimer>
         <summary lang="nb_no">Tillegg for YouTube</summary>
         <description lang="nb_no">YouTube er en av verdens største nettsider for videodeling.</description>
-        <disclaimer lang="en_gb"></disclaimer>
         <language></language>
         <platform>all</platform>
         <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
@@ -75,6 +63,6 @@
         <website>https://www.youtube.com</website>
         <email>ytplugin at datanet dot ws</email>
         <source>https://github.com/jdf76/plugin.video.youtube</source>
-        <size>1775888</size>
+        <size>1776578</size>
     </extension>
 </addon>

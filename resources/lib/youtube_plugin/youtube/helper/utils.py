@@ -1,5 +1,3 @@
-from ...kodion.items import VideoItem
-
 __author__ = 'bromix'
 
 import re
@@ -43,7 +41,7 @@ def update_channel_infos(provider, context, channel_id_dict, subscription_id_dic
         filter_list = [x.lower() for x in filter_list]
 
     thumb_size = context.get_settings().use_thumbnail_size()
-    for channel_id in channel_data.keys():
+    for channel_id in list(channel_data.keys()):
         yt_item = channel_data[channel_id]
         channel_item = channel_id_dict[channel_id]
 
@@ -96,7 +94,7 @@ def update_playlist_infos(provider, context, playlist_id_dict, channel_items_dic
     custom_history_id = context.get_settings().get_string('youtube.folder.history.playlist', '').strip()
 
     thumb_size = context.get_settings().use_thumbnail_size()
-    for playlist_id in playlist_data.keys():
+    for playlist_id in list(playlist_data.keys()):
         yt_item = playlist_data[playlist_id]
         playlist_item = playlist_id_dict[playlist_id]
 
@@ -168,7 +166,7 @@ def update_video_infos(provider, context, video_id_dict, playlist_item_id_dict=N
         my_playlists = resource_manager.get_related_playlists(channel_id='mine')
 
     thumb_size = settings.use_thumbnail_size()
-    for video_id in video_data.keys():
+    for video_id in list(video_data.keys()):
         yt_item = video_data[video_id]
         video_item = video_id_dict[video_id]
 
@@ -183,7 +181,8 @@ def update_video_infos(provider, context, video_id_dict, playlist_item_id_dict=N
         # set the title
         video_item.set_title(snippet['title'])
 
-        if not video_item.use_dash() and video_item.get_headers() and video_item.get_uri().startswith('http'):
+        if not video_item.use_dash() and not settings.is_support_alternative_player_enabled() and \
+                video_item.get_headers() and video_item.get_uri().startswith('http'):
             video_item.set_uri(video_item.get_uri() + '|' + video_item.get_headers())
 
         """
@@ -315,7 +314,7 @@ def update_video_infos(provider, context, video_id_dict, playlist_item_id_dict=N
                                               is_logged_in=provider.is_logged_in(),
                                               refresh_container=refresh_container)
 
-        if len(context_menu) > 0:
+        if len(context_menu) > 0 and context.get_path() != '/play/':
             video_item.set_context_menu(context_menu, replace=replace_context_menu)
 
 

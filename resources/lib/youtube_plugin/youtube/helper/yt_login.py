@@ -1,5 +1,7 @@
 __author__ = 'bromix'
 
+from six.moves import range
+
 import time
 from ...youtube.youtube_exceptions import LoginException
 
@@ -39,7 +41,7 @@ def process(mode, provider, context, re_match, sign_out_refresh=True):
         dialog = context.get_ui().create_progress_dialog(
             heading=context.localize(provider.LOCAL_MAP['youtube.sign.in']), text=text, background=False)
 
-        steps = (10 * 60 * 1000) / interval  # 10 Minutes
+        steps = ((10 * 60 * 1000) // interval)  # 10 Minutes
         dialog.set_total(steps)
         for i in range(steps):
             dialog.update()

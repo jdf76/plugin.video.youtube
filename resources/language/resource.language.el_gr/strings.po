@@ -759,13 +759,61 @@ msgid "Enable mpeg-dash proxy"
 msgstr "Ενεργοποίηση μεσολαβητή mpeg-dash"
 
 msgctxt "#30619"
-msgid "Proxy port"
-msgstr "Θύρα μεσολαβητή"
+msgid "Port"
+msgstr "Θύρα"
 
 msgctxt "#30620"
-msgid "Port %s already in use. Cannot start proxy server."
-msgstr "Η θύρα %s χρησιμοποιείται ήδη. Αδυναμία έναρξης μεσολαβητή."
+msgid "Port %s already in use. Cannot start http server."
+msgstr "Η θύρα %s χρησιμοποιείται ήδη. Αδυναμία έναρξης εξυπηρετητή http."
 
 msgctxt "#30621"
 msgid "Proxy is required for mpeg-dash vods"
 msgstr "Ο μεσολαβητής απαιτείται για την αναπαραγωγή mpeg-dash"
+
+msgctxt "#30622"
+msgid "Purchases"
+msgstr "Αγορές"
+
+msgctxt "#30623"
+msgid "Install InputStream Helper"
+msgstr "Εγκατάσταση βοηθού InputStream"
+
+msgctxt "#30624"
+msgid "Requires Kodi 17+"
+msgstr "Απαιτεί Kodi 17+"
+
+msgctxt "#30625"
+msgid "InputStream Helper is already installed."
+msgstr "Ο βοηθός InputStream είναι ήδη εγκατεστημένος"
+
+msgctxt "#30626"
+msgid "Delete temporary files"
+msgstr "Διαγραφή προσωρινών αρχείων"
+
+msgctxt "#30627"
+msgid "Rate video after watching"
+msgstr "Βαθμολόγηση βίντεο με το πέρας παρακολούθησης"
+
+msgctxt "#30628"
+msgid "HTTP Server"
+msgstr "Εξυπηρετητής HTTP"
+
+msgctxt "#30629"
+msgid "IP whitelist (comma delimited)"
+msgstr "Λίστα επιτρεπομένων IP (διαχωρισμένες με κόμμα)"
+
+msgctxt "#30630"
+msgid "Save"
+msgstr "Αποθήκευση"
+
+msgctxt "#30631"
+msgid "Successfully updated: %s"
+msgstr "Επιτυχής ενημέρωση του: %s"
+
+msgctxt "#30632"
+msgid "Enable API configuration page"
+msgstr "Επέτρεψε την σελίδα ρυθμίσεων κλειδιών API"
+
+msgctxt "#30633"
+msgid "http://<ipaddress>:<port>/api (see HTTP Server)"
+msgstr "http://διεύθυνσηIP:θύρα/api (βλέπε εξυπηρετητής HTTP)"

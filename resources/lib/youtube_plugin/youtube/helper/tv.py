@@ -3,7 +3,6 @@ __author__ = 'bromix'
 from ... import kodion
 from ...youtube.helper import utils
 from ...kodion.items.video_item import VideoItem
-import yt_context_menu
 
 
 def my_subscriptions_to_items(provider, context, json_data, do_filter=False):

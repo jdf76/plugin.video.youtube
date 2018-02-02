@@ -1,12 +1,20 @@
 __author__ = 'bromix'
 
 __all__ = ['create_path', 'create_uri_path', 'strip_html_from_text', 'print_items', 'find_best_fit', 'to_utf8',
-           'to_unicode', 'select_stream']
+           'to_unicode', 'select_stream', 'make_dirs']
 
-import urllib
+from six.moves import urllib
+from six import next
+from six import string_types
+
+import os
 import re
+
 from ..constants import localize
+
+import xbmc
 import xbmcaddon
+import xbmcvfs
 
 
 def loose_version(v):
@@ -18,16 +26,22 @@ def loose_version(v):
 
 def to_utf8(text):
     result = text
-    if isinstance(text, unicode):
-        result = text.encode('utf-8')
+    if isinstance(text, string_types):
+        try:
+            result = text.encode('utf-8')
+        except UnicodeDecodeError:
+            pass
 
     return result
 
 
 def to_unicode(text):
     result = text
-    if isinstance(text, str):
-        result = text.decode('utf-8')
+    if isinstance(text, string_types):
+        try:
+            result = text.decode('utf-8')
+        except (AttributeError, UnicodeEncodeError):
+            pass
 
     return result
 
@@ -42,7 +56,7 @@ def find_best_fit(data, compare_method=None):
 
     last_fit = -1
     if isinstance(data, dict):
-        for key in data.keys():
+        for key in list(data.keys()):
             item = data[key]
             fit = abs(compare_method(item))
             if last_fit == -1 or fit < last_fit:
@@ -139,7 +153,7 @@ def create_path(*args):
         if isinstance(arg, list):
             return create_path(*arg)
 
-        comps.append(unicode(arg.strip('/').replace('\\', '/').replace('//', '/')))
+        comps.append(str(arg.strip('/').replace('\\', '/').replace('//', '/')))
 
     uri_path = '/'.join(comps)
     if uri_path:
@@ -154,11 +168,11 @@ def create_uri_path(*args):
         if isinstance(arg, list):
             return create_uri_path(*arg)
 
-        comps.append(arg.strip('/').replace('\\', '/').replace('//', '/').encode('utf-8'))
+        comps.append(str(arg.strip('/').replace('\\', '/').replace('//', '/')))
 
     uri_path = '/'.join(comps)
     if uri_path:
-        return urllib.quote('/%s/' % uri_path)
+        return urllib.parse.quote('/%s/' % uri_path)
 
     return '/'
 
@@ -182,4 +196,23 @@ def print_items(items):
         items = []
 
     for item in items:
-        print item
+        print(item)
+
+
+def make_dirs(path):
+    if not path.endswith('/'):
+        path += '/'
+    path = xbmc.translatePath(path)
+    if not xbmcvfs.exists(path):
+        try:
+            r = xbmcvfs.mkdirs(path)
+        except:
+            pass
+        if not xbmcvfs.exists(path):
+            try:
+                os.makedirs(path)
+            except:
+                pass
+        return xbmcvfs.exists(path)
+
+    return True

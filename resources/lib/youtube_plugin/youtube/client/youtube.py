@@ -44,7 +44,7 @@ class YouTube(LoginClient):
         if position >= 256:
             multiplier = (position // 128) - 1
             position -= 128 * multiplier
-        high_iteration = (position / len_low) % len_high
+        high_iteration = (position // len_low) % len_high
 
         return 'C%s%s%sAA' % (high[high_iteration], low[low_iteration], overflow_token)
 

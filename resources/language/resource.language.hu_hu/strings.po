@@ -742,13 +742,61 @@ msgid "Enable mpeg-dash proxy"
 msgstr "Mpeg-dash proxy engedélyezése"
 
 msgctxt "#30619"
-msgid "Proxy port"
-msgstr "Proxy port"
+msgid "Port"
+msgstr "Port"
 
 msgctxt "#30620"
-msgid "Port %s already in use. Cannot start proxy server."
-msgstr "%s port használatban van. Nem lehet elindítani a proxy kiszolgálót."
+msgid "Port %s already in use. Cannot start http server."
+msgstr "%s port használatban van. Nem lehet elindítani a http kiszolgálót."
 
 msgctxt "#30621"
 msgid "Proxy is required for mpeg-dash vods"
 msgstr "Proxy szükséges az mpeg-dash formátumhoz"
+
+msgctxt "#30622"
+msgid "Purchases"
+msgstr "Vásárlások"
+
+msgctxt "#30623"
+msgid "Install InputStream Helper"
+msgstr "InputStream Helper telepítés"
+
+msgctxt "#30624"
+msgid "Requires Kodi 17+"
+msgstr "Kodi 17+ szükséges"
+
+msgctxt "#30625"
+msgid "InputStream Helper is already installed."
+msgstr "InputStream Helper már telepítésre került."
+
+msgctxt "#30626"
+msgid "Delete temporary files"
+msgstr "Ideiglenes fájlok törlése"
+
+msgctxt "#30627"
+msgid "Rate video after watching"
+msgstr "Videó értékelése megtekintés után"
+
+msgctxt "#30628"
+msgid "HTTP Server"
+msgstr "HTTP kiszolgáló"
+
+msgctxt "#30629"
+msgid "IP whitelist (comma delimited)"
+msgstr "IP fehérlista (vesszővel elválasztva)"
+
+msgctxt "#30630"
+msgid "Save"
+msgstr "Mentés"
+
+msgctxt "#30631"
+msgid "Successfully updated: %s"
+msgstr "Sikeres frissítés: %s"
+
+msgctxt "#30632"
+msgid "Enable API configuration page"
+msgstr "API beállítások oldal engedélyezése"
+
+msgctxt "#30633"
+msgid "http://<ipaddress>:<port>/api (see HTTP Server)"
+msgstr "http://<ipaddress>:<port>/api (lásd HTTP kiszolgáló)"

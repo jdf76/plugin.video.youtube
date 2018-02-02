@@ -1,5 +1,7 @@
 __author__ = 'bromix'
 
+from six.moves import range
+
 import json
 import os
 import re

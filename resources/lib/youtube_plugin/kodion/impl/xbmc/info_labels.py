@@ -18,7 +18,7 @@ def _process_int_value(info_labels, name, param):
 
 def _process_string_value(info_labels, name, param):
     if param is not None:
-        info_labels[name] = unicode(param)
+        info_labels[name] = param
 
 
 def _process_audio_rating(info_labels, param):
@@ -29,7 +29,7 @@ def _process_audio_rating(info_labels, param):
         if rating < 0:
             rating = 0
 
-        info_labels['rating'] = unicode(rating)
+        info_labels['rating'] = rating
 
 
 def _process_video_dateadded(info_labels, param):
