@@ -625,7 +625,7 @@ msgstr "Mis Suscripciones (Filtrado)"
 
 msgctxt "#30585"
 msgid "Filtered channel list (comma delimited)"
-msgstr "Lista de canales filtrados (separados por comas)"
+msgstr "Lista de canales filtrados (separado por comas)"
 
 msgctxt "#30586"
 msgid "Blacklist"
@@ -765,7 +765,7 @@ msgstr "Puerto"
 
 msgctxt "#30620"
 msgid "Port %s already in use. Cannot start http server."
-msgstr "El puerto %s ya esta en uso. No se puede iniciar el servidor HTTP"
+msgstr "Puerto %s ya en uso. No se ha podido iniciar el servidor HTTP"
 
 msgctxt "#30621"
 msgid "Proxy is required for mpeg-dash vods"
@@ -793,7 +793,7 @@ msgstr "Eliminar archivos temporales"
 
 msgctxt "#30627"
 msgid "Rate video after watching"
-msgstr "Calificar el video después de verlo"
+msgstr "Calificar video después de ver"
 
 msgctxt "#30628"
 msgid "HTTP Server"
@@ -801,7 +801,7 @@ msgstr "Server HTTP"
 
 msgctxt "#30629"
 msgid "IP whitelist (comma delimited)"
-msgstr "Lista blanca IP (separados por comas)"
+msgstr "Lista blanca IP (separado por comas)"
 
 msgctxt "#30630"
 msgid "Save"
