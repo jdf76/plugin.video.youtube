@@ -521,7 +521,7 @@ msgstr "El Historial de búsqueda"
 
 msgctxt "#30559"
 msgid "Delete settings.xml"
-msgstr "Eliminar ajustes personales (setting.xml)"
+msgstr "Eliminar ajustes personales (settings.xml)"
 
 msgctxt "#30560"
 msgid "Subtitle language"
