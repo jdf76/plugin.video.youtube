@@ -3,11 +3,19 @@
 from base64 import b64decode
 from hashlib import md5
 from ...kodion import Context as __Context
+from ...kodion.json_store import APIKeyStore
 
 DEFAULT_SWITCH = 1
 
 __context = __Context(plugin_id='plugin.video.youtube')
 __settings = __context.get_settings()
+
+_api_jstore = APIKeyStore(__context)
+_json_api = _api_jstore.load()
+
+_j_key = _json_api['keys']['personal'].get('api_key', '')
+_j_id = _json_api['keys']['personal'].get('client_id', '')
+_j_secret = _json_api['keys']['personal'].get('client_secret', '')
 
 _own_key = __settings.get_string('youtube.api.key', '')
 _own_id = __settings.get_string('youtube.api.id', '')
@@ -43,6 +51,29 @@ if _own_secret != _stripped_secret:
         __context.log_debug('Personal API setting: |Secret| had whitespace removed')
         _own_secret = _stripped_secret
         __settings.set_string('youtube.api.secret', _own_secret)
+
+if (_j_key and _j_id and _j_secret) and (not _own_id or not _own_key or not _own_secret):
+    do_key_load = __context.get_ui().on_yes_no_input(title=__context.localize(30640), text=__context.localize(30639))
+    if do_key_load:
+        _own_key = _j_key
+        __settings.set_string('youtube.api.key', _own_key)
+        _own_id = _j_id
+        __settings.set_string('youtube.api.id', _own_id)
+        _own_secret = _j_secret
+        __settings.set_string('youtube.api.secret', _own_secret)
+        __settings.set_bool('youtube.api.enable', True)
+        __settings.set_string('youtube.api.last.switch', 'own')
+        m = md5()
+        m.update(_own_key.encode('utf-8'))
+        m.update(_own_id.encode('utf-8'))
+        m.update(_own_secret.encode('utf-8'))
+        __settings.set_string('youtube.api.last.hash', m.hexdigest())
+        _json_api['keys']['personal'] = {'api_key': _own_key, 'client_id': _own_id, 'client_secret': _own_secret}
+        _api_jstore.save(_json_api)
+
+if (_j_key != _own_key) or (_j_id != _own_id) or (_j_secret != _own_secret):
+    _json_api['keys']['personal'] = {'api_key': _own_key, 'client_id': _own_id, 'client_secret': _own_secret}
+    _api_jstore.save(_json_api)
 
 
 def _has_own_keys():
@@ -181,6 +212,8 @@ def check_for_key_changes():
         return True
     return False
 
+
+developer_keys = _json_api['keys']['developer']
 
 api = dict()
 if has_own_keys:

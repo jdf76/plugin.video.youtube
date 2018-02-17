@@ -129,3 +129,15 @@ class AbstractSettings(object):
 
     def httpd_port(self):
         return self.get_int(constants.setting.HTTPD_PORT, 50152)
+
+    def httpd_listen(self):
+        return self.get_string(constants.setting.HTTPD_LISTEN, '0.0.0.0')
+
+    def set_httpd_listen(self, value):
+        return self.set_string(constants.setting.HTTPD_LISTEN, value)
+
+    def get_api_last_origin(self):
+        return self.get_string(constants.setting.API_LAST_ORIGIN, 'plugin.video.youtube')
+
+    def set_api_last_origin(self, value):
+        return self.set_string(constants.setting.API_LAST_ORIGIN, value)
