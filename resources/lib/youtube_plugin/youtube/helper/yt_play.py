@@ -54,20 +54,13 @@ def play_video(provider, context, re_match):
             for i in items:
                 playlist.add(i)
 
-        title = video_stream.get('meta', {}).get('title', video_id)
+        title = video_stream.get('meta', {}).get('video', {}).get('title', '')
         if is_video:
             video_item = VideoItem(title, video_stream['url'])
         else:
             video_item = AudioVideoItem(title, video_stream['url'])
 
-        if video_stream.get('meta', None):
-            video_item.set_subtitles(video_stream['meta'].get('subtitles', None))
-
-        if video_stream.get('headers', ''):
-            video_item.set_headers(video_stream.get('headers', ''))
-
-        video_id_dict = {video_id: video_item}
-        utils.update_video_infos(provider, context, video_id_dict)
+        video_item = utils.update_play_info(provider, context, video_id, video_item, video_stream)
 
         # Trigger post play events
         if provider.is_logged_in():

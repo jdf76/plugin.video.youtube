@@ -87,12 +87,6 @@ class AbstractSettings(object):
     def use_dash(self):
         return self.get_bool(constants.setting.USE_DASH, False)
 
-    def dash_support_builtin(self):
-        return self.get_bool(constants.setting.DASH_SUPPORT_BUILTIN, False)
-
-    def dash_support_addon(self):
-        return self.get_bool(constants.setting.DASH_SUPPORT_ADDON, False)
-
     def subtitle_languages(self):
         return self.get_int(constants.setting.SUBTITLE_LANGUAGE, 0)
 
@@ -136,8 +130,8 @@ class AbstractSettings(object):
     def set_httpd_listen(self, value):
         return self.set_string(constants.setting.HTTPD_LISTEN, value)
 
-    def get_api_last_origin(self):
-        return self.get_string(constants.setting.API_LAST_ORIGIN, 'plugin.video.youtube')
+    def httpd_whitelist(self):
+        return self.get_string(constants.setting.HTTPD_WHITELIST, '')
 
-    def set_api_last_origin(self, value):
-        return self.set_string(constants.setting.API_LAST_ORIGIN, value)
+    def api_config_page(self):
+        return self.get_bool(constants.setting.API_CONFIG_PAGE, False)

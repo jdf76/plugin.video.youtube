@@ -99,7 +99,7 @@ def _process_select_playlist(provider, context, re_match):
                 return
 
             playlist_id = json_data.get('id', '')
-            if playlist:
+            if playlist_id:
                 new_params = {}
                 new_params.update(context.get_params())
                 new_params['playlist_id'] = playlist_id

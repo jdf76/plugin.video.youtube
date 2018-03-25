@@ -1,5 +1,4 @@
 __author__ = 'bromix'
-from six.moves import map
 
 import os
 import re
@@ -114,7 +113,10 @@ class Provider(kodion.AbstractProvider):
                  'youtube.failed.watch_later.retry': 30614,
                  'youtube.cancel': 30615,
                  'youtube.must.be.signed.in': 30616,
-                 'youtube.select.listen.ip': 30644
+                 'youtube.select.listen.ip': 30644,
+                 'youtube.purchases': 30622,
+                 'youtube.requires.krypton': 30624,
+                 'youtube.inputstreamhelper.is.installed': 30625
                  }
 
     def __init__(self):
@@ -181,15 +183,15 @@ class Provider(kodion.AbstractProvider):
     def get_client(self, context):
         # set the items per page (later)
         settings = context.get_settings()
+        access_manager = context.get_access_manager()
 
         items_per_page = settings.get_items_per_page()
 
         language = settings.get_string('youtube.language', 'en-US')
         region = settings.get_string('youtube.region', 'US')
 
-        api_last_origin = settings.get_api_last_origin()
+        api_last_origin = access_manager.get_last_origin()
 
-        youtubetv_config = YouTube.CONFIGS.get('youtube-tv')
         youtube_config = YouTube.CONFIGS.get('main')
 
         dev_id = context.get_param('addon_id', None)
@@ -200,18 +202,17 @@ class Provider(kodion.AbstractProvider):
             if api_last_origin != dev_config.get('origin'):
                 context.log_debug('API key origin changed, clearing cache. |%s|' % dev_config.get('origin'))
                 context.get_function_cache().clear()
-                settings.set_api_last_origin(dev_config.get('origin'))
+                access_manager.set_last_origin(dev_config.get('origin'))
             self._client = YouTube(items_per_page=items_per_page, language=language, region=region, config=dev_keys)
             self._client.set_log_error(context.log_error)
         else:
             if api_last_origin != 'plugin.video.youtube':
                 context.log_debug('API key origin changed, clearing cache. |plugin.video.youtube|')
                 context.get_function_cache().clear()
-                settings.set_api_last_origin('plugin.video.youtube')
+                access_manager.set_last_origin('plugin.video.youtube')
 
-            access_manager = context.get_access_manager()
             access_tokens = access_manager.get_access_token().split('|')
-            if access_manager.is_new_login_credential() or len(access_tokens) != 2 or access_manager.is_access_token_expired():
+            if len(access_tokens) != 2 or access_manager.is_access_token_expired():
                 # reset access_token
                 access_manager.update_access_token('')
                 # we clear the cache, so none cached data of an old account will be displayed.
@@ -222,11 +223,12 @@ class Provider(kodion.AbstractProvider):
             if not self._client:
                 context.log_debug('Selecting YouTube config "%s"' % youtube_config['system'])
 
-                # remove the old login.
-                if access_manager.has_login_credentials():
-                    access_manager.remove_login_credentials()
-                if access_manager.has_login_credentials() or access_manager.has_refresh_token():
-                    # username, password = access_manager.get_login_credentials()
+                if access_manager.has_refresh_token():
+                    if YouTube.api_keys_changed:
+                        context.log_warning('API key set changed: Resetting client and updating access token')
+                        self.reset_client()
+                        access_manager.update_access_token(access_token='', refresh_token='')
+
                     access_tokens = access_manager.get_access_token()
                     if access_tokens:
                         access_tokens = access_tokens.split('|')
@@ -236,14 +238,13 @@ class Provider(kodion.AbstractProvider):
                         refresh_tokens = refresh_tokens.split('|')
                     context.log_debug('Access token count: |%d| Refresh token count: |%d|' % (len(access_tokens), len(refresh_tokens)))
                     # create a new access_token
+                    client = YouTube(language=language, region=region, items_per_page=items_per_page, config=youtube_config)
                     if len(access_tokens) != 2 and len(refresh_tokens) == 2:
                         try:
 
-                            access_token_kodi, expires_in_kodi = \
-                                YouTube(language=language, config=youtube_config).refresh_token(refresh_tokens[1])
+                            access_token_kodi, expires_in_kodi = client.refresh_token(refresh_tokens[1])
 
-                            access_token_tv, expires_in_tv = \
-                                YouTube(language=language, config=youtubetv_config).refresh_token_tv(refresh_tokens[0])
+                            access_token_tv, expires_in_tv = client.refresh_token_tv(refresh_tokens[0])
 
                             access_tokens = [access_token_tv, access_token_kodi]
 
@@ -268,9 +269,9 @@ class Provider(kodion.AbstractProvider):
 
                     if len(access_tokens) == 0:
                         access_tokens = ['', '']
-
-                    self._client = YouTube(language=language, region=region, items_per_page=items_per_page, access_token=access_tokens[1],
-                                           access_token_tv=access_tokens[0], config=youtube_config)
+                    client.set_access_token(access_token=access_tokens[1])
+                    client.set_access_token_tv(access_token_tv=access_tokens[0])
+                    self._client = client
                     self._client.set_log_error(context.log_error)
                 else:
                     self._client = YouTube(items_per_page=items_per_page, language=language, region=region, config=youtube_config)
@@ -646,18 +647,20 @@ class Provider(kodion.AbstractProvider):
             if not channel_id:
                 channel_params = {}
                 channel_params.update(context.get_params())
+                channel_params['q'] = search_text
                 channel_params['search_type'] = 'channel'
                 channel_item = DirectoryItem('[B]' + context.localize(self.LOCAL_MAP['youtube.channels']) + '[/B]',
-                                             context.create_uri([context.get_path()], channel_params),
+                                             context.create_uri([context.get_path().replace('input', 'query')], channel_params),
                                              image=context.create_resource_path('media', 'channels.png'))
                 channel_item.set_fanart(self.get_fanart(context))
                 result.append(channel_item)
 
             playlist_params = {}
             playlist_params.update(context.get_params())
+            playlist_params['q'] = search_text
             playlist_params['search_type'] = 'playlist'
             playlist_item = DirectoryItem('[B]' + context.localize(self.LOCAL_MAP['youtube.playlists']) + '[/B]',
-                                          context.create_uri([context.get_path()], playlist_params),
+                                          context.create_uri([context.get_path().replace('input', 'query')], playlist_params),
                                           image=context.create_resource_path('media', 'playlist.png'))
             playlist_item.set_fanart(self.get_fanart(context))
             result.append(playlist_item)
@@ -666,10 +669,11 @@ class Provider(kodion.AbstractProvider):
                 # live
                 live_params = {}
                 live_params.update(context.get_params())
+                live_params['q'] = search_text
                 live_params['search_type'] = 'video'
                 live_params['event_type'] = 'live'
                 live_item = DirectoryItem('[B]%s[/B]' % context.localize(self.LOCAL_MAP['youtube.live']),
-                                          context.create_uri([context.get_path()], live_params),
+                                          context.create_uri([context.get_path().replace('input', 'query')], live_params),
                                           image=context.create_resource_path('media', 'live.png'))
                 result.append(live_item)
 
@@ -688,15 +692,9 @@ class Provider(kodion.AbstractProvider):
         if switch == 'youtube':
             context._addon.openSettings()
         elif switch == 'mpd':
-            use_dash = context.addon_enabled('inputstream.adaptive')
-            if settings.dash_support_addon() and not use_dash:
-                if context.get_ui().on_yes_no_input(context.get_name(), context.localize(self.LOCAL_MAP['youtube.dash.enable.confirm'])):
-                    use_dash = context.set_addon_enabled('inputstream.adaptive')
-                else:
-                    use_dash = False
+            use_dash = context.use_inputstream_adaptive()
             if use_dash:
-                if settings.dash_support_addon():
-                    xbmcaddon.Addon(id='inputstream.adaptive').openSettings()
+                xbmcaddon.Addon(id='inputstream.adaptive').openSettings()
             else:
                 settings.set_bool('kodion.video.quality.mpd', False)
         elif switch == 'subtitles':
@@ -757,15 +755,17 @@ class Provider(kodion.AbstractProvider):
             if channel_name in filter_list:
                 filter_list = [chan_name for chan_name in filter_list if chan_name != channel_name]
 
-        modified_string = ','.join(map(str, filter_list))
+        modified_string = ','.join(filter_list).lstrip(',')
         if filter_string != modified_string:
             context.get_settings().set_string('youtube.filter.my_subscriptions_filtered.list', modified_string)
+            message = ''
             if action == 'add':
-                context.get_ui().show_notification(context.localize(self.LOCAL_MAP['youtube.added.my_subscriptions.filter']) % channel)
+                message = context.localize(self.LOCAL_MAP['youtube.added.my_subscriptions.filter'])
             elif action == 'remove':
-                context.get_ui().show_notification(context.localize(self.LOCAL_MAP['youtube.removed.my_subscriptions.filter']) % channel)
-
-            context.get_ui().refresh_container()
+                message = context.localize(self.LOCAL_MAP['youtube.removed.my_subscriptions.filter'])
+            if message:
+                context.get_ui().show_notification(message=message)
+        context.get_ui().refresh_container()
 
     @kodion.RegisterProviderPath('^/maintain/(?P<maint_type>[^/]+)/(?P<action>[^/]+)/$')
     def maintenance_actions(self, context, re_match):
@@ -836,6 +836,16 @@ class Provider(kodion.AbstractProvider):
                         context.get_ui().show_notification(context.localize(self.LOCAL_MAP['youtube.succeeded']))
                     else:
                         context.get_ui().show_notification(context.localize(self.LOCAL_MAP['youtube.failed']))
+        elif action == 'install':
+            if maint_type == 'inputstreamhelper':
+                if context.get_system_version().get_version()[0] >= 17:
+                    try:
+                        xbmcaddon.Addon('script.module.inputstreamhelper')
+                        context.get_ui().show_notification(context.localize(self.LOCAL_MAP['youtube.inputstreamhelper.is.installed']))
+                    except RuntimeError:
+                        context.execute('InstallAddon(script.module.inputstreamhelper)')
+                else:
+                    context.get_ui().show_notification(context.localize(self.LOCAL_MAP['youtube.requires.krypton']))
 
     @kodion.RegisterProviderPath('^/api/update/$')
     def api_key_update(self, context, re_match):
@@ -986,6 +996,16 @@ class Provider(kodion.AbstractProvider):
                                                 image=context.create_resource_path('media', 'channel.png'))
                 my_channel_item.set_fanart(self.get_fanart(context))
                 result.append(my_channel_item)
+
+            # purchases
+            if settings.get_bool('youtube.folder.purchases.show', False) and \
+                    settings.use_dash() and \
+                    'drm' in context.inputstream_adaptive_capabilities():
+                purchases_item = DirectoryItem(context.localize(self.LOCAL_MAP['youtube.purchases']),
+                                               context.create_uri(['special', 'purchases']),
+                                               image=context.create_resource_path('media', 'popular.png'))
+                purchases_item.set_fanart(self.get_fanart(context))
+                result.append(purchases_item)
 
             # watch later
             if 'watchLater' in playlists and settings.get_bool('youtube.folder.watch_later.show', True):
