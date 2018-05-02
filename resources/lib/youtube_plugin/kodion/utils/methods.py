@@ -85,16 +85,23 @@ def select_stream(context, stream_data_list, quality_map_override=None, ask_for_
     audio_only = False if ask_for_quality else settings.audio_only()  # don't filter streams to audio only if we're asking for quality
 
     if audio_only:  # check for live stream, audio only not supported
+        context.log_debug('Select stream: Audio only')
         for item in stream_data_list:
             if item.get('Live', False):
+                context.log_debug('Select stream: Live stream, audio only not available')
                 audio_only = False
                 break
 
     if audio_only:
         use_dash = False
-        stream_data_list = [item for item in stream_data_list
-                            if (item.get('dash/audio', False) and
-                                not item.get('dash/video', False))]
+        audio_stream_data_list = [item for item in stream_data_list
+                                  if (item.get('dash/audio', False) and
+                                      not item.get('dash/video', False))]
+
+        if audio_stream_data_list:
+            stream_data_list = audio_stream_data_list
+        else:
+            context.log_debug('Select stream: Audio only, no audio only streams found')
 
     if use_dash:
         use_dash = context.use_inputstream_adaptive()
@@ -121,8 +128,9 @@ def select_stream(context, stream_data_list, quality_map_override=None, ask_for_
     context.log_debug('selectable streams: %d' % len(sorted_stream_data_list))
     for sorted_stream_data in sorted_stream_data_list:
         log_data = copy.deepcopy(sorted_stream_data)
-        if 'license_url' in log_data:
-            log_data['license_url'] = '[not shown]' if log_data['license_url'] else None
+        if 'license_info' in log_data:
+            log_data['license_info']['url'] = '[not shown]' if log_data['license_info'].get('url') else None
+            log_data['license_info']['token'] = '[not shown]' if log_data['license_info'].get('token') else None
         context.log_debug('selectable stream: %s' % log_data)
 
     selected_stream_data = None
@@ -139,8 +147,9 @@ def select_stream(context, stream_data_list, quality_map_override=None, ask_for_
 
     if selected_stream_data is not None:
         log_data = copy.deepcopy(selected_stream_data)
-        if 'license_url' in log_data:
-            log_data['license_url'] = '[not shown]' if log_data['license_url'] else None
+        if 'license_info' in log_data:
+            log_data['license_info']['url'] = '[not shown]' if log_data['license_info'].get('url') else None
+            log_data['license_info']['token'] = '[not shown]' if log_data['license_info'].get('token') else None
         context.log_debug('selected stream: %s' % log_data)
 
     return selected_stream_data

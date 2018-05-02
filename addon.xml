@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.youtube" name="YouTube" version="6.0.0~beta7" provider-name="bromix">
+<addon id="plugin.video.youtube" name="YouTube" version="6.0.0~beta10" provider-name="bromix">
     <requires>
         <import addon="xbmc.python" version="2.20.0"/>
         <import addon="script.module.six"/>
@@ -26,18 +26,23 @@
 [add] play route for channel live streams
         - plugin:&#47;&#47;plugin.video.youtube&#47;play&#47;?channel_id=UCLA_DiR1FfKNvjuUpBHmylQ&#38;live=1
 [add] Purchases
-        - support is incomplete
-        - requires inputstream.adaptive &#62;= 2.0.28
-        - YouTube includes resolutions that are not available, currently to work around this;
+        - requires Kodi 18
+        - requires inputstream.adaptive &#62;= 2.2.12
+        - if a purchase fails after 10 seconds
+            - provide a debug log
             - set InputStream Adaptive -&#62; Settings -&#62; Stream selection -&#62; manual
             - change video stream during playback to preferred working resolution
-        - Android plays only first 5 minutes
         - huge thanks to peak3d
+[add] relevanceLanguage to search requests
+[fix] mpeg-dash proxy with multi-profiles
 [fix] search input, now works with Yatse
 [fix] Signature deciphering
 [fix] context menu after playback
 [fix] alternative player, do not append headers
 [fix] My Subscriptions (Filtered) channel matching
+[fix] Audio only, failover to video if no audio only streams available
+[fix] My Subscriptions missing page 3
+[fix&#47;upd] function cache, update max rows and resolve hang on some requests
 [fix&#47;upd] post play events happen post play
 [fix&#47;upd] set title from metadata on play
 [chg] only automatically remove temp folder at start-up
