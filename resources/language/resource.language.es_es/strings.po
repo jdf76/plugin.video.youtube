@@ -517,7 +517,7 @@ msgstr "La cache para funciones"
 
 msgctxt "#30558"
 msgid "search history"
-msgstr "El Historial de búsqueda"
+msgstr "Historial de búsqueda"
 
 msgctxt "#30559"
 msgid "Delete settings.xml"
@@ -729,7 +729,7 @@ msgstr "Esta acción borrará su historial de reproducción en todos los disposi
 
 msgctxt "#30611"
 msgid "Saved Playlists"
-msgstr "Guardar listas de reproducción"
+msgstr "Listas de reproducción guardadas"
 
 msgctxt "#30612"
 msgid "Retry"
