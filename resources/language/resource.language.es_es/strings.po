@@ -689,11 +689,11 @@ msgstr "Configurar subtítulos"
 
 msgctxt "#30601"
 msgid "%s with %s fallback"
-msgstr ""
+msgstr "%s con %S como respaldo"
 
 msgctxt "#30602"
 msgid "No auto-generated"
-msgstr "Sin autogenerado"
+msgstr "sin autogenerado"
 
 msgctxt "#30603"
 msgid "Age gate"
