@@ -54,7 +54,7 @@ msgstr "Preguntar siempre por calidad de video"
 
 msgctxt "#30010"
 msgid "Video quality"
-msgstr "Calidad de Video"
+msgstr "Seleccione calidad de Video"
 
 msgctxt "#30011"
 msgid "480p"
