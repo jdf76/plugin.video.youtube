@@ -203,7 +203,7 @@ msgstr "Ver más tarde"
 
 msgctxt "#30108"
 msgid "Remove"
-msgstr "Quitar"
+msgstr "Suprimir"
 
 msgctxt "#30109"
 msgid "Latest Videos"
@@ -231,7 +231,7 @@ msgstr "Confirmación para eliminar"
 
 msgctxt "#30115"
 msgid "Confirm remove"
-msgstr "Confirmación para eliminar"
+msgstr "Confirmación para suprimir"
 
 msgctxt "#30116"
 msgid "Delete \"%s\"?"
@@ -239,7 +239,7 @@ msgstr "¿Esta seguro de que desea eliminar \"%s\"?"
 
 msgctxt "#30117"
 msgid "Remove \"%s\"?"
-msgstr "¿Esta seguro de que desea limpiar \"%s\"?"
+msgstr "¿Esta seguro de que desea suprimir \"%s\"?"
 
 msgctxt "#30118"
 msgid "Delete"
@@ -357,11 +357,11 @@ msgstr "Suscribirse a %s"
 
 msgctxt "#30518"
 msgid "Go to '%s'"
-msgstr "Visite la URL '%s' desde cualquier navegador web" 
+msgstr "Por favor, vaya a la URL '%s' desde"
 
 msgctxt "#30519"
 msgid "and enter the following code:"
-msgstr "e introduzca el siguiente código:"
+msgstr "cualquier navegador web e introduzca el siguiente código..."
 
 msgctxt "#30520"
 msgid "Add to..."
@@ -473,7 +473,7 @@ msgstr "Por favor, inicie sesión dos veces!"
 
 msgctxt "#30547"
 msgid "You must enable two applications so that YouTube is functioning properly."
-msgstr "Debe habilitar dos sesiones para que el add-on YouTube funcione correctamente."
+msgstr "Para que el add-on YouTube funcione correctamente se deben habilitar dos sesiones."
 
 msgctxt "#30548"
 msgid "More..."
@@ -849,7 +849,7 @@ msgstr "Restaurar"
 
 msgctxt "#30641"
 msgid "Delete api_keys.json"
-msgstr "Eliminar api_keys.json"
+msgstr "Eliminar claves api (api_keys.json)"
 
 msgctxt "#30642"
 msgid "Delete access_manager.json"
