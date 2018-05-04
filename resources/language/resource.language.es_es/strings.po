@@ -239,7 +239,7 @@ msgstr "¿Esta seguro de que desea eliminar \"%s\"?"
 
 msgctxt "#30117"
 msgid "Remove \"%s\"?"
-msgstr "¿Esta seguro de que desea limpiar el \"%s\"?"
+msgstr "¿Esta seguro de que desea limpiar \"%s\"?"
 
 msgctxt "#30118"
 msgid "Delete"
@@ -513,11 +513,11 @@ msgstr "Limpiar historial de búsqueda"
 
 msgctxt "#30557"
 msgid "function cache"
-msgstr "La cache para funciones"
+msgstr "cache para funciones"
 
 msgctxt "#30558"
 msgid "search history"
-msgstr "Historial de búsqueda"
+msgstr "historial de búsqueda"
 
 msgctxt "#30559"
 msgid "Delete settings.xml"
