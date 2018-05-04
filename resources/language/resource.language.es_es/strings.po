@@ -108,7 +108,7 @@ msgstr "Tamaño historial de búsqueda"
 
 msgctxt "#30024"
 msgid "Cache size (MB)"
-msgstr "Tamaño cache (MB)"
+msgstr "Tamaño para cache de funciones (MB)"
 
 msgctxt "#30025"
 msgid "Enable setup-wizard"
