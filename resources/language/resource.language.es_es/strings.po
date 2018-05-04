@@ -50,11 +50,11 @@ msgstr "Configurar InputStream Adaptive"
 
 msgctxt "#30009"
 msgid "Always ask for the video quality"
-msgstr "Preguntar siempre por calidad de video"
+msgstr "Preguntar siempre por calidad de vídeo"
 
 msgctxt "#30010"
 msgid "Video quality"
-msgstr "Seleccione calidad de Video"
+msgstr "Seleccione calidad de vídeo"
 
 msgctxt "#30011"
 msgid "480p"
@@ -207,7 +207,7 @@ msgstr "Quitar"
 
 msgctxt "#30109"
 msgid "Latest Videos"
-msgstr "Últimos Videos"
+msgstr "Últimos Vídeos"
 
 msgctxt "#30110"
 msgid "New Search"
@@ -231,7 +231,7 @@ msgstr "Confirmación para eliminar"
 
 msgctxt "#30115"
 msgid "Confirm remove"
-msgstr "Confirmación para quitar"
+msgstr "Confirmación para eliminar"
 
 msgctxt "#30116"
 msgid "Delete \"%s\"?"
@@ -239,7 +239,7 @@ msgstr "¿Esta seguro de que desea eliminar \"%s\"?"
 
 msgctxt "#30117"
 msgid "Remove \"%s\"?"
-msgstr "¿Esta seguro de que desea quitar \"%s\"?"
+msgstr "¿Esta seguro de que desea limpiar el \"%s\"?"
 
 msgctxt "#30118"
 msgid "Delete"
@@ -247,7 +247,7 @@ msgstr "Eliminar"
 
 msgctxt "#30119"
 msgid "Please wait..."
-msgstr "Por favor espere..."
+msgstr "Por favor, espere..."
 
 msgctxt "#30120"
 msgid "Clear"
@@ -317,7 +317,7 @@ msgstr "Mi Canal"
 
 msgctxt "#30508"
 msgid "Liked Videos"
-msgstr "Me gustó el video"
+msgstr "Me gustó el vídeo"
 
 msgctxt "#30509"
 msgid "History"
@@ -341,11 +341,11 @@ msgstr "Popular en YouTube"
 
 msgctxt "#30514"
 msgid "Related Videos"
-msgstr "Videos relacionados"
+msgstr "Vídeos relacionados"
 
 msgctxt "#30515"
 msgid "Auto-Remove from 'Watch Later'"
-msgstr "Auto-Eliminar de 'Ver más tarde'"
+msgstr "Auto-eliminar de 'Ver más tarde'"
 
 msgctxt "#30516"
 msgid "Folders"
@@ -437,7 +437,7 @@ msgstr "Reproducir desde aquí"
 
 msgctxt "#30538"
 msgid "Disliked Videos"
-msgstr "No me gustó el video"
+msgstr "No me gustó el vídeo"
 
 msgctxt "#30539"
 msgid "Live"
@@ -469,7 +469,7 @@ msgstr "No se encontraron enlaces"
 
 msgctxt "#30546"
 msgid "Please log in twice!"
-msgstr "Por favor inicie sesión dos veces!"
+msgstr "Por favor, inicie sesión dos veces!"
 
 msgctxt "#30547"
 msgid "You must enable two applications so that YouTube is functioning properly."
@@ -481,7 +481,7 @@ msgstr "Más..."
 
 msgctxt "#30549"
 msgid "No videos streams found"
-msgstr "No se han encontrados videos"
+msgstr "No se han encontrados vídeos"
 
 msgctxt "#30550"
 msgid "Region"
@@ -613,7 +613,7 @@ msgstr "¿Está seguro de que desea restablecer las credenciales de acceso?"
 
 msgctxt "#30582"
 msgid "Autoplay suggested videos"
-msgstr "Reproducir videos sugeridos automáticamente"
+msgstr "Reproducir vídeos sugeridos automáticamente"
 
 msgctxt "#30583"
 msgid "Automatic"
@@ -741,7 +741,7 @@ msgstr "Recuperar ID para lista de reproducción 'Ver más tarde'"
 
 msgctxt "#30614"
 msgid "Failed to retrieve Watch Later playlist id. Add a few videos to Watch Later via the web/app and retry."
-msgstr "¡Vaya! Algo ha fallado al recuperar la ID para la lista de reproducción 'Ver más tarde'. Agregue algunos videos a 'Ver más tarde' a través de la aplicación web / Android y vuelva a intentarlo."
+msgstr "¡Vaya! Algo ha fallado al recuperar la ID para la lista de reproducción 'Ver más tarde'. Agregue algunos vídeos a 'Ver más tarde' a través de la aplicación web / Android y vuelva a intentarlo."
 
 msgctxt "#30615"
 msgid "Cancel"
@@ -793,7 +793,7 @@ msgstr "Eliminar archivos temporales"
 
 msgctxt "#30627"
 msgid "Rate video after watching"
-msgstr "Calificar video después de ver"
+msgstr "Calificar vídeo después de ver"
 
 msgctxt "#30628"
 msgid "HTTP Server"
