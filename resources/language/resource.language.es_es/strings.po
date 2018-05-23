@@ -897,7 +897,7 @@ msgstr "Radio de ubicación (km)"
 
 msgctxt "#30653"
 msgid "Perform geolocation? Used for [B]My Location[/B]"
-msgstr "¿Desea usar la geolocalización? Sera usado paara [B]Mi Ubicación[/B]"
+msgstr "¿Desea usar la geolocalización? Sera usado para [B]Mi Ubicación[/B]"
 
 msgctxt "#30654"
 msgid "My Location"
