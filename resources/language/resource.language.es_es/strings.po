@@ -175,7 +175,7 @@ msgstr "Favoritos"
 
 msgctxt "#30101"
 msgid "Add to addon favs"
-msgstr "Añadir a favoritos del Add-on"
+msgstr "Añadir a complemento favorito"
 
 msgctxt "#30102"
 msgid "Search"
@@ -441,7 +441,7 @@ msgstr "No me gustó el vídeo"
 
 msgctxt "#30539"
 msgid "Live"
-msgstr "En Directo"
+msgstr "En directo"
 
 msgctxt "#30540"
 msgid "Play with..."
@@ -869,11 +869,11 @@ msgstr "Actualizar después de ver"
 
 msgctxt "#30646"
 msgid "Upcoming Live"
-msgstr "Próximamente en Directo"
+msgstr "Próximamente en directo"
 
 msgctxt "#30647"
 msgid "Completed Live"
-msgstr ""
+msgstr "Completado en directo"
 
 msgctxt "#30648"
 msgid "API Key is incorrect. Settings - API - API Key"
