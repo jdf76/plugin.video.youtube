@@ -175,7 +175,7 @@ msgstr "Favoritos"
 
 msgctxt "#30101"
 msgid "Add to addon favs"
-msgstr "Añadir a favoritos del Add-on"
+msgstr "Añadir a complemento favorito"
 
 msgctxt "#30102"
 msgid "Search"
@@ -873,7 +873,7 @@ msgstr "Próximamente en Directo"
 
 msgctxt "#30647"
 msgid "Completed Live"
-msgstr ""
+msgstr "Completado en Directo"
 
 msgctxt "#30648"
 msgid "API Key is incorrect. Settings - API - API Key"
