@@ -441,7 +441,7 @@ msgstr "No me gustó el vídeo"
 
 msgctxt "#30539"
 msgid "Live"
-msgstr "En directo"
+msgstr "En Directo"
 
 msgctxt "#30540"
 msgid "Play with..."
@@ -869,11 +869,11 @@ msgstr "Actualizar después de ver"
 
 msgctxt "#30646"
 msgid "Upcoming Live"
-msgstr "Próximamente en directo"
+msgstr "Próximamente en Directo"
 
 msgctxt "#30647"
 msgid "Completed Live"
-msgstr "Completado en directo"
+msgstr "Completado en Directo"
 
 msgctxt "#30648"
 msgid "API Key is incorrect. Settings - API - API Key"
