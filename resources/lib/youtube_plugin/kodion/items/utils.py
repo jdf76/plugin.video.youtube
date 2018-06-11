@@ -93,23 +93,23 @@ def datetime_to_since(dt, context):
 
     if seconds > 0:
         if seconds < 60:
-            return context.localize("30676")
+            return context.localize('30676')
         elif 60 <= seconds < 120:
-            return context.localize("30677")
+            return context.localize('30677')
         elif 120 <= seconds < 3600:
-            return context.localize("30678")
+            return context.localize('30678')
         elif 3600 <= seconds < 7200:
-            return context.localize("30679")
+            return context.localize('30679')
         elif 7200 <= seconds < 10800:
-            return context.localize("30680")
+            return context.localize('30680')
         elif 10800 <= seconds < 14400:
-            return context.localize("30681")
+            return context.localize('30681')
         elif use_yesterday and dt.date() == yesterday.date():
-            return u" ".join([context.localize("30682"), context.format_time(dt)])
+            return u' '.join([context.localize('30682'), context.format_time(dt)])
         elif dt.date() == yyesterday.date():
-            return context.localize("30683")
+            return context.localize('30683')
         elif 5400 <= seconds < 86400:
-            return u" ".join([context.localize("30684"), context.format_time(dt)])
+            return u' '.join([context.localize('30684'), context.format_time(dt)])
         elif 86400 <= seconds < 172800:
-            return u" ".join([context.localize("30682"), context.format_time(dt)])
-    return " ".join([context.format_date_short(dt), context.format_time(dt)])
+            return u' '.join([context.localize('30682'), context.format_time(dt)])
+    return u' '.join([context.format_date_short(dt), context.format_time(dt)])
