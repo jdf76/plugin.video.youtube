@@ -110,8 +110,7 @@ def to_video_item(context, video_item):
         local_dt = utils.datetime_parser.utc_to_local(publishedAt)
         item.setProperty(u'PublishedSince',
                          utils.to_unicode(utils.datetime_parser.datetime_to_since(local_dt, context)))
-        item.setProperty(u'PublishedLocal',
-                         utils.to_unicode(unicode(local_dt)))
+        item.setProperty(u'PublishedLocal', str(local_dt))
 
     _info_labels = info_labels.create_from_item(context, video_item)
 
