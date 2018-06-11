@@ -1,8 +1,11 @@
+# coding=utf-8
 __author__ = 'bromix'
 
 from six import string_types
 
 import json
+import datetime
+import time
 
 from .video_item import VideoItem
 from .directory_item import DirectoryItem
@@ -72,3 +75,41 @@ def to_json(base_item):
         return obj.__dict__
 
     return _to_json(base_item)
+
+
+def utc_to_local(dt):
+    now = time.time()
+    offset = datetime.datetime.fromtimestamp(now) - datetime.datetime.utcfromtimestamp(now)
+    return dt + offset
+
+
+def datetime_to_since(dt, context):
+    now = datetime.datetime.now()
+    diff = now - dt
+    yesterday = now - datetime.timedelta(days=1)
+    yyesterday = now - datetime.timedelta(days=2)
+    use_yesterday = (now - yesterday).total_seconds() > 10800
+    seconds = diff.total_seconds()
+
+    if seconds > 0:
+        if seconds < 60:
+            return context.localize("30676")
+        elif 60 <= seconds < 120:
+            return context.localize("30677")
+        elif 120 <= seconds < 3600:
+            return context.localize("30678")
+        elif 3600 <= seconds < 7200:
+            return context.localize("30679")
+        elif 7200 <= seconds < 10800:
+            return context.localize("30680")
+        elif 10800 <= seconds < 14400:
+            return context.localize("30681")
+        elif use_yesterday and dt.date() == yesterday.date():
+            return u" ".join([context.localize("30682"), context.format_time(dt)])
+        elif dt.date() == yyesterday.date():
+            return context.localize("30683")
+        elif 5400 <= seconds < 86400:
+            return u" ".join([context.localize("30684"), context.format_time(dt)])
+        elif 86400 <= seconds < 172800:
+            return u" ".join([context.localize("30682"), context.format_time(dt)])
+    return " ".join([context.format_date_short(dt), context.format_time(dt)])

@@ -3,6 +3,7 @@ from six import PY2
 
 import re
 import time
+import datetime as dt
 
 from ... import kodion
 from ...kodion import utils
@@ -260,6 +261,12 @@ def update_video_infos(provider, context, video_id_dict, playlist_item_id_dict=N
         # date time
         if not datetime and 'publishedAt' in snippet:
             datetime = utils.datetime_parser.parse(snippet['publishedAt'])
+            try:
+                parsed_dt = dt.datetime.strptime(snippet['publishedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
+            except TypeError:
+                # see https://forum.kodi.tv/showthread.php?tid=112916
+                parsed_dt = dt.datetime(*time.strptime(snippet['publishedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")[:6])
+            video_item.set_aired_utc(parsed_dt)
 
         if datetime:
             video_item.set_year_from_datetime(datetime)
