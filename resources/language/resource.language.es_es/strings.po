@@ -933,7 +933,7 @@ msgstr "Añadir un usuario"
 
 msgctxt "#30662"
 msgid "Remove a user"
-msgstr "Suprimir un usuario"
+msgstr "Eliminar un usuario"
 
 msgctxt "#30663"
 msgid "Rename a user"
@@ -949,7 +949,7 @@ msgstr "¿Desea cambiar a '%s' ahora?"
 
 msgctxt "#30666"
 msgid "Removed '%s'"
-msgstr "Suprimir '%s'"
+msgstr "Eliminado '%s'"
 
 msgctxt "#30667"
 msgid "Renamed '%s' to '%s'"
@@ -957,7 +957,7 @@ msgstr "Renombrar '$s' a '%s'"
 
 msgctxt "#30668"
 msgid "Play count minimum percent"
-msgstr ""
+msgstr "Reproducir tiene en cuenta el porcentaje mínimo"
 
 msgctxt "#30669"
 msgid "Mark unwatched"
