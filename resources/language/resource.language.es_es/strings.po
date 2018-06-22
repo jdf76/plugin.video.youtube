@@ -961,88 +961,88 @@ msgstr ""
 
 msgctxt "#30669"
 msgid "Mark unwatched"
-msgstr ""
+msgstr "Marcar como no visto"
 
 msgctxt "#30670"
 msgid "Mark watched"
-msgstr ""
+msgstr "Marcar como visto"
 
 msgctxt "#30671"
 msgid "Clear playback history"
-msgstr ""
+msgstr "Limpiar historial de reproducción"
 
 msgctxt "#30672"
 msgid "Delete playback history"
-msgstr ""
+msgstr "Eliminar historial de reproducción"
 
 msgctxt "#30673"
 msgid "playback history"
-msgstr ""
+msgstr "historial de reproducción"
 
 msgctxt "#30674"
 msgid "Reset resume point"
-msgstr ""
+msgstr "Restablecer punto de reanudación"
 
 msgctxt "#30675"
 msgid "Use playback history (watched, resume tracking)"
-msgstr ""
+msgstr "Usar historial de reproducción (visto, seguimiento de reanudación)"
 
 msgctxt "#30676"
 msgid "Just now"
-msgstr ""
+msgstr "Justo ahora"
 
 msgctxt "#30677"
 msgid "A minute ago"
-msgstr ""
+msgstr "Hace un minuto"
 
 msgctxt "#30678"
 msgid "Recently"
-msgstr ""
+msgstr "Recientemente"
 
 msgctxt "#30679"
 msgid "An hour ago"
-msgstr ""
+msgstr "Hace una hora"
 
 msgctxt "#30680"
 msgid "Two hours ago"
-msgstr ""
+msgstr "Hace dos horas"
 
 msgctxt "#30681"
 msgid "Three hours ago"
-msgstr ""
+msgstr "Hace tres horas"
 
 msgctxt "#30682"
 msgid "Yesterday at"
-msgstr ""
+msgstr "Ayer a las"
 
 msgctxt "#30683"
 msgid "Two days ago"
-msgstr ""
+msgstr "Hace dos días"
 
 msgctxt "#30684"
 msgid "Today at"
-msgstr ""
+msgstr "Hoy a las"
 
 msgctxt "#30685"
 msgid "Delete data cache database"
-msgstr ""
+msgstr "Eliminar base de datos para caché de datos"
 
 msgctxt "#30686"
 msgid "Clear data cache"
-msgstr ""
+msgstr "Limpiar caché de datos"
 
 msgctxt "#30687"
 msgid "data cache"
-msgstr ""
+msgstr "caché de datos"
 
 msgctxt "#30688"
 msgid "Use for videos"
-msgstr ""
+msgstr "Usar para vídeos"
 
 msgctxt "#30689"
 msgid "Use for live streams"
-msgstr ""
+msgstr "Usar para streams en directo"
 
 msgctxt "#30690"
 msgid "InputStream Adaptive >= 2.0.12 is required for live streams"
-msgstr ""
+msgstr "Para streams en directo es necesario InputStream Adaptive 2.0.12 o superior"
