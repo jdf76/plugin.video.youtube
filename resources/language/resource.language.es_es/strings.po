@@ -337,11 +337,11 @@ msgstr "Explorar Canales"
 
 msgctxt "#30513"
 msgid "Popular right now"
-msgstr "Popular en YouTube"
+msgstr "Popular en este momento"
 
 msgctxt "#30514"
 msgid "Related Videos"
-msgstr "Vídeos relacionados"
+msgstr "Vídeos Relacionados"
 
 msgctxt "#30515"
 msgid "Auto-Remove from 'Watch Later'"
@@ -537,7 +537,7 @@ msgstr "Todos"
 
 msgctxt "#30563"
 msgid "Setting"
-msgstr "Ajustes"
+msgstr "Configuración"
 
 msgctxt "#30564"
 msgid "Setting, English"
@@ -765,11 +765,11 @@ msgstr "Puerto"
 
 msgctxt "#30620"
 msgid "Port %s already in use. Cannot start http server."
-msgstr "El puerto %s ya esta en uso. No se ha podido iniciar el servicio HTTP"
+msgstr "El puerto %s ya esta en uso. No se ha podido iniciar el servidor HTTP."
 
 msgctxt "#30621"
 msgid "Proxy is required for mpeg-dash vods (see HTTP Server)"
-msgstr "Para VODs mpeg-dash es necesario proxy (ver Servidor HTTP)"
+msgstr "Para mpeg-dash VODs es necesario proxy (ver Servidor HTTP)"
 
 msgctxt "#30622"
 msgid "Purchases"
@@ -865,15 +865,15 @@ msgstr "Seleccionar IP a la escucha"
 
 msgctxt "#30645"
 msgid "Refresh after watching"
-msgstr "Actualizar después de ver"
+msgstr "Refrescar después de ver"
 
 msgctxt "#30646"
 msgid "Upcoming Live"
-msgstr "Próximamente en Directo"
+msgstr "Próximamente en directo"
 
 msgctxt "#30647"
 msgid "Completed Live"
-msgstr "En Directo terminado"
+msgstr "En directo recientes"
 
 msgctxt "#30648"
 msgid "API Key is incorrect. Settings - API - API Key"
@@ -905,7 +905,7 @@ msgstr "Mi Ubicación"
 
 msgctxt "#30655"
 msgid "Switch User"
-msgstr "Cambiar de usuario"
+msgstr "Cambiar de Usuario"
 
 msgctxt "#30656"
 msgid "New user"
@@ -957,7 +957,7 @@ msgstr "Renombrar '$s' a '%s'"
 
 msgctxt "#30668"
 msgid "Play count minimum percent"
-msgstr "Reproducir tiene en cuenta el porcentaje mínimo"
+msgstr "Porcentaje mínimo para conciderar reproducido"
 
 msgctxt "#30669"
 msgid "Mark unwatched"
@@ -985,7 +985,7 @@ msgstr "Restablecer punto de reanudación"
 
 msgctxt "#30675"
 msgid "Use playback history (watched, resume tracking)"
-msgstr "Usar historial de reproducción (visto, seguimiento de reanudación)"
+msgstr "Usar historial de reproducción (visto, punto de reanudación)"
 
 msgctxt "#30676"
 msgid "Just now"
@@ -1045,4 +1045,4 @@ msgstr "Usar para streams en directo"
 
 msgctxt "#30690"
 msgid "InputStream Adaptive >= 2.0.12 is required for live streams"
-msgstr "Para streams en directo es necesario InputStream Adaptive 2.0.12 o superior"
+msgstr "InputStream Adaptive >= 2.0.12 es necesario para streams en directo"
