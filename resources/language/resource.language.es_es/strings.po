@@ -345,7 +345,7 @@ msgstr "Vídeos relacionados"
 
 msgctxt "#30515"
 msgid "Auto-Remove from 'Watch Later'"
-msgstr "Eliminar automáticamente de 'Ver más tarde'"
+msgstr "Auto-Eliminar de 'Ver más tarde'"
 
 msgctxt "#30516"
 msgid "Folders"
