@@ -266,7 +266,7 @@ msgstr "API Key"
 
 msgctxt "#30202"
 msgid "API Id"
-msgstr "API Id"
+msgstr "API ID"
 
 msgctxt "#30203"
 msgid "API Secret"
@@ -341,7 +341,7 @@ msgstr "Popular en este momento"
 
 msgctxt "#30514"
 msgid "Related Videos"
-msgstr "Vídeos Relacionados"
+msgstr "Vídeos relacionados"
 
 msgctxt "#30515"
 msgid "Auto-Remove from 'Watch Later'"
@@ -441,7 +441,7 @@ msgstr "No me gustó el vídeo"
 
 msgctxt "#30539"
 msgid "Live"
-msgstr "En Directo"
+msgstr "En directo"
 
 msgctxt "#30540"
 msgid "Play with..."
@@ -869,11 +869,11 @@ msgstr "Refrescar después de ver"
 
 msgctxt "#30646"
 msgid "Upcoming Live"
-msgstr "Próximamente en directo"
+msgstr "En directo próximamente"
 
 msgctxt "#30647"
 msgid "Completed Live"
-msgstr "En directo recientes"
+msgstr "Emisiones en directo recientes"
 
 msgctxt "#30648"
 msgid "API Key is incorrect. Settings - API - API Key"
@@ -905,7 +905,7 @@ msgstr "Mi Ubicación"
 
 msgctxt "#30655"
 msgid "Switch User"
-msgstr "Cambiar de Usuario"
+msgstr "Cambiar de usuario"
 
 msgctxt "#30656"
 msgid "New user"
@@ -1045,4 +1045,4 @@ msgstr "Usar para streams en directo"
 
 msgctxt "#30690"
 msgid "InputStream Adaptive >= 2.0.12 is required for live streams"
-msgstr "InputStream Adaptive >= 2.0.12 es necesario para streams en directo"
+msgstr "Para emisiones en directo es necesario InputStream Adaptive 2.0.12 o superior"
