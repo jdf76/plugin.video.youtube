@@ -457,7 +457,7 @@ msgstr "Los streams rtmpe no son compatibles"
 
 msgctxt "#30543"
 msgid "Refresh"
-msgstr "Actualizar lista"
+msgstr "Refrescar lista"
 
 msgctxt "#30544"
 msgid "More Links from the description"
@@ -465,7 +465,7 @@ msgstr "Enlaces en la descripción"
 
 msgctxt "#30545"
 msgid "No further links found."
-msgstr "No se encontraron enlaces"
+msgstr "No se encontraron enlaces."
 
 msgctxt "#30546"
 msgid "Please log in twice!"
