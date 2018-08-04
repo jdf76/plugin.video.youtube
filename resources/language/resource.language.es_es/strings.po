@@ -179,7 +179,7 @@ msgstr "Añadir a favoritos del Add-on"
 
 msgctxt "#30102"
 msgid "Search"
-msgstr "Buscar"
+msgstr "Búsqueda"
 
 msgctxt "#30103"
 msgid "Library"
@@ -211,15 +211,15 @@ msgstr "Últimos Vídeos"
 
 msgctxt "#30110"
 msgid "New Search"
-msgstr "Nueva Búsqueda"
+msgstr "Nueva búsqueda"
 
 msgctxt "#30111"
 msgid "Sign In"
-msgstr "Iniciar Sesión"
+msgstr "Iniciar sesión"
 
 msgctxt "#30112"
 msgid "Sign Out"
-msgstr "Cerrar Sesión"
+msgstr "Cerrar sesión"
 
 msgctxt "#30113"
 msgid "Rename"
