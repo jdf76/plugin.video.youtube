@@ -104,7 +104,7 @@ msgstr "Elementos por página"
 
 msgctxt "#30023"
 msgid "Search history size"
-msgstr "Tamaño historial de búsqueda"
+msgstr "Tamaño del historial de búsqueda"
 
 msgctxt "#30024"
 msgid "Cache size (MB)"
@@ -453,7 +453,7 @@ msgstr "Mostrar nombre del canal en la descripción"
 
 msgctxt "#30542"
 msgid "rtmpe streams are not supported"
-msgstr "Los streams rtmpe no son compatibles"
+msgstr "Los streams rtmpe no estan soportados"
 
 msgctxt "#30543"
 msgid "Refresh"
@@ -549,7 +549,7 @@ msgstr "Inglés"
 
 msgctxt "#30566"
 msgid "Prompt"
-msgstr "Disponibles"
+msgstr "Generados"
 
 msgctxt "#30567"
 msgid "Set as Watch Later"
@@ -1089,4 +1089,4 @@ msgstr "La IP del cliente es %s"
 
 msgctxt "#30701"
 msgid "Failed to obtain client IP"
-msgstr "Error al obtener IP del cliente"
+msgstr "No se pudo obtener la IP de cliente"
