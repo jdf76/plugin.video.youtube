@@ -1049,44 +1049,44 @@ msgstr "Para emisiones en directo es necesario InputStream Adaptive 2.0.12 o sup
 
 msgctxt "#30691"
 msgid "Airing now"
-msgstr ""
+msgstr "En emisión ahora"
 
 msgctxt "#30692"
 msgid "In a minute"
-msgstr ""
+msgstr "En un minuto"
 
 msgctxt "#30693"
 msgid "Airing soon"
-msgstr ""
+msgstr "En emisión pronto"
 
 msgctxt "#30694"
 msgid "In over an hour"
-msgstr ""
+msgstr "En más de una hora"
 
 msgctxt "#30695"
 msgid "In over two hours"
-msgstr ""
+msgstr "En más de dos horas"
 
 msgctxt "#30696"
 msgid "Airing today at"
-msgstr ""
+msgstr "En emisión hoy en"
 
 msgctxt "#30697"
 msgid "Tomorrow at"
-msgstr ""
+msgstr "Mañana a"
 
 msgctxt "#30698"
 msgid "Check my IP"
-msgstr ""
+msgstr "Comprobar mi dirección IP"
 
 msgctxt "#30699"
 msgid "HTTP server is not running"
-msgstr ""
+msgstr "El Servidor HTTP no está funcionando"
 
 msgctxt "#30700"
 msgid "Client IP is %s"
-msgstr ""
+msgstr "La IP del cliente es %s"
 
 msgctxt "#30701"
 msgid "Failed to obtain client IP"
-msgstr ""
+msgstr "Error al obtener IP del cliente"
