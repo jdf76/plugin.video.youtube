@@ -112,7 +112,7 @@ msgstr "Tamaño para caché de funciones (MB)"
 
 msgctxt "#30025"
 msgid "Enable setup-wizard"
-msgstr "Habilitar asistente"
+msgstr "Habilitar asistente de configuración"
 
 msgctxt "#30026"
 msgid "Override view"
@@ -132,7 +132,7 @@ msgstr "Vista: Películas"
 
 msgctxt "#30030"
 msgid "Execute setup-wizard?"
-msgstr "¿Desea ejecutar el asistente?"
+msgstr "¿Desea ejecutar el asistente de configuración?"
 
 msgctxt "#30031"
 msgid "Advanced"
