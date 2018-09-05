@@ -1109,4 +1109,4 @@ msgstr "Descargar subtítulos"
 
 msgctxt "#30706"
 msgid "Download subtitles before starting playback? (Default: No)"
-msgstr "¿Descargar subtítulos antes de comenzar reproducción? (Por defecto: No)"
+msgstr "¿Desea descargar los subtítulos antes de comenzar la reproducción? (Por defecto: No)"
