@@ -7,7 +7,6 @@ import xbmcgui
 from ...items import VideoItem, AudioItem, UriItem
 from ... import utils
 from . import info_labels
-from ...items import utils as item_utils
 
 
 def to_play_item(context, play_item):
@@ -35,7 +34,12 @@ def to_play_item(context, play_item):
 
     if not play_item.use_dash() and not settings.is_support_alternative_player_enabled() and \
             play_item.get_headers() and play_item.get_uri().startswith('http'):
-        play_item.set_uri(play_item.get_uri() + '|' + play_item.get_headers())
+        play_item.set_uri('|'.join([play_item.get_uri(), play_item.get_headers()]))
+
+    if settings.is_support_alternative_player_enabled() and \
+            settings.alternative_player_web_urls() and \
+            not play_item.get_license_key():
+        play_item.set_uri('https://www.youtube.com/watch?v={video_id}'.format(video_id=play_item.video_id))
 
     if play_item.use_dash() and context.addon_enabled('inputstream.adaptive'):
         list_item.setContentLookup(False)

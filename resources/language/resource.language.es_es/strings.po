@@ -16,13 +16,13 @@ msgstr ""
 "Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-msgctxt "Addon Summary"
-msgid "Plugin for YouTube"
-msgstr "Plugin para YouTube"
+# msgctxt "Addon Summary"
+# msgid "Plugin for YouTube"
+# msgstr "Plugin para YouTube"
 
-msgctxt "Addon Description"
-msgid "YouTube is a one of the biggest video-sharing websites of the world."
-msgstr "YouTube es uno de los mayores sitios web de intercambio de vídeos del mundo."
+# msgctxt "Addon Description"
+# msgid "YouTube is a one of the biggest video-sharing websites of the world."
+# msgstr "YouTube es uno de los mayores sitios web de intercambio de vídeos del mundo."
 
 #Kodion Settings
 
@@ -1089,4 +1089,24 @@ msgstr "La IP del cliente es %s"
 
 msgctxt "#30701"
 msgid "Failed to obtain client IP"
-msgstr "No se pudo obtener la IP de cliente"
+msgstr "No se pudo obtener la IP del cliente"
+
+msgctxt "#30702"
+msgid "Play with subtitles"
+msgstr "Reproducir con subtítulos"
+
+msgctxt "#30703"
+msgid "Are you sure?"
+msgstr "¿Estás seguro?"
+
+msgctxt "#30704"
+msgid "Use YouTube website urls"
+msgstr "Usar urls del sitio web YouTube"
+
+msgctxt "#30705"
+msgid "Download subtitles"
+msgstr "Descargar subtítulos"
+
+msgctxt "#30706"
+msgid "Download subtitles before starting playback? (Default: No)"
+msgstr "¿Desea descargar los subtítulos antes de comenzar la reproducción? (Por defecto: No)"
