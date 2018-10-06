@@ -1097,7 +1097,7 @@ msgstr "Reproducir con subtítulos"
 
 msgctxt "#30703"
 msgid "Are you sure?"
-msgstr "¿Está seguro de que desea cerrar la sesión?"
+msgstr "¿Está seguro?"
 
 msgctxt "#30704"
 msgid "Use YouTube website urls"
