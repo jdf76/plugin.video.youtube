@@ -22,13 +22,16 @@
                 </playercorefactory>
 [fix] Reported background progress dialog percentage
 [fix] Playlist items, use video_items instead of playback_items
+[fix] search history size
 [upd] Improve speed of playback starting and resolver
             before: min: 1.5s max: 2.6s median: 1.7s
             after:  min: 0.9s max: 2.6s median: 1.2s
 [chg] refactor logging and system version
 [chg] Localize confirmation
-[lang] es_es strings |contrib: roliverosc|
 [lang] el_gr strings |contrib: twilight0|
+[lang] es_es strings |contrib: roliverosc|
+[lang] es_mx strings |contrib: Intel11|
+[lang] it_it strings |contrib: SebastianoPistore|
 [lang] nl_nl strings |contrib: Markman-B|
 
 6.1.4
