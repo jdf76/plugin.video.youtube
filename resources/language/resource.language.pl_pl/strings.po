@@ -851,11 +851,11 @@ msgstr "Odświeżaj po obejrzeniu"
 
 msgctxt "#30646"
 msgid "Upcoming Live"
-msgstr "Nadchodzący Live"
+msgstr "Nadchodzące Transmisje"
 
 msgctxt "#30647"
 msgid "Completed Live"
-msgstr "Zakończony Live"
+msgstr "Zakończone Transmisje"
 
 msgctxt "#30648"
 msgid "API Key is incorrect. Settings - API - API Key"
