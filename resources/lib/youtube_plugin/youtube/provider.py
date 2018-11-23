@@ -23,6 +23,7 @@ import xbmcvfs
 
 class Provider(kodion.AbstractProvider):
     LOCAL_MAP = {'youtube.search': 30102,
+                 'youtube.next_page': 30106,
                  'youtube.watch_later': 30107,
                  'youtube.video.rate.none': 30108,
                  'youtube.remove': 30108,
@@ -146,7 +147,8 @@ class Provider(kodion.AbstractProvider):
                  'youtube.are.you.sure': 30703,
                  'youtube.subtitles.download': 30705,
                  'youtube.pre.download.subtitles': 30706,
-                 'youtube.untitled': 30707
+                 'youtube.untitled': 30707,
+                 'youtube.video.play_audio_only': 30708
                  }
 
     def __init__(self):
@@ -772,10 +774,7 @@ class Provider(kodion.AbstractProvider):
                                  context.localize(self.LOCAL_MAP['youtube.switch.user']))
             self.get_resource_manager(context).clear()
             if refresh:
-                if context.get_system_version().get_version()[0] <= 17:
-                    ui.refresh_container()  # causes lockup/crash with Kodi 18
-                else:
-                    context.execute('RunPlugin(%s)' % context.create_uri())
+                ui.refresh_container()
 
         if action == 'switch':
             access_manager_users = access_manager.get_users()
@@ -985,6 +984,7 @@ class Provider(kodion.AbstractProvider):
         settings = context.get_settings()
         if switch == 'youtube':
             context._addon.openSettings()
+            context.get_ui().refresh_container()
         elif switch == 'mpd':
             use_dash = context.use_inputstream_adaptive()
             if use_dash:

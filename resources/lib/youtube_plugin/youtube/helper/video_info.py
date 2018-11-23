@@ -314,6 +314,70 @@ class VideoInfo(object):
                 'dash/video': True,
                 'fps': 60,
                 'video': {'height': 2160, 'encoding': 'vp9'}},
+        '330': {'container': 'webm',
+                'dash/video': True,
+                'fps': 60,
+                'hdr': True,
+                'video': {'height': 144, 'encoding': 'vp9'}},
+        '331': {'container': 'webm',
+                'dash/video': True,
+                'fps': 60,
+                'hdr': True,
+                'video': {'height': 240, 'encoding': 'vp9'}},
+        '332': {'container': 'webm',
+                'dash/video': True,
+                'fps': 60,
+                'hdr': True,
+                'video': {'height': 360, 'encoding': 'vp9'}},
+        '333': {'container': 'webm',
+                'dash/video': True,
+                'fps': 60,
+                'hdr': True,
+                'video': {'height': 480, 'encoding': 'vp9'}},
+        '334': {'container': 'webm',
+                'dash/video': True,
+                'fps': 60,
+                'hdr': True,
+                'video': {'height': 720, 'encoding': 'vp9'}},
+        '335': {'container': 'webm',
+                'dash/video': True,
+                'fps': 60,
+                'hdr': True,
+                'video': {'height': 1080, 'encoding': 'vp9'}},
+        '336': {'container': 'webm',
+                'dash/video': True,
+                'fps': 60,
+                'hdr': True,
+                'video': {'height': 1440, 'encoding': 'vp9'}},
+        '337': {'container': 'webm',
+                'dash/video': True,
+                'fps': 60,
+                'hdr': True,
+                'video': {'height': 2160, 'encoding': 'vp9'}},
+        '394': {'container': 'mp4',
+                'dash/video': True,
+                'fps': 30,
+                'video': {'height': 144, 'encoding': 'av1'}},
+        '395': {'container': 'mp4',
+                'dash/video': True,
+                'fps': 30,
+                'video': {'height': 240, 'encoding': 'av1'}},
+        '396': {'container': 'mp4',
+                'dash/video': True,
+                'fps': 30,
+                'video': {'height': 360, 'encoding': 'av1'}},
+        '397': {'container': 'mp4',
+                'dash/video': True,
+                'fps': 30,
+                'video': {'height': 480, 'encoding': 'av1'}},
+        '398': {'container': 'mp4',
+                'dash/video': True,
+                'fps': 30,
+                'video': {'height': 720, 'encoding': 'av1'}},
+        '399': {'container': 'mp4',
+                'dash/video': True,
+                'fps': 30,
+                'video': {'height': 1080, 'encoding': 'av1'}},
         # === Dash (audio only)
         '139': {'container': 'mp4',
                 'sort': [48, 0],
@@ -375,6 +439,12 @@ class VideoInfo(object):
                 'title': 'opus@160',
                 'dash/audio': True,
                 'audio': {'bitrate': 160, 'encoding': 'opus'}},
+        # === DASH adaptive audio only
+        '9997': {'container': 'mpd',
+                 'sort': [-1, 0],
+                 'title': 'DASH Audio',
+                 'dash/audio': True,
+                 'audio': {'bitrate': 0, 'encoding': ''}},
         # === Live DASH adaptive
         '9998': {'container': 'mpd',
                  'Live': True,
@@ -581,86 +651,95 @@ class VideoInfo(object):
                        'ssl_stream': '1',
                        'html5': '1'}
 
-        if player_config is None:
-            if embeddable:
-                page_result = self.get_embed_page(video_id)
-                html = page_result.get('html')
-                player_config = self.get_player_config(html, embedded=embeddable)
+        for i in range(2):
+            self._context.log_debug('Is embeddable: {0}'.format(str(embeddable)))
+
+            if player_config is None:
+                if embeddable:
+                    page_result = self.get_embed_page(video_id)
+                    html = page_result.get('html')
+                    player_config = self.get_player_config(html, embedded=embeddable)
+                else:
+                    page_result = self.get_watch_page(video_id)
+                    html = page_result.get('html')
+                    player_config = self.get_player_config(html, embedded=embeddable)
+                cookies = page_result.get('cookies')
+
+            curl_headers = ''
+            if cookies:
+                cookies_list = list()
+                for c in cookies:
+                    cookies_list.append('{0}={1};'.format(c.name, c.value))
+                if cookies_list:
+                    curl_headers = 'Cookie={cookies}' \
+                        .format(cookies=urllib.parse.quote(' '.join(cookies_list)))
             else:
-                page_result = self.get_watch_page(video_id)
-                html = page_result.get('html')
-                player_config = self.get_player_config(html, embedded=embeddable)
-            cookies = page_result.get('cookies')
+                cookies = dict()
 
-        self._context.log_debug('Is embeddable: {0}'.format(str(embeddable)))
-
-        curl_headers = ''
-        if cookies:
-            cookies_list = list()
-            for c in cookies:
-                cookies_list.append('{0}={1};'.format(c.name, c.value))
-            if cookies_list:
-                curl_headers = 'Cookie={cookies}' \
-                    .format(cookies=urllib.parse.quote(' '.join(cookies_list)))
-        else:
-            cookies = dict()
-
-        player_assets = player_config.get('assets', {})
-        player_args = player_config.get('args', {})
-        player_response = player_args.get('player_response', {})
-        playability_status = player_response.get('playabilityStatus', {})
-        js = player_assets.get('js')
-
-        if video_id is None:
-            if 'video_id' in player_args:
-                video_id = player_args['video_id']
-
-        if video_id:
-            http_params['video_id'] = video_id
-            http_params['eurl'] = ''.join(['https://youtube.googleapis.com/v/', video_id])
-        else:
-            raise YouTubeException('_method_get_video_info: no video_id')
-
-        cipher = None
-        if js:
-            if not js.startswith('http'):
-                js = 'https://www.youtube.com/%s' % js.lstrip('/').replace('www.youtube.com/', '')
-            self._context.log_debug('Cipher: js player: |%s|' % js)
-            cipher = Cipher(self._context, javascript_url=js)
-
-        http_params['sts'] = player_config.get('sts', '')
-        http_params['t'] = player_args.get('t', '')
-        http_params['c'] = player_args.get('c', 'WEB')
-        http_params['cver'] = player_args.get('cver', '1.20170712')
-        http_params['cplayer'] = player_args.get('cplayer', 'UNIPLAYER')
-        http_params['cbr'] = player_args.get('cbr', 'Chrome')
-        http_params['cbrver'] = player_args.get('cbrver', '53.0.2785.143')
-        http_params['cos'] = player_args.get('cos', 'Windows')
-        http_params['cosver'] = player_args.get('cosver', '10.0')
-
-        url = 'https://www.youtube.com/get_video_info'
-
-        if embeddable:
-            el_values = ['embedded', 'detailpage']
-        else:
-            el_values = ['detailpage', 'embedded']
-
-        params = dict()
-
-        for el in el_values:
-            http_params['el'] = el
-            result = requests.get(url, params=http_params, headers=headers, cookies=cookies, verify=self._verify, allow_redirects=True)
-            data = result.text
-            params = dict(urllib.parse.parse_qsl(data))
-            if params.get('url_encoded_fmt_stream_map') or params.get('live_playback', '0') == '1':
-                break
-
-        if not player_response:
-            player_response = json.loads(params.get('player_response', '{}'))
+            player_assets = player_config.get('assets', {})
+            player_args = player_config.get('args', {})
+            player_response = player_args.get('player_response', {})
             playability_status = player_response.get('playabilityStatus', {})
+            js = player_assets.get('js')
 
-        captions = player_response.get('captions', {})
-        is_live = params.get('live_playback', '0') == '1'
+            if video_id is None:
+                if 'video_id' in player_args:
+                    video_id = player_args['video_id']
+
+            if video_id:
+                http_params['video_id'] = video_id
+                http_params['eurl'] = ''.join(['https://youtube.googleapis.com/v/', video_id])
+            else:
+                raise YouTubeException('_method_get_video_info: no video_id')
+
+            cipher = None
+            if js:
+                if not js.startswith('http'):
+                    js = 'https://www.youtube.com/%s' % js.lstrip('/').replace('www.youtube.com/', '')
+                self._context.log_debug('Cipher: js player: |%s|' % js)
+                cipher = Cipher(self._context, javascript_url=js)
+
+            http_params['sts'] = player_config.get('sts', '')
+            http_params['t'] = player_args.get('t', '')
+            http_params['c'] = player_args.get('c', 'WEB')
+            http_params['cver'] = player_args.get('cver', '1.20170712')
+            http_params['cplayer'] = player_args.get('cplayer', 'UNIPLAYER')
+            http_params['cbr'] = player_args.get('cbr', 'Chrome')
+            http_params['cbrver'] = player_args.get('cbrver', '53.0.2785.143')
+            http_params['cos'] = player_args.get('cos', 'Windows')
+            http_params['cosver'] = player_args.get('cosver', '10.0')
+
+            url = 'https://www.youtube.com/get_video_info'
+
+            if embeddable:
+                el_values = ['embedded', 'detailpage']
+            else:
+                el_values = ['detailpage', 'embedded']
+
+            params = dict()
+
+            for el in el_values:
+                http_params['el'] = el
+                result = requests.get(url, params=http_params, headers=headers, cookies=cookies, verify=self._verify, allow_redirects=True)
+                data = result.text
+                params = dict(urllib.parse.parse_qsl(data))
+                if params.get('url_encoded_fmt_stream_map') or params.get('live_playback', '0') == '1':
+                    break
+
+            if not player_response:
+                player_response = json.loads(params.get('player_response', '{}'))
+                playability_status = player_response.get('playabilityStatus', {})
+
+            captions = player_response.get('captions', {})
+            is_live = params.get('live_playback', '0') == '1'
+
+            if embeddable and playability_status.get('status') == 'UNPLAYABLE':
+                # some videos that report as embeddable aren't playable from the /embed/ page, retry as not embeddable
+                embeddable = False
+                player_config = None
+                continue
+            else:
+                break
 
         stream_list = []
 
@@ -787,15 +866,24 @@ class VideoInfo(object):
                     video_stream['url'] = ''.join([video_stream['url'], '&start_seq=$START_NUMBER$'])
                     video_stream.update(self.FORMAT.get('9998'))
                 else:
-                    video_stream.update(self.FORMAT.get('9999'))
-                    if s_info:
-                        video_stream['video']['height'] = s_info['video']['height']
-                        video_stream['video']['encoding'] = s_info['video']['codec']
+                    if not s_info:
+                        video_stream.update(self.FORMAT.get('9999'))
+                    else:
+                        has_video = (s_info['video']['codec'] != '') and (int(s_info['video']['bandwidth']) > 0)
+                        if has_video:
+                            video_stream.update(self.FORMAT.get('9999'))
+                            video_stream['video']['height'] = s_info['video']['height']
+                            video_stream['video']['encoding'] = s_info['video']['codec']
+                        else:
+                            video_stream.update(self.FORMAT.get('9997'))
                         video_stream['audio']['encoding'] = s_info['audio']['codec']
                         if s_info['video']['quality_label']:
                             video_stream['title'] = s_info['video']['quality_label']
                         else:
-                            video_stream['title'] = '%sp%s' % (s_info['video']['height'], s_info['video']['fps'])
+                            if has_video:
+                                video_stream['title'] = '%sp%s' % (s_info['video']['height'], s_info['video']['fps'])
+                            else:
+                                video_stream['title'] = '%s@%s' % (s_info['audio']['codec'], str(s_info['audio'].get('bitrate', 0)))
                         if int(s_info['audio'].get('bitrate', 0)) > 0:
                             video_stream['audio']['bitrate'] = int(s_info['audio'].get('bitrate', 0))
                 stream_list.append(video_stream)
@@ -871,6 +959,7 @@ class VideoInfo(object):
         if not make_dirs(basepath):
             self._context.log_debug('Failed to create directories: %s' % basepath)
             return None
+        has_video_stream = False
         ipaddress = self._context.get_settings().httpd_listen()
         if ipaddress == '0.0.0.0':
             ipaddress = '127.0.0.1'
@@ -961,6 +1050,7 @@ class VideoInfo(object):
                                                  '">\n']))
                         out_list.append('\t\t\t\t<AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>\n')
                     else:
+                        has_video_stream = True
                         if int(data[mime][i]['bandwidth']) > int(stream_info['video']['bandwidth']):
                             stream_info['video']['height'] = str(data[mime][i]['height'])
                             stream_info['video']['fps'] = str(data[mime][i]['frameRate'])
@@ -1033,6 +1123,9 @@ class VideoInfo(object):
         if discarded_streams:
             discarded_streams = sorted(discarded_streams, key=lambda k: k.get('audio', k.get('video', {}))['bandwidth'], reverse=True)
             self._context.log_debug('Generated MPD unsupported streams: \n%s' % '\n'.join(str(stream) for stream in discarded_streams))
+
+        if not has_video_stream:
+            self._context.log_debug('Generated MPD no supported video streams found')
 
         filepath = '{base_path}{video_id}.mpd'.format(base_path=basepath, video_id=video_id)
         try:
