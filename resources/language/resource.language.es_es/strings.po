@@ -1117,4 +1117,4 @@ msgstr "Sin título"
 
 msgctxt "#30708"
 msgid "Play audio only"
-msgstr ""
+msgstr "Reproducir solo audio"
