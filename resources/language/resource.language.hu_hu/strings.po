@@ -1096,3 +1096,23 @@ msgstr ""
 msgctxt "#30707"
 msgid "Untitled"
 msgstr ""
+
+msgctxt "#30708"
+msgid "Play audio only"
+msgstr ""
+
+msgctxt "#30709"
+msgid "Failed to retrieve Watch Later playlist id. To increase the chances of retrieval add 8-10 videos to Watch Later via the web/app and retry."
+msgstr ""
+
+msgctxt "#30710"
+msgid "Failed to retrieve Watch Later playlist id. Try again tomorrow without removing any of the videos."
+msgstr ""
+
+msgctxt "#30711"
+msgid "Searching for Watch Later... Page %s"
+msgstr ""
+
+msgctxt "#30712"
+msgid "Rate videos in playlists"
+msgstr ""

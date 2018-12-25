@@ -1,6 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+
+    Copyright (C) 2018-2018 plugin.video.youtube
+
+    SPDX-License-Identifier: GPL-2.0-only
+    See LICENSES/GPL-2.0-only for more information.
+"""
+
 from six.moves.urllib.parse import unquote
 
 import json
+import os
 import shutil
 import threading
 
@@ -14,6 +24,7 @@ from .. import logger
 
 class YouTubeMonitor(xbmc.Monitor):
 
+    # noinspection PyUnusedLocal,PyMissingConstructor
     def __init__(self, *args, **kwargs):
         self.addon_id = 'plugin.video.youtube'
         addon = xbmcaddon.Addon(self.addon_id)
@@ -126,22 +137,24 @@ class YouTubeMonitor(xbmc.Monitor):
         return is_httpd_live(port=self.httpd_port())
 
     def remove_temp_dir(self):
-        temp_path = 'special://temp/%s/' % self.addon_id
-        path = xbmc.translatePath(temp_path)
+        try:
+            path = xbmc.translatePath('special://temp/%s' % self.addon_id).decode('utf-8')
+        except AttributeError:
+            path = xbmc.translatePath('special://temp/%s' % self.addon_id)
 
-        if xbmcvfs.exists(path):
+        if os.path.isdir(path):
             try:
                 xbmcvfs.rmdir(path, force=True)
             except:
                 pass
-        if xbmcvfs.exists(path):
+        if os.path.isdir(path):
             try:
                 shutil.rmtree(path)
             except:
                 pass
 
-        if xbmcvfs.exists(path):
-            logger.log_debug('Failed to remove directory: {dir}'.format(dir=path))
+        if os.path.isdir(path):
+            logger.log_debug('Failed to remove directory: {dir}'.format(dir=path.encode('utf-8')))
             return False
         else:
             return True

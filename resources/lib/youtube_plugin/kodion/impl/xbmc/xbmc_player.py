@@ -1,4 +1,12 @@
-__author__ = 'bromix'
+# -*- coding: utf-8 -*-
+"""
+
+    Copyright (C) 2014-2016 bromix (plugin.video.youtube)
+    Copyright (C) 2016-2018 plugin.video.youtube
+
+    SPDX-License-Identifier: GPL-2.0-only
+    See LICENSES/GPL-2.0-only for more information.
+"""
 
 import xbmc
 from ..abstract_player import AbstractPlayer
@@ -14,13 +22,16 @@ class XbmcPlayer(AbstractPlayer):
 
         self._context = context
 
-    def play(self, playlist_index=-1):
+    def play(self, playlist_index=-1, list_item=None):
         """
         We call the player in this way, because 'Player.play(...)' will call the addon again while the instance is
         running.  This is somehow shitty, because we couldn't release any resources and in our case we couldn't release
         the cache. So this is the solution to prevent a locked database (sqlite).
         """
-        self._context.execute('Playlist.PlayOffset(%s,%d)' % (self._player_type, playlist_index))
+        if list_item is None:
+            self._context.execute('Playlist.PlayOffset(%s,%d)' % (self._player_type, playlist_index))
+        else:
+            xbmc.Player().play(item=list_item.getPath(), listitem=list_item)
 
         """
         playlist = None

@@ -1,94 +1,188 @@
 # -*- coding: utf-8 -*-
+"""
 
-import math
+    Copyright (C) 2018-2018 plugin.video.youtube
+
+    SPDX-License-Identifier: GPL-2.0-only
+    See LICENSES/GPL-2.0-only for more information.
+"""
+
+import re
+
 import xbmc
 
 
-class YouTubePlayer(xbmc.Player):
-    def __init__(self, *args, **kwargs):
-        self.context = kwargs.get('context')
-        self.ui = self.context.get_ui()
-        self.reset()
-        self.current_video_total_time = 0.0
-        self.current_played_time = 0.0
+def playback_monitor(provider, context, video_id, play_count=0, use_history=False,
+                     playback_stats=None, seek_time=None, refresh_only=False):
+    access_manager = context.get_access_manager()
 
-    def reset(self):
-        properties = ['playing', 'post_play', 'license_url', 'license_token',
-                      'seek_time', 'play_count', 'playback_history', 'addon_id',
-                      'prompt_for_subtitles']
-        cleared = []
-        for prop in properties:
-            if self.ui.get_home_window_property(prop) is not None:
-                cleared.append(prop)
-                self.ui.clear_home_window_property(prop)
-        self.context.log_debug('Cleared home window properties: {properties}'.format(properties=str(cleared)))
-        self.current_video_total_time = 0.0
-        self.current_played_time = 0.0
+    monitor = xbmc.Monitor()
+    player = xbmc.Player()
+    settings = context.get_settings()
+    ui = context.get_ui()
 
-    def post_play(self):
-        is_playing = self.ui.get_home_window_property('playing')
-        post_play_command = self.ui.get_home_window_property('post_play')
-        use_playback_history = self.ui.get_home_window_property('playback_history') == 'true'
+    if playback_stats is None:
+        playback_stats = {}
 
-        if is_playing is not None:
+    play_count = str(play_count)
+
+    total_time = 0.0
+    current_time = 0.0
+    played_time = -1.0
+    percent_complete = 0
+
+    state = 'playing'
+    last_state = 'playing'
+
+    np_wait_time = 0.2
+    np_waited = 0.0
+    p_wait_time = 0.5
+    p_waited = 0.0
+
+    report_interval = 10.0
+    first_report = True
+
+    while not player.isPlaying() and not monitor.abortRequested():
+        context.log_debug('Waiting for playback to start')
+
+        if np_waited >= 5 or monitor.waitForAbort(np_wait_time):
+            return
+
+        np_waited += np_wait_time
+
+    client = provider.get_client(context)
+    is_logged_in = provider.is_logged_in()
+
+    if is_logged_in and playback_stats.get('playback_url', ''):
+        client.update_watch_history(video_id, playback_stats.get('playback_url'))
+        context.log_debug('Playback start reported: |%s|' % video_id)
+
+    while player.isPlaying() and not monitor.abortRequested():
+        try:
+            current_time = float(player.getTime())
+            total_time = float(player.getTotalTime())
+        except RuntimeError:
+            pass
+
+        try:
+            percent_complete = int(float(current_time) / float(total_time) * 100)
+        except ZeroDivisionError:
+            percent_complete = 0
+
+        if seek_time and seek_time != '0.0':
             try:
-                current_played_percent = int(math.floor((self.current_played_time / self.current_video_total_time) * 100))
-            except ZeroDivisionError:
-                current_played_percent = 0
-            self.context.log_debug('Playback: Total time: |{total_time}| Played time: |{time}| Played percent: |{percent}|'
-                                   .format(total_time=self.current_video_total_time, time=self.current_played_time,
-                                           percent=current_played_percent))
+                player.seekTime(float(seek_time))
+                current_time = float(seek_time)
+            except ValueError:
+                pass
+            seek_time = None
 
-            play_count = self.ui.get_home_window_property('play_count')
+        if p_waited >= 10.0:
+            provider.reset_client()  # refresh client, tokens may need refreshing
+            client = provider.get_client(context)
+            is_logged_in = provider.is_logged_in()
 
-            if current_played_percent >= self.context.get_settings().get_play_count_min_percent():
-                play_count = '1'
-                self.current_played_time = 0.0
-                current_played_percent = 0
+            if current_time == played_time:
+                last_state = state
+                state = 'paused'
             else:
-                if post_play_command:
-                    addon_id = self.ui.get_home_window_property('addon_id')
-                    if addon_id:
-                        post_play_command = 'RunPlugin(%s)' % self.context.create_uri(['events', 'post_play'],
-                                                                                      {'video_id': is_playing,
-                                                                                       'addon_id': addon_id,
-                                                                                       'refresh_only': 'true'})
-                    else:
-                        post_play_command = 'RunPlugin(%s)' % self.context.create_uri(['events', 'post_play'],
-                                                                                      {'video_id': is_playing,
-                                                                                       'refresh_only': 'true'})
+                last_state = state
+                state = 'playing'
+
+            played_time = current_time
+
+        if is_logged_in:
+            if playback_stats.get('watchtime_url', '') and (first_report or p_waited >= 10.0):
+                first_report = False
+                p_waited = 0.0
+
+                segment_start = float(current_time)
+
+                if state == 'playing':
+                    segment_end = segment_start + report_interval
                 else:
-                    self.ui.clear_home_window_property('video_stats_url')
+                    segment_end = segment_start
 
-            if use_playback_history and self.context.get_settings().use_playback_history():
-                self.context.get_playback_history().update(is_playing, play_count, self.current_video_total_time,
-                                                           self.current_played_time, current_played_percent)
+                if segment_end > float(total_time):
+                    segment_end = float(total_time)
 
-            if post_play_command is not None:
-                try:
-                    self.context.execute(post_play_command)
-                except:
-                    self.context.log_debug('Failed to execute post play events.')
-                    self.ui.show_notification('Failed to execute post play events.', time_milliseconds=5000)
+                if state == 'playing' or last_state == 'playing':  # only report state='paused' once
+                    client.update_watch_history(video_id, playback_stats.get('watchtime_url')
+                                                .format(st=format(segment_start, '.3f'), et=format(segment_end, '.3f'), state=state))
+                    context.log_debug('Playback reported [%s]: %s segment start, %s segment end @ %s%% state=%s' %
+                                      (video_id, format(segment_start, '.3f'), format(segment_end, '.3f'), percent_complete, state))
 
-    def onPlayBackStarted(self):
-        self.current_video_total_time = self.getTotalTime()
-        seek_time = self.ui.get_home_window_property('seek_time')
-        while self.isPlaying():
-            xbmc.sleep(500)
-            if self.isPlaying():
-                if self.context.get_settings().use_playback_history():
-                    if seek_time and seek_time != '0.0':
-                        self.seekTime(float(seek_time))
-                        seek_time = None
-                self.current_played_time = self.getTime()
-                if self.current_video_total_time == 0.0:
-                    self.current_video_total_time = self.getTotalTime()
+        if monitor.waitForAbort(p_wait_time):
+            break
 
-    def onPlayBackStopped(self):
-        self.post_play()
-        self.reset()
+        p_waited += p_wait_time
 
-    def onPlayBackEnded(self):
-        self.post_play()
-        self.reset()
+    context.log_debug('Playback stopped [%s]: %s secs of %s @ %s%%' % (video_id, format(current_time, '.3f'), format(total_time, '.3f'), percent_complete))
+
+    state = 'stopped'
+    provider.reset_client()  # refresh client, tokens may need refreshing
+    client = provider.get_client(context)
+    is_logged_in = provider.is_logged_in()
+
+    if percent_complete >= settings.get_play_count_min_percent():
+        play_count = '1'
+        current_time = 0.0
+        if is_logged_in and playback_stats.get('watchtime_url', ''):
+            client.update_watch_history(video_id, playback_stats.get('watchtime_url')
+                                        .format(st=format(total_time, '.3f'), et=format(total_time, '.3f'), state=state))
+            context.log_debug('Playback reported [%s] @ 100%% state=%s' % (video_id, state))
+
+    else:
+        if is_logged_in and playback_stats.get('watchtime_url', ''):
+            if is_logged_in and playback_stats.get('watchtime_url', ''):
+                client.update_watch_history(video_id, playback_stats.get('watchtime_url')
+                                            .format(st=format(current_time, '.3f'), et=format(current_time, '.3f'), state=state))
+                context.log_debug('Playback reported [%s]: %s segment start, %s segment end @ %s%% state=%s' %
+                                  (video_id, format(current_time, '.3f'), format(current_time, '.3f'), percent_complete, state))
+
+        refresh_only = True
+
+    if use_history:
+        context.get_playback_history().update(video_id, play_count, total_time, current_time, percent_complete)
+
+    if not refresh_only:
+        if is_logged_in:
+
+            if settings.get_bool('youtube.playlist.watchlater.autoremove', True):
+                watch_later_id = access_manager.get_watch_later_id()
+
+                if watch_later_id and watch_later_id.strip().lower() != 'wl':
+                    playlist_item_id = client.get_playlist_item_id_of_video_id(playlist_id=watch_later_id, video_id=video_id)
+                    if playlist_item_id:
+                        json_data = client.remove_video_from_playlist(watch_later_id, playlist_item_id)
+                        if not provider.v3_handle_error(provider, context, json_data):
+                            return False
+
+            history_playlist_id = access_manager.get_watch_history_id()
+            if history_playlist_id and history_playlist_id != 'HL':
+                json_data = client.add_video_to_playlist(history_playlist_id, video_id)
+                if not provider.v3_handle_error(provider, context, json_data):
+                    return False
+
+            # rate video
+            if settings.get_bool('youtube.post.play.rate', False):
+                do_rating = True
+                if not settings.get_bool('youtube.post.play.rate.playlists', False):
+                    playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
+                    do_rating = int(playlist.size()) < 2
+
+                if do_rating:
+                    json_data = client.get_video_rating(video_id)
+                    if not provider.v3_handle_error(provider, context, json_data):
+                        return False
+                    items = json_data.get('items', [{'rating': 'none'}])
+                    rating = items[0].get('rating', 'none')
+                    if rating == 'none':
+                        rating_match = re.search('/(?P<video_id>[^/]+)/(?P<rating>[^/]+)', '/%s/%s/' % (video_id, rating))
+                        provider.yt_video.process('rate', provider, context, rating_match)
+
+    if settings.get_bool('youtube.post.play.refresh', False) and \
+            not xbmc.getInfoLabel('Container.FolderPath').startswith(context.create_uri(['kodion', 'search', 'input'])):
+        # don't refresh search input it causes request for new input, (Container.Update in abstract_provider /kodion/search/input/
+        # would resolve this but doesn't work with Remotes(Yatse))
+        ui.refresh_container()

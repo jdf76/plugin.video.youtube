@@ -1,16 +1,36 @@
-__author__ = 'bromix'
+# -*- coding: utf-8 -*-
+"""
+
+    Copyright (C) 2014-2016 bromix (plugin.video.youtube)
+    Copyright (C) 2016-2018 plugin.video.youtube
+
+    SPDX-License-Identifier: GPL-2.0-only
+    See LICENSES/GPL-2.0-only for more information.
+"""
 
 from ... import kodion
 from ...youtube.helper import v3
 
 
 def _process_rate_video(provider, context, re_match):
+    listitem_path = context.get_ui().get_info_label('Container.ListItem(0).FileNameAndPath')
+    ratings = ['like', 'dislike', 'none']
+
+    rating_param = context.get_param('rating', '')
+    if rating_param:
+        rating_param = rating_param.lower() if rating_param.lower() in ratings else ''
+
     video_id = context.get_param('video_id', '')
     if not video_id:
         try:
             video_id = re_match.group('video_id')
         except IndexError:
-            raise kodion.KodionException('video/rate/: missing video_id')
+            if context.is_plugin_path(listitem_path, 'play'):
+                video_id = kodion.utils.find_video_id(listitem_path)
+
+            if not video_id:
+                raise kodion.KodionException('video/rate/: missing video_id')
+
     try:
         current_rating = re_match.group('rating')
     except IndexError:
@@ -26,21 +46,27 @@ def _process_rate_video(provider, context, re_match):
         if items:
             current_rating = items[0].get('rating', '')
 
-    ratings = ['like', 'dislike', 'none']
     rating_items = []
-    for rating in ratings:
-        if rating != current_rating:
-            rating_items.append((context.localize(provider.LOCAL_MAP['youtube.video.rate.%s' % rating]), rating))
-    result = context.get_ui().on_select(context.localize(provider.LOCAL_MAP['youtube.video.rate']), rating_items)
+    if not rating_param:
+        for rating in ratings:
+            if rating != current_rating:
+                rating_items.append((context.localize(provider.LOCAL_MAP['youtube.video.rate.%s' % rating]), rating))
+        result = context.get_ui().on_select(context.localize(provider.LOCAL_MAP['youtube.video.rate']), rating_items)
+    else:
+        if rating_param != current_rating:
+            result = rating_param
+        else:
+            result = -1
+
     if result != -1:
-        client = provider.get_client(context).rate_video(video_id, result)
+        _ = provider.get_client(context).rate_video(video_id, result)
 
         # this will be set if we are in the 'Liked Video' playlist
         if context.get_param('refresh_container', '0') == '1':
             context.get_ui().refresh_container()
 
 
-def _process_more_for_video(provider, context, re_match):
+def _process_more_for_video(provider, context):
     video_id = context.get_param('video_id', '')
     if not video_id:
         raise kodion.KodionException('video/more/: missing video_id')
@@ -76,8 +102,6 @@ def process(method, provider, context, re_match):
     if method == 'rate':
         return _process_rate_video(provider, context, re_match)
     elif method == 'more':
-        return _process_more_for_video(provider, context, re_match)
+        return _process_more_for_video(provider, context)
     else:
         raise kodion.KodionException("Unknown method '%s'" % method)
-
-    return True
