@@ -179,7 +179,7 @@ msgstr "Añadir a favoritos del Add-on"
 
 msgctxt "#30102"
 msgid "Search"
-msgstr "Búsqueda"
+msgstr "Buscar"
 
 msgctxt "#30103"
 msgid "Library"
@@ -1133,7 +1133,7 @@ msgstr "Buscando para Ver más tarde... Página %s"
 
 msgctxt "#30712"
 msgid "Rate videos in playlists"
-msgstr ""
+msgstr "Calificar vídeos en listas de reproducción"
 
 msgctxt "#30713"
 msgid "Added to Watch Later"
