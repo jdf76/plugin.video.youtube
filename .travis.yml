@@ -2,12 +2,16 @@ language: python
 python:
   - "3.6"
 
+install:
+  - pip install requests
+
 script:
-  - cd $HOME
-  - git clone https://github.com/xbmc/addon-check
-  - cd addon-check
-  - pip install -r requirements.txt
-  - kodi-addon-checker $TRAVIS_BUILD_DIR --branch=isengard
+  - |
+    cd $HOME
+    git clone https://github.com/xbmc/addon-check
+    cd addon-check
+    pip install -r requirements.txt
+    kodi-addon-checker $TRAVIS_BUILD_DIR --branch=isengard
 
 notifications:
   webhooks: https://www.travisbuddy.com/
