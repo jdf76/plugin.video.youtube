@@ -834,7 +834,7 @@ msgstr "Deletar api_keys.json"
 
 msgctxt "#30642"
 msgid "Delete access_manager.json"
-msgstr Deletar access_manager.json""
+msgstr "Deletar access_manager.json"
 
 msgctxt "#30643"
 msgid "Listen on IP"
