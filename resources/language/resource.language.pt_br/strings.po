@@ -654,7 +654,7 @@ msgstr "Estrita"
 
 msgctxt "#30597"
 msgid "Updated: %s"
-msgstr Atualizad: %s""
+msgstr Atualizado: %s"
 
 msgctxt "#30598"
 msgid "Personal API keys enabled"
