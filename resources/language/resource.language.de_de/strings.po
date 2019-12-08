@@ -1069,7 +1069,7 @@ msgstr "In über zwei Stunden"
 
 msgctxt "#30696"
 msgid "Airing today at"
-msgstr "UÜbertragung heute um"
+msgstr "Übertragung heute um"
 
 msgctxt "#30697"
 msgid "Tomorrow at"
