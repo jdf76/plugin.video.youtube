@@ -92,7 +92,7 @@ msgstr "1080p Canlı / 720p (HD)"
 
 msgctxt "#30020"
 msgid "Allow 3D"
-msgstr "3B izin ver"
+msgstr "3 Boyuta izin ver"
 
 msgctxt "#30021"
 msgid "Show fanart"
@@ -100,7 +100,7 @@ msgstr "Fanart göster"
 
 msgctxt "#30022"
 msgid "Items per page"
-msgstr "Sayfa başı öğeler"
+msgstr "Sayfa başı ögeler"
 
 msgctxt "#30023"
 msgid "Search history size"
@@ -108,7 +108,7 @@ msgstr "Arama geçmişi büyüklüğü"
 
 msgctxt "#30024"
 msgid "Cache size (MB)"
-msgstr "Cache büyüklüğü (MB)"
+msgstr "Önbellek büyüklüğü (MB)"
 
 msgctxt "#30025"
 msgid "Enable setup-wizard"
@@ -160,7 +160,7 @@ msgstr "Alternatif bir oynatıcıyı destekle"
 
 msgctxt "#30037"
 msgid "Custom Watch Later playlist id"
-msgstr " "
+msgstr ""
 
 msgctxt "#30038"
 msgid "Custom History playlist id"
@@ -187,7 +187,7 @@ msgstr "Kütüphaneler"
 
 msgctxt "#30104"
 msgid "Highlights"
-msgstr ""
+msgstr "Öne Çıkanlar"
 
 msgctxt "#30105"
 msgid "Archive"
@@ -235,11 +235,11 @@ msgstr "Kaldırmayı Onayla"
 
 msgctxt "#30116"
 msgid "Delete \"%s\"?"
-msgstr "\"%s\" Silinsin Mi?"
+msgstr "\"%s\" ögesi silinsin mi?"
 
 msgctxt "#30117"
 msgid "Remove \"%s\"?"
-msgstr "\"%s\" Kaldırılsın Mı?"
+msgstr "\"%s\" ögesi kaldırılsın mı?"
 
 msgctxt "#30118"
 msgid "Delete"
@@ -247,7 +247,7 @@ msgstr "Kaldır"
 
 msgctxt "#30119"
 msgid "Please wait..."
-msgstr "Lütfen Bekleyin..."
+msgstr "Lütfen bekleyin..."
 
 msgctxt "#30120"
 msgid "Clear"
@@ -293,7 +293,7 @@ msgstr "Oynatma Listeleri"
 
 msgctxt "#30502"
 msgid "Go to %s"
-msgstr "Git %s"
+msgstr "%s ögesine git"
 
 msgctxt "#30503"
 msgid "Show channel fanart"
@@ -313,7 +313,7 @@ msgstr "Abone Ol"
 
 msgctxt "#30507"
 msgid "My Channel"
-msgstr "Benim Kanalım"
+msgstr "Kanalım"
 
 msgctxt "#30508"
 msgid "Liked Videos"
@@ -345,7 +345,7 @@ msgstr "İlgili Videolar"
 
 msgctxt "#30515"
 msgid "Auto-Remove from 'Watch Later'"
-msgstr "\"Sonra İzle\"den otomatik kaldır"
+msgstr "\"Daha Sonra İzle\"den otomatik kaldır"
 
 msgctxt "#30516"
 msgid "Folders"
@@ -353,7 +353,7 @@ msgstr "Dizinler"
 
 msgctxt "#30517"
 msgid "Subscribe to %s"
-msgstr "Abone ol %s"
+msgstr "\"%s\" kanalına abone ol"
 
 msgctxt "#30518"
 msgid "Go to '%s'"
@@ -425,7 +425,7 @@ msgstr "Karıştır"
 
 msgctxt "#30535"
 msgid "Select the order of the playlist"
-msgstr "Oynatma listesinin düzenini seç"
+msgstr "Oynatma listesinin sırasını seç"
 
 msgctxt "#30536"
 msgid "Updating Playlist..."
@@ -461,11 +461,11 @@ msgstr "Yenile"
 
 msgctxt "#30544"
 msgid "More Links from the description"
-msgstr "Açıklamadan daha fazla linkler"
+msgstr "Açıklamadan daha fazla bağlantılar"
 
 msgctxt "#30545"
 msgid "No further links found."
-msgstr "Daha fazla link bulunamadı."
+msgstr "Daha fazla bağlantı bulunamadı."
 
 msgctxt "#30546"
 msgid "Please log in twice!"
@@ -473,7 +473,7 @@ msgstr "Lütfen iki kere giriş yapın"
 
 msgctxt "#30547"
 msgid "You must enable two applications so that YouTube is functioning properly."
-msgstr "İki uygulamayı da etkinleştirmesiniz ki YouTube doğru bir şekilde çalışsın"
+msgstr "İki uygulamayı da etkinleştirmelisiniz ki YouTube doğru bir şekilde çalışsın"
 
 msgctxt "#30548"
 msgid "More..."
@@ -497,7 +497,7 @@ msgstr "Bakım"
 
 msgctxt "#30553"
 msgid "Delete function cache database"
-msgstr ""
+msgstr "İşlev önbelleği veritabanını sil"
 
 msgctxt "#30554"
 msgid "Delete search history database"
@@ -505,7 +505,7 @@ msgstr "Arama geçmişi veritabanını sil"
 
 msgctxt "#30555"
 msgid "Clear function cache"
-msgstr ""
+msgstr "İşlev önbelleğinı temizle"
 
 msgctxt "#30556"
 msgid "Clear search history"
@@ -513,7 +513,7 @@ msgstr "Arama geçmişini sil"
 
 msgctxt "#30557"
 msgid "function cache"
-msgstr ""
+msgstr "işlev önbelleği"
 
 msgctxt "#30558"
 msgid "search history"
@@ -549,39 +549,39 @@ msgstr "İngilizce"
 
 msgctxt "#30566"
 msgid "Prompt"
-msgstr ""
+msgstr "İstem"
 
 msgctxt "#30567"
 msgid "Set as Watch Later"
-msgstr ""
+msgstr "Daha Sonra İzle'ye ekle"
 
 msgctxt "#30568"
 msgid "Remove as Watch Later"
-msgstr ""
+msgstr "Daha Sonra İzle'den kaldır"
 
 msgctxt "#30569"
 msgid "Are you sure you want to remove '%s' as your Watch Later list?"
-msgstr "\"%s\" \"Sonra İzle\" listesinden kaldırılmasından emin misiniz?"
+msgstr "\"%s\" ögesi Daha Sonra İzle listesinden kaldırılacak, emin misiniz?"
 
 msgctxt "#30570"
 msgid "Are you sure you want to replace your current Watch Later list with '%s'?"
-msgstr "Şu anki Sonra İzle listenizini bunun ile \"%s\" değiştirmek ister misiniz?"
+msgstr "Şimdiki Daha Sonra İzle listeniz \"%s\" ile değiştirilecek, emin misiniz?"
 
 msgctxt "#30571"
 msgid "Set as History"
-msgstr ""
+msgstr "Geçmişe ekle"
 
 msgctxt "#30572"
 msgid "Remove as History"
-msgstr ""
+msgstr "Geçmişten kaldır"
 
 msgctxt "#30573"
 msgid "Are you sure you want to remove '%s' as your History list?"
-msgstr ""
+msgstr "\"%s\" ögesi Geçmiş listesinizden kaldırılacak, emin misiniz?"
 
 msgctxt "#30574"
 msgid "Are you sure you want to replace your current History list with '%s'?"
-msgstr ""
+msgstr "Şimdiki Geçmiş listeniz, \"%s\" ile değiştirilecek, emin misiniz?"
 
 msgctxt "#30575"
 msgid "Succeeded"
@@ -609,7 +609,7 @@ msgstr "Erişim yöneticisini sıfırla"
 
 msgctxt "#30581"
 msgid "Are you sure you want to reset access manager?"
-msgstr "Erişim yöneticisini sıfırlamak ister misiniz?"
+msgstr "Erişim yöneticisi sıfırlanacak, emin misiniz?"
 
 msgctxt "#30582"
 msgid "Autoplay suggested videos"
@@ -633,7 +633,7 @@ msgstr "Kara liste"
 
 msgctxt "#30587"
 msgid "Add to My Subscriptions filter"
-msgstr "Aboneklerim filtresine ekle"
+msgstr "Aboneliklerim filtresine ekle"
 
 msgctxt "#30588"
 msgid "Remove from My Subscriptions filter"
@@ -665,11 +665,11 @@ msgstr "Güvenli arama"
 
 msgctxt "#30595"
 msgid "Moderate"
-msgstr ""
+msgstr "Orta"
 
 msgctxt "#30596"
 msgid "Strict"
-msgstr ""
+msgstr "Kesin"
 
 msgctxt "#30597"
 msgid "Updated: %s"
@@ -689,19 +689,19 @@ msgstr "Alt yazıları ayarla"
 
 msgctxt "#30601"
 msgid "%s with %s fallback"
-msgstr ""
+msgstr "%s, yoksa %s"
 
 msgctxt "#30602"
 msgid "No auto-generated"
-msgstr ""
+msgstr "Otomatik oluşturulan alt yazı olmasın"
 
 msgctxt "#30603"
 msgid "Age gate"
-msgstr ""
+msgstr "Yaş sınırı"
 
 msgctxt "#30604"
 msgid "Allow offensive content"
-msgstr ""
+msgstr "Rahatsız edici içeriğe izin ver"
 
 msgctxt "#30605"
 msgid "Quick Search"
@@ -713,11 +713,11 @@ msgstr "Hızlı arama (Gizli)"
 
 msgctxt "#30607"
 msgid "Audio only"
-msgstr "Yalnızca ses"
+msgstr "Yalnızca ses olarak"
 
 msgctxt "#30608"
 msgid "Allow developer keys"
-msgstr "Geliştirici anahtarları etkinleştir"
+msgstr ""
 
 msgctxt "#30609"
 msgid "Clear watch history"
@@ -785,7 +785,7 @@ msgstr "Kodi 17+ gerektirir"
 
 msgctxt "#30625"
 msgid "InputStream Helper is already installed."
-msgstr "InputStream Hleper önceden kurulmuş"
+msgstr "InputStream Helper önceden kurulmuş"
 
 
 msgctxt "#30626"
@@ -838,7 +838,7 @@ msgstr ""
 
 msgctxt "#30638"
 msgid "Bookmark this page to quickly add your keys in the future."
-msgstr "Gelecekte hızlıca anahtarlarınızı eklemek için bunu yer imleçlerine ekleyin."
+msgstr ""
 
 msgctxt "#30639"
 msgid "Found personal API keys in api_keys.json, would you like to restore them? Choosing no will overwrite them."
@@ -850,11 +850,11 @@ msgstr "Yenileştir"
 
 msgctxt "#30641"
 msgid "Delete api_keys.json"
-msgstr ""
+msgstr "api_keys.json doyasını sil"
 
 msgctxt "#30642"
 msgid "Delete access_manager.json"
-msgstr ""
+msgstr "access_manager.json dosyasını sil"
 
 msgctxt "#30643"
 msgid "Listen on IP"
@@ -954,11 +954,11 @@ msgstr "Kaldırıldı: %s"
 
 msgctxt "#30667"
 msgid "Renamed '%s' to '%s'"
-msgstr "Kullanıcının adı \"%s\" adından \"%s\" adına değiştirildi"
+msgstr "Kullanıcının adı, \"%s\" adından \"%s\" adına değiştirildi"
 
 msgctxt "#30668"
 msgid "Play count minimum percent"
-msgstr "İzlenme sayısını yüzde olarak en az"
+msgstr "İzlenme sayısını en düşük yüzdesi"
 
 msgctxt "#30669"
 msgid "Mark unwatched"
@@ -970,15 +970,15 @@ msgstr "İzlendi olarak işaretle"
 
 msgctxt "#30671"
 msgid "Clear playback history"
-msgstr "Yeniden çalma geçmişini temizle"
+msgstr "Oynatma geçmişini temizle"
 
 msgctxt "#30672"
 msgid "Delete playback history"
-msgstr "Yeniden çalma geçmişini sil"
+msgstr "Oynatma geçmişini sil"
 
 msgctxt "#30673"
 msgid "playback history"
-msgstr "yeniden çalma geçmişi"
+msgstr "oynatma geçmişi"
 
 msgctxt "#30674"
 msgid "Reset resume point"
@@ -986,7 +986,7 @@ msgstr "Kaldığım yeri sıfırla"
 
 msgctxt "#30675"
 msgid "Use playback history (watched, resume tracking)"
-msgstr "Yeniden çalma geçmişini kullan (izlendi, kaldığım yerin izlenmesi"
+msgstr "Oynatma geçmişini kullan (izlendi, kaldığım yerin takip edilmesi)"
 
 msgctxt "#30676"
 msgid "Just now"
@@ -1026,15 +1026,15 @@ msgstr "Bugün saat"
 
 msgctxt "#30685"
 msgid "Delete data cache database"
-msgstr ""
+msgstr "Veri önbelleği veritabanını sil"
 
 msgctxt "#30686"
 msgid "Clear data cache"
-msgstr ""
+msgstr "Veri önbelleğini temizle"
 
 msgctxt "#30687"
 msgid "data cache"
-msgstr ""
+msgstr "veri önbelleği"
 
 msgctxt "#30688"
 msgid "Use for videos"
@@ -1062,11 +1062,11 @@ msgstr "Yakında başlıyor"
 
 msgctxt "#30694"
 msgid "In over an hour"
-msgstr "Bir saatten biraz fazla sonra başlıyor"
+msgstr "Bir saatten fazla bir süre içinde"
 
 msgctxt "#30695"
 msgid "In over two hours"
-msgstr "İki saatten biraz fazla sonra başlıyor"
+msgstr "Bir saatten fazla bir süre içinde"
 
 msgctxt "#30696"
 msgid "Airing today at"
@@ -1086,7 +1086,7 @@ msgstr ""
 
 msgctxt "#30700"
 msgid "Client IP is %s"
-msgstr ""
+msgstr "IP adresiniz: %s"
 
 msgctxt "#30701"
 msgid "Failed to obtain client IP"
@@ -1094,11 +1094,11 @@ msgstr ""
 
 msgctxt "#30702"
 msgid "Play with subtitles"
-msgstr ""
+msgstr "Alt yazılar ile oynat"
 
 msgctxt "#30703"
 msgid "Are you sure?"
-msgstr "Emin misin"
+msgstr "Emin misiniz?"
 
 msgctxt "#30704"
 msgid "Use YouTube website urls"
@@ -1130,7 +1130,7 @@ msgstr ""
 
 msgctxt "#30711"
 msgid "Searching for Watch Later... Page %s"
-msgstr "Sonra İzle için aranama yapılıyor... Sayfa %s"
+msgstr "DAha Sonra İzle için aranama yapılıyor... Sayfa %s"
 
 msgctxt "#30712"
 msgid "Rate videos in playlists"
@@ -1138,7 +1138,7 @@ msgstr "Oynatma listesindeki videoları değerlendir"
 
 msgctxt "#30713"
 msgid "Added to Watch Later"
-msgstr "Sonra İzle'ye eklendi"
+msgstr "Daha Sonra İzle'ye eklendi"
 
 msgctxt "#30714"
 msgid "Added to playlist"
