@@ -293,7 +293,7 @@ msgstr "Oynatma Listeleri"
 
 msgctxt "#30502"
 msgid "Go to %s"
-msgstr "%s ögesine git"
+msgstr "%s kanalına git"
 
 msgctxt "#30503"
 msgid "Show channel fanart"
