@@ -100,7 +100,7 @@ msgstr "Fanart göster"
 
 msgctxt "#30022"
 msgid "Items per page"
-msgstr "Sayfa başı ögeler"
+msgstr "Sayfa başı video sayısı"
 
 msgctxt "#30023"
 msgid "Search history size"
@@ -199,7 +199,7 @@ msgstr "Sonraki Sayfa (%d)"
 
 msgctxt "#30107"
 msgid "Watch Later"
-msgstr "Sonra İzle"
+msgstr "Daha Sonra İzle"
 
 msgctxt "#30108"
 msgid "Remove"
@@ -345,7 +345,7 @@ msgstr "İlgili Videolar"
 
 msgctxt "#30515"
 msgid "Auto-Remove from 'Watch Later'"
-msgstr "\"Daha Sonra İzle\"den otomatik kaldır"
+msgstr "Daha Sonra İzle'den izlenen videoları sonrasında kaldır"
 
 msgctxt "#30516"
 msgid "Folders"
@@ -685,7 +685,7 @@ msgstr ""
 
 msgctxt "#30600"
 msgid "Configure subtitles"
-msgstr "Alt yazıları ayarla"
+msgstr "Alt yazı ayarları"
 
 msgctxt "#30601"
 msgid "%s with %s fallback"
@@ -713,7 +713,7 @@ msgstr "Hızlı arama (Gizli)"
 
 msgctxt "#30607"
 msgid "Audio only"
-msgstr "Yalnızca ses olarak"
+msgstr "Yalnızca ses olarak oynat"
 
 msgctxt "#30608"
 msgid "Allow developer keys"
@@ -794,7 +794,7 @@ msgstr "Geçiçi dosyaları sil"
 
 msgctxt "#30627"
 msgid "Rate video after watching"
-msgstr "İzledikten sonra videoyu değerlendir."
+msgstr "İzledikten sonra videoyu değerlendir"
 
 msgctxt "#30628"
 msgid "HTTP Server"
