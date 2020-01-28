@@ -128,6 +128,11 @@
         <setting id="youtube.api.config.page" type="bool" label="30632" default="false"/>
     </category>
 
+    <!-- integrations -->
+    <category label="30731">
+        <setting id="ext.sponsorblock" type="bool" label="30732" default="false"/>
+    </category>
+
     <!-- Maintenance -->
     <category label="30552">
         <setting id="kodion.maintain.clear.func" type="action" label="30555" action="RunPlugin(plugin://$ID/maintain/function_cache/clear/)"/>

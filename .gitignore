@@ -24,6 +24,7 @@ $RECYCLE.BIN/
 .pydevproject/
 
 __pycache__/
+venv/
 
 *.py[cod]
 

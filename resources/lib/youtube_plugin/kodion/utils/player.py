@@ -29,6 +29,8 @@ class PlaybackMonitorThread(threading.Thread):
 
         self.playback_json = playback_json
         self.video_id = self.playback_json.get('video_id')
+        self.cutlist = self.playback_json.get('cutlist')
+        self.cut_index = 0
 
         self.total_time = 0.0
         self.current_time = 0.0
@@ -46,6 +48,34 @@ class PlaybackMonitorThread(threading.Thread):
 
     def abort_now(self):
         return not self.player.isPlaying() or self.context.abort_requested() or self.stopped()
+
+    def _update_cut_index(self, time):  # type: (float) -> None
+        if not self.cutlist:
+            return
+
+        # bisect the next cut in the cutlist
+        lo, hi = 0, len(self.cutlist)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            seek_start = self.cutlist[mid]["start"]
+            if seek_start < time:
+                lo = mid + 1
+            else:
+                hi = mid
+
+        self.cut_index = lo
+
+    def _get_cut(self, last_current_time, current_time):
+        # type: (float, float) -> Optional[dict]
+        if not self.cutlist or self.cut_index >= len(self.cutlist):
+            return None
+
+        cut = self.cutlist[self.cut_index]
+        # make sure we just entered the cut
+        if last_current_time < cut["start"] <= current_time < cut["end"]:
+            return cut
+
+        return None
 
     def run(self):
         playing_file = self.playback_json.get('playing_file')
@@ -83,6 +113,9 @@ class PlaybackMonitorThread(threading.Thread):
 
         report_interval = 10.0
         first_report = True
+
+        # min timedelta to be considered seeking
+        p_seek_timedelta = p_wait_time + 0.5
 
         report_url = playback_stats.get('playback_url', '')
 
@@ -149,6 +182,23 @@ class PlaybackMonitorThread(threading.Thread):
             if self.abort_now():
                 self.update_times(last_total_time, last_current_time, last_segment_start, last_percent_complete)
                 break
+
+            if not 0 < self.current_time - last_current_time < p_seek_timedelta:
+                # update cut index after seeking
+                self._update_cut_index(self.current_time)
+
+            cut = self._get_cut(last_current_time, self.current_time)
+            if cut:
+                self.context.log_debug("performing cut %s" % cut)
+                seek_time = cut["end"]
+
+                notification = cut.get("notification")
+                if notification:
+                    self.context.get_ui().show_notification(
+                        self.context.localize(notification),
+                        time_milliseconds=3000,
+                        audible=False
+                    )
 
             if seek_time and seek_time != 0.0:
                 player.seekTime(seek_time)

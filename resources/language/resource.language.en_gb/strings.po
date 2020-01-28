@@ -1206,3 +1206,15 @@ msgstr ""
 msgctxt "#30730"
 msgid "Play (Ask for quality)"
 msgstr ""
+
+msgctxt "#30731"
+msgid "Integrations"
+msgstr ""
+
+msgctxt "#30732"
+msgid "SponsorBlock"
+msgstr ""
+
+msgctxt "#30733"
+msgid "Skipped sponsor"
+msgstr ""

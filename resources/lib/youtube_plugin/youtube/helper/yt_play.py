@@ -16,11 +16,12 @@ import traceback
 import xbmcplugin
 
 from ... import kodion
+from ...ext import sponsorblock
 from ...kodion import constants
-from ...kodion.items import VideoItem
 from ...kodion.impl.xbmc.xbmc_items import to_playback_item
-from ...youtube.youtube_exceptions import YouTubeException
+from ...kodion.items import VideoItem
 from ...youtube.helper import utils, v3
+from ...youtube.youtube_exceptions import YouTubeException
 
 
 def play_video(provider, context):
@@ -105,6 +106,11 @@ def play_video(provider, context):
         except (ValueError, TypeError):
             pass
 
+        if settings.get_bool('ext.sponsorblock', False):
+            cutlist = sponsorblock.get_sponsor_cutlist(video_id)
+        else:
+            cutlist = None
+
         playback_json = {
             "video_id": video_id,
             "playing_file": video_item.get_uri(),
@@ -113,9 +119,9 @@ def play_video(provider, context):
             "playback_history": playback_history,
             "playback_stats": playback_stats,
             "seek_time": seek_time,
-            "refresh_only": screensaver
+            "refresh_only": screensaver,
+            "cutlist": cutlist,
         }
-
         context.get_ui().set_home_window_property('playback_json', json.dumps(playback_json))
 
         xbmcplugin.setResolvedUrl(handle=context.get_handle(), succeeded=True, listitem=item)
