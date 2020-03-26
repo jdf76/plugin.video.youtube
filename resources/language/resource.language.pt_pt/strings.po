@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: XBMC-Addons\n"
 "Report-Msgid-Bugs-To: alanwww1@xbmc.org\n"
 "POT-Creation-Date: 2015-09-21 11:01+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2020-03-26 HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE\n"
 "MIME-Version: 1.0\n"
@@ -261,7 +261,7 @@ msgstr "Activar chaves API pessoais"
 
 msgctxt "#30205"
 msgid "Use preset API key set"
-msgstr ""
+msgstr "Usar conjunto pre-definido de chaves API"
 
 # YouTube
 # empty strings from id 30206 to 30499
@@ -424,7 +424,7 @@ msgstr "Vídeos que Não Gostei"
 
 msgctxt "#30539"
 msgid "Live"
-msgstr "Em Direto"
+msgstr "Em Directo"
 
 msgctxt "#30540"
 msgid "Play with..."
@@ -724,7 +724,7 @@ msgstr "Restabelecer Id de Lista de Reprodução Ver mais tarde"
 
 msgctxt "#30614"
 msgid "Failed to retrieve Watch Later playlist id. Add a few videos to Watch Later via the web/app and retry."
-msgstr ""
+msgstr "Falha ao obter Id da lista de Ver mais tarde. Adicione alguns vídeos á lista Ver mais tarde via web/app e tente novamente."
 
 msgctxt "#30615"
 msgid "Cancel"
@@ -840,11 +840,11 @@ msgstr "Apagar access_manager.json"
 
 msgctxt "#30643"
 msgid "Listen on IP"
-msgstr ""
+msgstr "Escutar no IP"
 
 msgctxt "#30644"
 msgid "Select listen IP"
-msgstr ""
+msgstr "Selecione IP escutado"
 
 msgctxt "#30645"
 msgid "Refresh after watching"
@@ -860,15 +860,15 @@ msgstr "Directos concluídos"
 
 msgctxt "#30648"
 msgid "API Key is incorrect. Settings - API - API Key"
-msgstr ""
+msgstr "Chave API incorrecta. Definições - API - API Key"
 
 msgctxt "#30649"
 msgid "Client Id is incorrect. Settings - API - API Id"
-msgstr ""
+msgstr "Cliente Id incorrecto. Definições - API - API Id"
 
 msgctxt "#30650"
 msgid "Client Secret is incorrect. Settings - API - API Secret"
-msgstr ""
+msgstr "Cliente Secreto incorrecto. Definições - API - API Secret"
 
 msgctxt "#30651"
 msgid "Location"
@@ -1028,7 +1028,7 @@ msgstr "Usar para as streams em directo"
 
 msgctxt "#30690"
 msgid "InputStream Adaptive >= 2.0.12 is required for live streams"
-msgstr ""
+msgstr "InputStream Adaptive >= 2.0.12 é necessário para streams em directo"
 
 msgctxt "#30691"
 msgid "Airing now"
@@ -1036,7 +1036,7 @@ msgstr ""
 
 msgctxt "#30692"
 msgid "In a minute"
-msgstr ""
+msgstr "Dentro de um minuto"
 
 msgctxt "#30693"
 msgid "Airing soon"
@@ -1044,11 +1044,11 @@ msgstr ""
 
 msgctxt "#30694"
 msgid "In over an hour"
-msgstr ""
+msgstr "Dentro de uma hora"
 
 msgctxt "#30695"
 msgid "In over two hours"
-msgstr ""
+msgstr "Dentro de duas horas"
 
 msgctxt "#30696"
 msgid "Airing today at"
@@ -1056,23 +1056,23 @@ msgstr ""
 
 msgctxt "#30697"
 msgid "Tomorrow at"
-msgstr ""
+msgstr "Amanhâ pelas"
 
 msgctxt "#30698"
 msgid "Check my IP"
-msgstr ""
+msgstr "Verificar o meu IP"
 
 msgctxt "#30699"
 msgid "HTTP server is not running"
-msgstr ""
+msgstr "Servidor HTTP não está a funcionar"
 
 msgctxt "#30700"
 msgid "Client IP is %s"
-msgstr ""
+msgstr "IP do cliente é %s"
 
 msgctxt "#30701"
 msgid "Failed to obtain client IP"
-msgstr ""
+msgstr "Falha ao obter IP do cliente"
 
 msgctxt "#30702"
 msgid "Play with subtitles"
@@ -1112,7 +1112,7 @@ msgstr ""
 
 msgctxt "#30711"
 msgid "Searching for Watch Later... Page %s"
-msgstr ""
+msgstr "Pesquisando por Ver mais tarde... Página %s"
 
 msgctxt "#30712"
 msgid "Rate videos in playlists"
@@ -1156,7 +1156,7 @@ msgstr ""
 
 msgctxt "#30722"
 msgid "HDR"
-msgstr ""
+msgstr "HDR"
 
 msgctxt "#30723"
 msgid "Proxy is required for mpeg-dash vods (see HTTP Server)[CR]> 1080p and HDR requires InputStream Adaptive >= 2.3.14"
