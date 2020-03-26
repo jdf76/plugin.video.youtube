@@ -300,7 +300,7 @@ msgstr "O meu canal"
 
 msgctxt "#30508"
 msgid "Liked Videos"
-msgstr "Vídeos que gostei"
+msgstr "Vídeos que Gostei"
 
 msgctxt "#30509"
 msgid "History"
@@ -420,7 +420,7 @@ msgstr "Reproduzir a partir de aqui"
 
 msgctxt "#30538"
 msgid "Disliked Videos"
-msgstr "Vídeos que Não Gosto"
+msgstr "Vídeos que Não Gostei"
 
 msgctxt "#30539"
 msgid "Live"
@@ -584,7 +584,7 @@ msgstr "Forçar verificação do certificado SSL"
 
 msgctxt "#30579"
 msgid "MPEG-DASH is enabled in the YouTube settings, however InputStream Adaptive appears to be disabled. Would you like to enable InputStream Adaptive now?"
-msgstr ""
+msgstr "MPEG-DASH está activado nas definições do Youtube, no entanto InputStream Adaptive aparenta estar desactivado. Gostaria de activar InputStream Adaptive agora?"
 
 msgctxt "#30580"
 msgid "Reset access manager"
@@ -676,7 +676,7 @@ msgstr ""
 
 msgctxt "#30602"
 msgid "No auto-generated"
-msgstr "Sem gerado automaticamente"
+msgstr "Sem gerador automático"
 
 msgctxt "#30603"
 msgid "Age gate"
@@ -736,11 +736,11 @@ msgstr "Tem que estar conectado."
 
 msgctxt "#30617"
 msgid "MPEG-DASH"
-msgstr ""
+msgstr "MPEG-DASH"
 
 msgctxt "#30618"
 msgid "Enable mpeg-dash proxy"
-msgstr ""
+msgstr "Activar proxy do mpeg-dash"
 
 msgctxt "#30619"
 msgid "Port"
@@ -784,7 +784,7 @@ msgstr "Servidor HTTP"
 
 msgctxt "#30629"
 msgid "IP whitelist (comma delimited)"
-msgstr ""
+msgstr "Lista de permissões de IP (delimitada por vírgulas)"
 
 msgctxt "#30630"
 msgid "Save"
@@ -796,7 +796,7 @@ msgstr "Actualizado com sucesso: %s"
 
 msgctxt "#30632"
 msgid "Enable API configuration page"
-msgstr ""
+msgstr "Activar página de configuração API"
 
 msgctxt "#30633"
 msgid "http://<ipaddress>:<port>/api (see HTTP Server)"
@@ -804,27 +804,27 @@ msgstr ""
 
 msgctxt "#30634"
 msgid "YouTube Add-on API Configuration"
-msgstr ""
+msgstr "Configuração API do add-on Youtube"
 
 msgctxt "#30635"
 msgid "No changes detected, API keys were not updated."
-msgstr ""
+msgstr "Nenhuma alteração detectada, Chaves API não foram actualizadas."
 
 msgctxt "#30636"
 msgid "Personal API keys are enabled."
-msgstr ""
+msgstr "Chaves API pessoais estão activadas."
 
 msgctxt "#30637"
 msgid "Personal API keys are disabled."
-msgstr ""
+msgstr "Chaves API pessoais estão desactivadas."
 
 msgctxt "#30638"
 msgid "Bookmark this page to quickly add your keys in the future."
-msgstr ""
+msgstr "Adicione esta página aos seus marcadores para no futuro adicionar mais rapidamente as suas chaves."
 
 msgctxt "#30639"
 msgid "Found personal API keys in api_keys.json, would you like to restore them? Choosing no will overwrite them."
-msgstr ""
+msgstr "Encontradas chaves API em api_keys.json, deseja restaurá-las? Se escolher não as mesmas serão apagadas."
 
 msgctxt "#30640"
 msgid "Restore"
@@ -832,11 +832,11 @@ msgstr "Restaurar"
 
 msgctxt "#30641"
 msgid "Delete api_keys.json"
-msgstr ""
+msgstr "Apagar api_keys.json"
 
 msgctxt "#30642"
 msgid "Delete access_manager.json"
-msgstr ""
+msgstr "Apagar access_manager.json"
 
 msgctxt "#30643"
 msgid "Listen on IP"
@@ -852,11 +852,11 @@ msgstr "Actualizar depois de visualizado"
 
 msgctxt "#30646"
 msgid "Upcoming Live"
-msgstr ""
+msgstr "Próximos Directos"
 
 msgctxt "#30647"
 msgid "Completed Live"
-msgstr ""
+msgstr "Directos concluídos"
 
 msgctxt "#30648"
 msgid "API Key is incorrect. Settings - API - API Key"
@@ -872,71 +872,71 @@ msgstr ""
 
 msgctxt "#30651"
 msgid "Location"
-msgstr ""
+msgstr "Localização"
 
 msgctxt "#30652"
 msgid "Location radius (km)"
-msgstr ""
+msgstr "Raio de Localização (km)"
 
 msgctxt "#30653"
 msgid "Perform geolocation? Used for [B]My Location[/B]"
-msgstr ""
+msgstr "Realizar geolocalização? Usado em [B]Minha Localização[/B]"
 
 msgctxt "#30654"
 msgid "My Location"
-msgstr ""
+msgstr "Minha Localização"
 
 msgctxt "#30655"
 msgid "Switch User"
-msgstr ""
+msgstr "Mudar de Utilizador"
 
 msgctxt "#30656"
 msgid "New user"
-msgstr ""
+msgstr "Novo utilizador"
 
 msgctxt "#30657"
 msgid "Unnamed"
-msgstr ""
+msgstr "Sem nome"
 
 msgctxt "#30658"
 msgid "Enter a name for this user"
-msgstr ""
+msgstr "Insira um nome para este utilizador"
 
 msgctxt "#30659"
 msgid "User is now '%s'"
-msgstr ""
+msgstr "Utilizador é agora '%s'"
 
 msgctxt "#30660"
 msgid "Users"
-msgstr ""
+msgstr "Utilizadores"
 
 msgctxt "#30661"
 msgid "Add a user"
-msgstr ""
+msgstr "Adicionar um utilizador"
 
 msgctxt "#30662"
 msgid "Remove a user"
-msgstr ""
+msgstr "Remover um utilizador"
 
 msgctxt "#30663"
 msgid "Rename a user"
-msgstr ""
+msgstr "Renomear um utilizador"
 
 msgctxt "#30664"
 msgid "Switch user"
-msgstr ""
+msgstr "Mudar de utilizador"
 
 msgctxt "#30665"
 msgid "Switch to '%s' now?"
-msgstr ""
+msgstr "Mudar para '%s' agora?"
 
 msgctxt "#30666"
 msgid "Removed '%s'"
-msgstr ""
+msgstr "Removido '%s'"
 
 msgctxt "#30667"
 msgid "Renamed '%s' to '%s'"
-msgstr ""
+msgstr "Renomeado '%s' para '%s'"
 
 msgctxt "#30668"
 msgid "Play count minimum percent"
@@ -944,87 +944,87 @@ msgstr ""
 
 msgctxt "#30669"
 msgid "Mark unwatched"
-msgstr ""
+msgstr "Marcar como não visto"
 
 msgctxt "#30670"
 msgid "Mark watched"
-msgstr ""
+msgstr "Marcar como visto"
 
 msgctxt "#30671"
 msgid "Clear playback history"
-msgstr ""
+msgstr "Limpar histórico de reprodução"
 
 msgctxt "#30672"
 msgid "Delete playback history"
-msgstr ""
+msgstr "Apagar histórico de reprodução"
 
 msgctxt "#30673"
 msgid "playback history"
-msgstr ""
+msgstr "histórico de reprodução"
 
 msgctxt "#30674"
 msgid "Reset resume point"
-msgstr ""
+msgstr "Redefinir ponto de resumo"
 
 msgctxt "#30675"
 msgid "Use playback history (watched, resume tracking)"
-msgstr ""
+msgstr "Usar histórico de reprodução (visualizado, retomar o rastreamento)"
 
 msgctxt "#30676"
 msgid "Just now"
-msgstr ""
+msgstr "Apenas agora"
 
 msgctxt "#30677"
 msgid "A minute ago"
-msgstr ""
+msgstr "Um minuto atrás"
 
 msgctxt "#30678"
 msgid "Recently"
-msgstr ""
+msgstr "Recentemente"
 
 msgctxt "#30679"
 msgid "An hour ago"
-msgstr ""
+msgstr "Uma hora atrás"
 
 msgctxt "#30680"
 msgid "Two hours ago"
-msgstr ""
+msgstr "Duas horas atrás"
 
 msgctxt "#30681"
 msgid "Three hours ago"
-msgstr ""
+msgstr "Três horas atrás"
 
 msgctxt "#30682"
 msgid "Yesterday at"
-msgstr ""
+msgstr "Ontem pelas"
 
 msgctxt "#30683"
 msgid "Two days ago"
-msgstr ""
+msgstr "Dois dias atrás"
 
 msgctxt "#30684"
 msgid "Today at"
-msgstr ""
+msgstr "Hoje pelas"
 
 msgctxt "#30685"
 msgid "Delete data cache database"
-msgstr ""
+msgstr "Apagar base de dados da cache de dados"
 
 msgctxt "#30686"
 msgid "Clear data cache"
-msgstr ""
+msgstr "Limpar cache de dados"
 
 msgctxt "#30687"
 msgid "data cache"
-msgstr ""
+msgstr "cache de dados"
 
 msgctxt "#30688"
 msgid "Use for videos"
-msgstr ""
+msgstr "Usar para os vídeos"
 
 msgctxt "#30689"
 msgid "Use for live streams"
-msgstr ""
+msgstr "Usar para as streams em directo"
 
 msgctxt "#30690"
 msgid "InputStream Adaptive >= 2.0.12 is required for live streams"
@@ -1076,31 +1076,31 @@ msgstr ""
 
 msgctxt "#30702"
 msgid "Play with subtitles"
-msgstr ""
+msgstr "Reproduzir com legendas"
 
 msgctxt "#30703"
 msgid "Are you sure?"
-msgstr ""
+msgstr "Tem a certeza?"
 
 msgctxt "#30704"
 msgid "Use YouTube website urls"
-msgstr ""
+msgstr "Usar Youtube website urls"
 
 msgctxt "#30705"
 msgid "Download subtitles"
-msgstr ""
+msgstr "Descarregar legendas"
 
 msgctxt "#30706"
 msgid "Download subtitles before starting playback? (Default: No)"
-msgstr ""
+msgstr "Descarregar legendas antes de iniciar a reprodução? (Padrão: Não)"
 
 msgctxt "#30707"
 msgid "Untitled"
-msgstr ""
+msgstr "Sem título"
 
 msgctxt "#30708"
 msgid "Play audio only"
-msgstr ""
+msgstr "Reproduzir apenas audio"
 
 msgctxt "#30709"
 msgid "Failed to retrieve Watch Later playlist id. To increase the chances of retrieval add 8-10 videos to Watch Later via the web/app and retry."
@@ -1116,39 +1116,39 @@ msgstr ""
 
 msgctxt "#30712"
 msgid "Rate videos in playlists"
-msgstr ""
+msgstr "Classifique vídeos em listas de reprodução"
 
 msgctxt "#30713"
 msgid "Added to Watch Later"
-msgstr ""
+msgstr "Adicionar a Ver mais tarde"
 
 msgctxt "#30714"
 msgid "Added to playlist"
-msgstr ""
+msgstr "Adicionado á Lista de Reprodução"
 
 msgctxt "#30715"
 msgid "Removed from playlist"
-msgstr ""
+msgstr "Removido de Lista de Reprodução"
 
 msgctxt "#30716"
 msgid "Liked video"
-msgstr ""
+msgstr "Vídeos que Gostei"
 
 msgctxt "#30717"
 msgid "Disliked video"
-msgstr ""
+msgstr "Vídeos que Não Gostei"
 
 msgctxt "#30718"
 msgid "Rating removed"
-msgstr ""
+msgstr "Classificação removida"
 
 msgctxt "#30719"
 msgid "Subscribed to channel"
-msgstr ""
+msgstr "Subscrito no canal"
 
 msgctxt "#30720"
 msgid "Unsubscribed from channel"
-msgstr ""
+msgstr "Não subscrito no canal"
 
 msgctxt "#30721"
 msgid "Default to WEBM adaptation set (4K)"
@@ -1164,15 +1164,15 @@ msgstr ""
 
 msgctxt "#30724"
 msgid "Limit to 30fps"
-msgstr ""
+msgstr "Limitar a 30fps"
 
 msgctxt "#30725"
 msgid "1440p (HD)"
-msgstr ""
+msgstr "1440p (HD)"
 
 msgctxt "#30726"
 msgid "Uploads"
-msgstr ""
+msgstr "Carregamentos"
 
 msgctxt "#30727"
 msgid "Adaptive (MP4/H264)"
@@ -1184,12 +1184,12 @@ msgstr ""
 
 msgctxt "#30729"
 msgid "Remote friendly search"
-msgstr ""
+msgstr "Pesquisa amigável remota"
 
 msgctxt "#30730"
 msgid "Play (Ask for quality)"
-msgstr ""
+msgstr "Reproduzir (Perguntar por qualidade)"
 
 msgctxt "#30731"
 msgid "The YouTube add-on now requires that you use your own API keys.[CR]For more information see the wiki: [B]https://ytaddon.page.link/keys[/B][CR][CR]Sorry for the inconvenience."
-msgstr ""
+msgstr "O add-on Youtube agora necessita que você use as suas próprias chaves API."[CR]Para mais informações visite a wiki: [B]https://ytaddon.page.link/keys[/B][CR][CR]Pedimos desculpa pelo inconveniente."
