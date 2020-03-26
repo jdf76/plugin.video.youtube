@@ -480,107 +480,107 @@ msgstr "Manutenção"
 
 msgctxt "#30553"
 msgid "Delete function cache database"
-msgstr ""
+msgstr "Agapar base de dados da função cache"
 
 msgctxt "#30554"
 msgid "Delete search history database"
-msgstr ""
+msgstr "Apagar base de dados do histórico de pesquisa"
 
 msgctxt "#30555"
 msgid "Clear function cache"
-msgstr ""
+msgstr "Limpar função cache"
 
 msgctxt "#30556"
 msgid "Clear search history"
-msgstr ""
+msgstr "Limpar histórico de pesquisa"
 
 msgctxt "#30557"
 msgid "function cache"
-msgstr ""
+msgstr "função cache"
 
 msgctxt "#30558"
 msgid "search history"
-msgstr ""
+msgstr "pesquisar histórico"
 
 msgctxt "#30559"
 msgid "Delete settings.xml"
-msgstr ""
+msgstr "apagar settings.xml"
 
 msgctxt "#30560"
 msgid "Subtitle language"
-msgstr ""
+msgstr "Linguagem das legendas"
 
 msgctxt "#30561"
 msgid "None"
-msgstr ""
+msgstr "Nenhuma"
 
 msgctxt "#30562"
 msgid "All"
-msgstr ""
+msgstr "Todas"
 
 msgctxt "#30563"
 msgid "Setting"
-msgstr ""
+msgstr "Definições"
 
 msgctxt "#30564"
 msgid "Setting, English"
-msgstr ""
+msgstr "Definições, Inglês"
 
 msgctxt "#30565"
 msgid "English"
-msgstr ""
+msgstr "Inglês"
 
 msgctxt "#30566"
 msgid "Prompt"
-msgstr ""
+msgstr "Perguntar"
 
 msgctxt "#30567"
 msgid "Set as Watch Later"
-msgstr ""
+msgstr "Marcar para Ver mais tarde"
 
 msgctxt "#30568"
 msgid "Remove as Watch Later"
-msgstr ""
+msgstr "Remover de Ver mais tarde"
 
 msgctxt "#30569"
 msgid "Are you sure you want to remove '%s' as your Watch Later list?"
-msgstr ""
+msgstr "Tem a certeza que deseja remover '%s' da sua lista de Ver mais tarde?"
 
 msgctxt "#30570"
 msgid "Are you sure you want to replace your current Watch Later list with '%s'?"
-msgstr ""
+msgstr "Tem a certeza que deseja substituir a sua actual lista Ver mais tarde com '%s'?"
 
 msgctxt "#30571"
 msgid "Set as History"
-msgstr ""
+msgstr "Marcar como Histórico"
 
 msgctxt "#30572"
 msgid "Remove as History"
-msgstr ""
+msgstr "Remover do Histórico"
 
 msgctxt "#30573"
 msgid "Are you sure you want to remove '%s' as your History list?"
-msgstr ""
+msgstr "Tem a certeza que deseja remover '%s' da sua lista do Histórico?"
 
 msgctxt "#30574"
 msgid "Are you sure you want to replace your current History list with '%s'?"
-msgstr ""
+msgstr "Tem a certeza que deseja substituir a sua actual lista do Histórico com '%s'?"
 
 msgctxt "#30575"
 msgid "Succeeded"
-msgstr ""
+msgstr "Sucesso"
 
 msgctxt "#30576"
 msgid "Failed"
-msgstr ""
+msgstr "Falhou
 
 msgctxt "#30577"
 msgid "Settings"
-msgstr ""
+msgstr "Definições"
 
 msgctxt "#30578"
 msgid "Force SSL certificate verification"
-msgstr ""
+msgstr "Forçar verificação do certificado SSL"
 
 msgctxt "#30579"
 msgid "MPEG-DASH is enabled in the YouTube settings, however InputStream Adaptive appears to be disabled. Would you like to enable InputStream Adaptive now?"
@@ -588,87 +588,87 @@ msgstr ""
 
 msgctxt "#30580"
 msgid "Reset access manager"
-msgstr ""
+msgstr "Redefinir gerenciador de acesso"
 
 msgctxt "#30581"
 msgid "Are you sure you want to reset access manager?"
-msgstr ""
+msgstr "Tem a certeza que deseja redefinir gerenciador de acesso"
 
 msgctxt "#30582"
 msgid "Autoplay suggested videos"
-msgstr ""
+msgstr "Reprodução automática de vídeos sugeridos"
 
 msgctxt "#30583"
 msgid "Automatic"
-msgstr ""
+msgstr "Automático"
 
 msgctxt "#30584"
 msgid "My Subscriptions (Filtered)"
-msgstr ""
+msgstr "As minhas Subscrições (Filtradas)"
 
 msgctxt "#30585"
 msgid "Filtered channel list (comma delimited)"
-msgstr ""
+msgstr "Lista de canais filtrados (delimitada por vírgulas)"
 
 msgctxt "#30586"
 msgid "Blacklist"
-msgstr ""
+msgstr "Lista Negra"
 
 msgctxt "#30587"
 msgid "Add to My Subscriptions filter"
-msgstr ""
+msgstr "Adicionar á minha lista de Subscrições filtradas"
 
 msgctxt "#30588"
 msgid "Remove from My Subscriptions filter"
-msgstr ""
+msgstr "Remover da minha lista de Subscrições filtradas"
 
 msgctxt "#30589"
 msgid "Added to My Subscriptions filter"
-msgstr ""
+msgstr "Adicionado á minha lista de Subscrições filtradas"
 
 msgctxt "#30590"
 msgid "Removed from My Subscriptions filter"
-msgstr ""
+msgstr "Removido da minha lista de Subscrições filtradas"
 
 msgctxt "#30591"
 msgid "Thumbnail size"
-msgstr ""
+msgstr "Tamanho da miniatura"
 
 msgctxt "#30592"
 msgid "Medium (16:9)"
-msgstr ""
+msgstr "Médio (16:9)"
 
 msgctxt "#30593"
 msgid "High (4:3)"
-msgstr ""
+msgstr "Grande (4:3)"
 
 msgctxt "#30594"
 msgid "Safe search"
-msgstr ""
+msgstr "Pesquisa segura"
 
 msgctxt "#30595"
 msgid "Moderate"
-msgstr ""
+msgstr "Moderada"
 
 msgctxt "#30596"
 msgid "Strict"
-msgstr ""
+msgstr "Rigorosa"
 
 msgctxt "#30597"
 msgid "Updated: %s"
-msgstr ""
+msgstr "Actualizado: %s"
 
 msgctxt "#30598"
 msgid "Personal API keys enabled"
-msgstr ""
+msgstr "Chaves API pessoais activadas"
 
 msgctxt "#30599"
 msgid "Failed to enable personal API keys. Missing: %s"
-msgstr ""
+msgstr "Falha ao activar chaves API pessoais. Em falta: %s"
 
 msgctxt "#30600"
 msgid "Configure subtitles"
-msgstr ""
+msgstr "Configurar legendas"
 
 msgctxt "#30601"
 msgid "%s with %s fallback"
@@ -676,51 +676,51 @@ msgstr ""
 
 msgctxt "#30602"
 msgid "No auto-generated"
-msgstr ""
+msgstr "Sem gerado automaticamente"
 
 msgctxt "#30603"
 msgid "Age gate"
-msgstr ""
+msgstr "Grupo de idade"
 
 msgctxt "#30604"
 msgid "Allow offensive content"
-msgstr ""
+msgstr "Permitir conteúdo ofensivo"
 
 msgctxt "#30605"
 msgid "Quick Search"
-msgstr ""
+msgstr "Pesquisa Rápida"
 
 msgctxt "#30606"
 msgid "Quick Search (Incognito)"
-msgstr ""
+msgstr "Pesquisa Rápida (Anónimo)"
 
 msgctxt "#30607"
 msgid "Audio only"
-msgstr ""
+msgstr "Apenas audio"
 
 msgctxt "#30608"
 msgid "Allow developer keys"
-msgstr ""
+msgstr "Permitir chaves de desenvolvedor"
 
 msgctxt "#30609"
 msgid "Clear watch history"
-msgstr ""
+msgstr "Apagar histórico de visualização"
 
 msgctxt "#30610"
 msgid "This will clear your account's watch history from all devices. You can't undo this."
-msgstr ""
+msgstr "Isto vai apagar todo o histórico de visualização de todos os seus dispositivos. Você não consegue reverter isso."
 
 msgctxt "#30611"
 msgid "Saved Playlists"
-msgstr ""
+msgstr "Listas de Reprodução guardadas"
 
 msgctxt "#30612"
 msgid "Retry"
-msgstr ""
+msgstr "Tentar novamente"
 
 msgctxt "#30613"
 msgid "Retrieve Watch Later playlist id"
-msgstr ""
+msgstr "Restabelecer Id de Lista de Reprodução Ver mais tarde"
 
 msgctxt "#30614"
 msgid "Failed to retrieve Watch Later playlist id. Add a few videos to Watch Later via the web/app and retry."
@@ -728,11 +728,11 @@ msgstr ""
 
 msgctxt "#30615"
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 msgctxt "#30616"
 msgid "Must be signed in."
-msgstr ""
+msgstr "Tem que estar conectado."
 
 msgctxt "#30617"
 msgid "MPEG-DASH"
@@ -744,11 +744,11 @@ msgstr ""
 
 msgctxt "#30619"
 msgid "Port"
-msgstr ""
+msgstr "Porta"
 
 msgctxt "#30620"
 msgid "Port %s already in use. Cannot start http server."
-msgstr ""
+msgstr "Porta %s já está em uso. Falha ao iniciar servidor http."
 
 msgctxt "#30621"
 msgid "Proxy is required for mpeg-dash vods (see HTTP Server)"
@@ -756,31 +756,31 @@ msgstr ""
 
 msgctxt "#30622"
 msgid "Purchases"
-msgstr ""
+msgstr "Compras"
 
 msgctxt "#30623"
 msgid "Install InputStream Helper"
-msgstr ""
+msgstr "Instalar InputStream Helper"
 
 msgctxt "#30624"
 msgid "Requires Kodi 17+"
-msgstr ""
+msgstr "Necessário Kodi 17 ou superior"
 
 msgctxt "#30625"
 msgid "InputStream Helper is already installed."
-msgstr ""
+msgstr "InputStream Helper já se encontra instalado."
 
 msgctxt "#30626"
 msgid "Delete temporary files"
-msgstr ""
+msgstr "Apagar ficheiros temporários"
 
 msgctxt "#30627"
 msgid "Rate video after watching"
-msgstr ""
+msgstr "Classificar vídeo depois de visualizado"
 
 msgctxt "#30628"
 msgid "HTTP Server"
-msgstr ""
+msgstr "Servidor HTTP"
 
 msgctxt "#30629"
 msgid "IP whitelist (comma delimited)"
@@ -788,11 +788,11 @@ msgstr ""
 
 msgctxt "#30630"
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 msgctxt "#30631"
 msgid "Successfully updated: %s"
-msgstr ""
+msgstr "Actualizado com sucesso: %s"
 
 msgctxt "#30632"
 msgid "Enable API configuration page"
@@ -828,7 +828,7 @@ msgstr ""
 
 msgctxt "#30640"
 msgid "Restore"
-msgstr ""
+msgstr "Restaurar"
 
 msgctxt "#30641"
 msgid "Delete api_keys.json"
@@ -848,7 +848,7 @@ msgstr ""
 
 msgctxt "#30645"
 msgid "Refresh after watching"
-msgstr ""
+msgstr "Actualizar depois de visualizado"
 
 msgctxt "#30646"
 msgid "Upcoming Live"
