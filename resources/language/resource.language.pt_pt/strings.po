@@ -22,7 +22,7 @@ msgstr ""
 
 # msgctxt "Addon Description"
 # msgid "YouTube is a one of the biggest video-sharing websites of the world."
-# msgstr ""
+# msgstr "Youtube é um dos maiores sites do mundo de partilha de vídeos."
 
 msgctxt "#30000"
 msgid "General"
@@ -38,7 +38,7 @@ msgstr "Palavra-Passe"
 
 msgctxt "#30009"
 msgid "Always ask for the video quality"
-msgstr ""
+msgstr "Perguntar sempre pela qualidade do vídeo"
 
 msgctxt "#30010"
 msgid "Video quality"
@@ -74,7 +74,7 @@ msgstr "360p"
 
 msgctxt "#30018"
 msgid "1080p Live / 720p (HD)"
-msgstr ""
+msgstr "1080p Em direto / 720p (HD)"
 
 msgctxt "#30020"
 msgid "Allow 3D"
@@ -114,7 +114,7 @@ msgstr "Vista: Videos"
 
 msgctxt "#30029"
 msgid "View: Movies"
-msgstr ""
+msgstr "Vista: Filmes"
 
 msgctxt "#30030"
 msgid "Execute setup-wizard?"
@@ -126,31 +126,31 @@ msgstr "Avançado"
 
 msgctxt "#30032"
 msgid "View: TV Shows"
-msgstr ""
+msgstr "Vista: Séries"
 
 msgctxt "#30033"
 msgid "View: Songs"
-msgstr ""
+msgstr "Vista: Músicas"
 
 msgctxt "#30034"
 msgid "View: Artists"
-msgstr ""
+msgstr "Vista: Artistas"
 
 msgctxt "#30035"
 msgid "View: Albums"
-msgstr ""
+msgstr "Vista: Álbuns"
 
 msgctxt "#30036"
 msgid "Support alternative player"
-msgstr ""
+msgstr "Suportar reprodutor alternativo"
 
 msgctxt "#30037"
 msgid "Custom Watch Later playlist id"
-msgstr ""
+msgstr "Lista Ver Mais Tarde com Id personalizado"
 
 msgctxt "#30038"
 msgid "Custom History playlist id"
-msgstr ""
+msgstr "Lista de histórico Id personalizado"
 
 msgctxt "#30100"
 msgid "Favorites"
@@ -230,34 +230,34 @@ msgstr "Apagar"
 
 msgctxt "#30119"
 msgid "Please wait..."
-msgstr ""
+msgstr "Por favor aguarde..."
 
 msgctxt "#30120"
 msgid "Clear"
-msgstr ""
+msgstr "Limpar"
 
 # YouTube
 # empty strings from id 30121 to 30199
 
 msgctxt "#30200"
 msgid "API Key"
-msgstr ""
+msgstr "Chave API"
 
 msgctxt "#30201"
 msgid "API Key"
-msgstr ""
+msgstr "Chave API"
 
 msgctxt "#30202"
 msgid "API Id"
-msgstr ""
+msgstr "API Id"
 
 msgctxt "#30203"
 msgid "API Secret"
-msgstr ""
+msgstr "API Secreto"
 
 msgctxt "#30204"
 msgid "Enable personal API keys"
-msgstr ""
+msgstr "Activar chaves API pessoais"
 
 msgctxt "#30205"
 msgid "Use preset API key set"
@@ -272,7 +272,7 @@ msgstr "Canais"
 
 msgctxt "#30501"
 msgid "Playlists"
-msgstr "Playlists"
+msgstr "Listas de Reproduções"
 
 msgctxt "#30502"
 msgid "Go to %s"
@@ -312,7 +312,7 @@ msgstr "As minhas subscrições"
 
 msgctxt "#30511"
 msgid "Queue video"
-msgstr ""
+msgstr "Fila de vídeo"
 
 msgctxt "#30512"
 msgid "Browse Channels"
@@ -352,11 +352,11 @@ msgstr "Adicionar a..."
 
 msgctxt "#30521"
 msgid "Select playlist"
-msgstr "Selecionar playlist"
+msgstr "Selecionar Lista de Reprodução"
 
 msgctxt "#30522"
 msgid "New playlist..."
-msgstr "Nova playlist..."
+msgstr "Nova Lista de Reprodução..."
 
 msgctxt "#30523"
 msgid "Language"
@@ -392,79 +392,79 @@ msgstr "Não gosto"
 
 msgctxt "#30531"
 msgid "Play all"
-msgstr ""
+msgstr "Reproduzir todos"
 
 msgctxt "#30532"
 msgid "Default"
-msgstr ""
+msgstr "Padrão"
 
 msgctxt "#30533"
 msgid "Reverse"
-msgstr ""
+msgstr "Anular"
 
 msgctxt "#30534"
 msgid "Shuffle"
-msgstr ""
+msgstr "Aleatório"
 
 msgctxt "#30535"
 msgid "Select the order of the playlist"
-msgstr ""
+msgstr "Selecionar ordem da Lista de Reprodução"
 
 msgctxt "#30536"
 msgid "Updating Playlist..."
-msgstr ""
+msgstr "Actualizando Lista de Reprodução"
 
 msgctxt "#30537"
 msgid "Play from here"
-msgstr ""
+msgstr "Reproduzir a partir de aqui"
 
 msgctxt "#30538"
 msgid "Disliked Videos"
-msgstr ""
+msgstr "Vídeos que Não Gosto"
 
 msgctxt "#30539"
 msgid "Live"
-msgstr ""
+msgstr "Em Direto"
 
 msgctxt "#30540"
 msgid "Play with..."
-msgstr ""
+msgstr "Reproduzir com..."
 
 msgctxt "#30541"
 msgid "Show channel name in description"
-msgstr ""
+msgstr "Mostrar nome do canal na descrição"
 
 msgctxt "#30542"
 msgid "rtmpe streams are not supported"
-msgstr ""
+msgstr "rtmpe streams não são suportados"
 
 msgctxt "#30543"
 msgid "Refresh"
-msgstr ""
+msgstr "Actualizar"
 
 msgctxt "#30544"
 msgid "More Links from the description"
-msgstr ""
+msgstr "Mais links a partir da descrição"
 
 msgctxt "#30545"
 msgid "No further links found."
-msgstr ""
+msgstr "Nenhum link encontrado"
 
 msgctxt "#30546"
 msgid "Please log in twice!"
-msgstr ""
+msgstr "Por favor inicie sessão duas vezes"
 
 msgctxt "#30547"
 msgid "You must enable two applications so that YouTube is functioning properly."
-msgstr ""
+msgstr "Tem que activar duas aplicações para que o Youtube funcione correctamente."
 
 msgctxt "#30548"
 msgid "More..."
-msgstr ""
+msgstr "Mais..."
 
 msgctxt "#30549"
 msgid "No videos streams found"
-msgstr ""
+msgstr "Nenhuma stream de vídeo encontrada"
 
 msgctxt "#30550"
 msgid "Region"
@@ -472,11 +472,11 @@ msgstr "Região"
 
 msgctxt "#30551"
 msgid "Recommendations"
-msgstr ""
+msgstr "Recomendações"
 
 msgctxt "#30552"
 msgid "Maintenance"
-msgstr ""
+msgstr "Manutenção"
 
 msgctxt "#30553"
 msgid "Delete function cache database"
