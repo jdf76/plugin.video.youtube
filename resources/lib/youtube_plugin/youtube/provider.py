@@ -749,7 +749,7 @@ class Provider(kodion.AbstractProvider):
             return
     
         if 'playlist_id' in params and (context.get_handle() != -1):
-            builtin = 'PlayMedia(%s)' if context.get_handle() == -1 else 'RunPlugin(%s)'
+            builtin = 'RunPlugin(%s)'
             stream_url = context.create_uri(['play'], params)
             xbmcplugin.setResolvedUrl(handle=context.get_handle(), succeeded=False, listitem=xbmcgui.ListItem(path=stream_url))
             context.execute(builtin % context.create_uri(['play'], params))
