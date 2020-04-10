@@ -22,6 +22,12 @@ from ...kodion import Context
 _context = Context(plugin_id='plugin.video.youtube')
 
 
+def logit(msg):
+        fp = open("/tmp/kodi.log", "a")
+        fp.write(str(msg) + "\n")
+        fp.close()
+
+
 class YouTube(LoginClient):
     def __init__(self, config=None, language='en-US', region='US', items_per_page=50, access_token='', access_token_tv=''):
         if config is None:
@@ -262,6 +268,7 @@ class YouTube(LoginClient):
                   'chart': 'mostPopular'}
         if page_token:
             params['pageToken'] = page_token
+
         return self.perform_v3_request(method='GET', path='videos', params=params)
 
     def get_video_category(self, video_category_id, page_token=''):
@@ -286,12 +293,48 @@ class YouTube(LoginClient):
         return self.perform_v3_request(method='GET', path='videoCategories', params=params)
 
     def get_activities(self, channel_id, page_token=''):
+
+        #logit("bla" + str(channel_id))
         params = {'part': 'snippet,contentDetails',
                   'maxResults': str(self._max_results),
                   'regionCode': self._region,
                   'hl': self._language}
         if channel_id == 'home':
             params['home'] = 'true'
+            di = {u'nextPageToken': u'CDIQAA', u'items': 
+            [{u'snippet': {
+                u'thumbnails': {
+                    u'default': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/default.jpg', u'width': 120, u'height': 90}, 
+                    u'high': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/hqdefault.jpg', u'width': 480, u'height': 360}, 
+                    u'medium': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/mqdefault.jpg', u'width': 320, u'height': 180}, 
+                    u'maxres': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/maxresdefault.jpg', u'width': 1280, u'height': 720}, 
+                    u'standard': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/sddefault.jpg', u'width': 640, u'height': 480}
+                }, 
+                u'title': u'Once Upon A Deadpool | Official Trailer', u'channelId': u'UCF0pVplsI8R5kcAqgtoRqoA', u'publishedAt': u'2018-11-20T03:16:53.000Z', 
+                u'channelTitle': u'Popular on YouTube',
+                u'type': u'upload', 
+                u'description': u'desc'
+            }, 
+            u'contentDetails': {u'upload': {u'videoId': u'PCf03KXyzIg'}}, 
+            u'kind': u'youtube#activity', u'etag': u'"tnVOtk4NeGU6nDncDTE5m9SmuHc/Kw7k3F_5gyh6_PtBgm01JhhVrjY"', u'id': u'NTgxNTQyNjgzODEzNTAwNTEyODMyODM0MDg='
+            }],
+            u'kind': u'youtube#activityListResponse', u'etag': u'"tnVOtk4NeGU6nDncDTE5m9SmuHc/Tx2E46LMZBcTGnOSgaDhMjx2dZI"', u'pageInfo': {u'resultsPerPage': 50, u'totalResults': 256}
+            }
+            #return di
+
+            history = {'items': [{'id': u'vDRm50wN2p0', 'channel': u'Hardware Unboxed', 'title': u'News Corner | Zen 3 Release Date? Intel 10th-gen Leaks, Nvidia GTX 1650 GDDR6'}], 
+            'next_page_token': '', 'continue': True, 'offset': 50}
+
+            history['items'][0]['kind'] = 'youtube#activity'
+            history['items'][0]['snippet'] = {'type': 'upload', 'title': history['items'][0]['title']}
+            history['items'][0]['contentDetails'] = {'upload': {'videoId': history['items'][0]['id']}}
+
+            history.update({u'kind': u'youtube#activityListResponse', u'etag': u'"tnVOtk4NeGU6nDncDTE5m9SmuHc/Tx2E46LMZBcTGnOSgaDhMjx2dZI"', u'pageInfo': {u'resultsPerPage': 50, u'totalResults': 256}})
+            return history
+
+            result = self.get_watch_history()
+            logit(result)
+            return result
         elif channel_id == 'mine':
             params['mine'] = 'true'
         else:
@@ -299,7 +342,9 @@ class YouTube(LoginClient):
         if page_token:
             params['pageToken'] = page_token
 
-        return self.perform_v3_request(method='GET', path='activities', params=params)
+        result = self.perform_v3_request(method='GET', path='activities', params=params)
+        logit(result)
+        return result
 
     def get_channel_sections(self, channel_id):
         params = {'part': 'snippet,contentDetails',
@@ -992,6 +1037,7 @@ class YouTube(LoginClient):
 
                 if 'offset' in _result:
                     del _result['offset']
+            #logit(_result)
             return _result
 
         return _perform(_page_token=page_token, _offset=offset, _result=result)
