@@ -264,7 +264,6 @@ class YouTube(LoginClient):
                   'chart': 'mostPopular'}
         if page_token:
             params['pageToken'] = page_token
-
         return self.perform_v3_request(method='GET', path='videos', params=params)
 
     def get_video_category(self, video_category_id, page_token=''):
@@ -1025,7 +1024,6 @@ class YouTube(LoginClient):
 
                 if 'offset' in _result:
                     del _result['offset']
-            #logit(_result)
             return _result
 
         return _perform(_page_token=page_token, _offset=offset, _result=result)
