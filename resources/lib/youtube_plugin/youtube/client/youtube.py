@@ -9,6 +9,7 @@
 """
 
 import copy
+import threading
 import traceback
 
 import requests
@@ -293,47 +294,41 @@ class YouTube(LoginClient):
         return self.perform_v3_request(method='GET', path='videoCategories', params=params)
 
     def get_activities(self, channel_id, page_token=''):
-
-        #logit("bla" + str(channel_id))
         params = {'part': 'snippet,contentDetails',
                   'maxResults': str(self._max_results),
                   'regionCode': self._region,
                   'hl': self._language}
         if channel_id == 'home':
-            params['home'] = 'true'
-            di = {u'nextPageToken': u'CDIQAA', u'items': 
-            [{u'snippet': {
-                u'thumbnails': {
-                    u'default': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/default.jpg', u'width': 120, u'height': 90}, 
-                    u'high': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/hqdefault.jpg', u'width': 480, u'height': 360}, 
-                    u'medium': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/mqdefault.jpg', u'width': 320, u'height': 180}, 
-                    u'maxres': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/maxresdefault.jpg', u'width': 1280, u'height': 720}, 
-                    u'standard': {u'url': u'https://i.ytimg.com/vi/PCf03KXyzIg/sddefault.jpg', u'width': 640, u'height': 480}
-                }, 
-                u'title': u'Once Upon A Deadpool | Official Trailer', u'channelId': u'UCF0pVplsI8R5kcAqgtoRqoA', u'publishedAt': u'2018-11-20T03:16:53.000Z', 
-                u'channelTitle': u'Popular on YouTube',
-                u'type': u'upload', 
-                u'description': u'desc'
-            }, 
-            u'contentDetails': {u'upload': {u'videoId': u'PCf03KXyzIg'}}, 
-            u'kind': u'youtube#activity', u'etag': u'"tnVOtk4NeGU6nDncDTE5m9SmuHc/Kw7k3F_5gyh6_PtBgm01JhhVrjY"', u'id': u'NTgxNTQyNjgzODEzNTAwNTEyODMyODM0MDg='
-            }],
-            u'kind': u'youtube#activityListResponse', u'etag': u'"tnVOtk4NeGU6nDncDTE5m9SmuHc/Tx2E46LMZBcTGnOSgaDhMjx2dZI"', u'pageInfo': {u'resultsPerPage': 50, u'totalResults': 256}
-            }
-            #return di
+            # YouTube has deprecated this API, so use history and related items to form
+            # a recommended set.
+            history = self.get_watch_history()
+            result = {'kind': 'youtube#activityListResponse', 'items': []}
 
-            history = {'items': [{'id': u'vDRm50wN2p0', 'channel': u'Hardware Unboxed', 'title': u'News Corner | Zen 3 Release Date? Intel 10th-gen Leaks, Nvidia GTX 1650 GDDR6'}], 
-            'next_page_token': '', 'continue': True, 'offset': 50}
+            # Fetch recommended in threads for faster execution
+            def helper(video_id, responses):
+                responses.extend(self.get_related_videos(video_id, max_results=3)['items'])
 
-            history['items'][0]['kind'] = 'youtube#activity'
-            history['items'][0]['snippet'] = {'type': 'upload', 'title': history['items'][0]['title']}
-            history['items'][0]['contentDetails'] = {'upload': {'videoId': history['items'][0]['id']}}
+            threads = []
+            candidates = []
+            for item in history['items'][:10]:
+                thread = threading.Thread(target=helper, args=(item['id'], candidates))
+                threads.append(thread)
+                thread.start()
+            for thread in threads:
+                thread.join()
 
-            history.update({u'kind': u'youtube#activityListResponse', u'etag': u'"tnVOtk4NeGU6nDncDTE5m9SmuHc/Tx2E46LMZBcTGnOSgaDhMjx2dZI"', u'pageInfo': {u'resultsPerPage': 50, u'totalResults': 256}})
-            return history
+            # Remove duplicates and randomize
+            logit(candidates)
+            seen = []
+            for candidate in candidates:
+                vid = candidate['id']['videoId']
+                if vid not in seen:
+                    result['items'].append(candidate)
+                seen.append(vid)
 
-            result = self.get_watch_history()
-            logit(result)
+            # Result metadata
+            result['pageInfo'] = {'resultsPerPage': 50, 'totalResults': len(result['items'])}
+
             return result
         elif channel_id == 'mine':
             params['mine'] = 'true'
