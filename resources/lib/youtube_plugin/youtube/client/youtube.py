@@ -11,6 +11,7 @@
 import copy
 import threading
 import traceback
+from random import shuffle
 
 import requests
 
@@ -21,12 +22,6 @@ from ...kodion import constants
 from ...kodion import Context
 
 _context = Context(plugin_id='plugin.video.youtube')
-
-
-def logit(msg):
-        fp = open("/tmp/kodi.log", "a")
-        fp.write(str(msg) + "\n")
-        fp.close()
 
 
 class YouTube(LoginClient):
@@ -306,7 +301,7 @@ class YouTube(LoginClient):
 
             # Fetch recommended in threads for faster execution
             def helper(video_id, responses):
-                responses.extend(self.get_related_videos(video_id, max_results=3)['items'])
+                responses.extend(self.get_related_videos(video_id, max_results=5)['items'])
 
             threads = []
             candidates = []
@@ -318,13 +313,13 @@ class YouTube(LoginClient):
                 thread.join()
 
             # Remove duplicates and randomize
-            logit(candidates)
             seen = []
             for candidate in candidates:
                 vid = candidate['id']['videoId']
                 if vid not in seen:
                     result['items'].append(candidate)
                 seen.append(vid)
+            shuffle(result['items'])
 
             # Result metadata
             result['pageInfo'] = {'resultsPerPage': 50, 'totalResults': len(result['items'])}
@@ -337,9 +332,7 @@ class YouTube(LoginClient):
         if page_token:
             params['pageToken'] = page_token
 
-        result = self.perform_v3_request(method='GET', path='activities', params=params)
-        logit(result)
-        return result
+        return self.perform_v3_request(method='GET', path='activities', params=params)
 
     def get_channel_sections(self, channel_id):
         params = {'part': 'snippet,contentDetails',
