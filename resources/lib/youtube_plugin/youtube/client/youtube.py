@@ -9,11 +9,14 @@
 """
 
 import copy
+import json
 import threading
+import time
 import traceback
-from random import shuffle
 
 import requests
+import xbmcvfs
+from dateutil.parser import parse
 
 from .login_client import LoginClient
 from ..helper.video_info import VideoInfo
@@ -24,6 +27,51 @@ from ...kodion import Context
 _context = Context(plugin_id='plugin.video.youtube')
 
 
+class Cache:
+    """A cache with TTL that persists to the filesystem.
+    """
+    def __init__(self):
+        # Initialize cache file and in-memory structure
+        self.filepath = 'special://temp/plugins.video.youtube.cache'
+        self._cache = {}
+        if xbmcvfs.exists(self.filepath):
+            fp = xbmcvfs.File(self.filepath)
+            buf = fp.read().strip()
+            if buf:
+                try:
+                    self._cache = json.loads(buf)
+                except ValueError:
+                    # Don't fail on corrupted file
+                    pass
+
+                # Prune old items
+                now = time.time()
+                to_delete = []
+                for key, di in self._cache.items():
+                    ttl = di['ttl']
+                    modified = di['modified']
+                    if ttl and (now - modified > ttl):
+                        to_delete.append(key)
+                for key in to_delete:
+                    del self._cache[key]
+
+    def get(self, key, default=None):
+        if key not in self._cache:
+            return default
+        di = self._cache.get(key, default)
+        ttl = di['ttl']
+        modified = di['modified']
+        if ttl and (time.time() - modified > ttl):
+            return default
+        return di['value']
+
+    def set(self, key, value, ttl=0):
+        self._cache[key] = {'value': value, 'modified': time.time(), 'ttl': ttl}
+        fp = xbmcvfs.File(self.filepath, 'w')
+        fp.write(json.dumps(self._cache))
+        fp.close()
+
+
 class YouTube(LoginClient):
     def __init__(self, config=None, language='en-US', region='US', items_per_page=50, access_token='', access_token_tv=''):
         if config is None:
@@ -32,6 +80,7 @@ class YouTube(LoginClient):
                              access_token_tv=access_token_tv)
 
         self._max_results = items_per_page
+        self._cache = Cache()
 
     def get_max_results(self):
         return self._max_results
@@ -294,36 +343,68 @@ class YouTube(LoginClient):
                   'hl': self._language}
         if channel_id == 'home':
             # YouTube has deprecated this API, so use history and related items to form
-            # a recommended set.
+            # a recommended set. We cache aggressively because searches incur a high
+            # quota cost of 100 on the YouTube API.
+
+            # Do we have a cached result?
+            cache_key = 'get-activities-home'
+            cached = self._cache.get(cache_key)
+            if cached is not None:
+                return cached
+
             history = self.get_watch_history()
             result = {'kind': 'youtube#activityListResponse', 'items': []}
 
             # Fetch recommended in threads for faster execution
             def helper(video_id, responses):
-                responses.extend(self.get_related_videos(video_id, max_results=5)['items'])
+                # Check cache, else hit API
+                key = 'get-activities-home-%s' % video_id
+                cached = self._cache.get(key)
+                if cached is not None:
+                    responses.extend(cached['items'])
+                else:
+                    di = self.get_related_videos(video_id, max_results=10)
+                    self._cache.set(key, di, ttl=14400)
+                    if 'items' in di:
+                        responses.extend(di['items'])
 
             threads = []
             candidates = []
-            for item in history['items'][:10]:
+            # It would be nice to make this 8 user configurable
+            for item in history['items'][:8]:
                 thread = threading.Thread(target=helper, args=(item['id'], candidates))
                 threads.append(thread)
                 thread.start()
             for thread in threads:
                 thread.join()
 
-            # Remove duplicates and randomize
+            # Remove duplicates and sort
             seen = []
             for candidate in candidates:
                 vid = candidate['id']['videoId']
                 if vid not in seen:
                     result['items'].append(candidate)
                 seen.append(vid)
-            shuffle(result['items'])
+            result['items'].sort(
+                key=lambda a: parse(a['snippet']['publishedAt']),
+                reverse=True
+            )
 
             # Result metadata
             result['pageInfo'] = {'resultsPerPage': 50, 'totalResults': len(result['items'])}
 
-            return result
+            # Update cache
+            self._cache.set(cache_key, result, ttl=14400)
+
+            # If there are candidates then the set creation was successful. If there
+            # are no candidates then we've probably exceeded our quota, and we fall back
+            # to default API behaviour.
+            if candidates:
+                return result
+
+            else:
+                params['home'] = 'true'
+
         elif channel_id == 'mine':
             params['mine'] = 'true'
         else:
