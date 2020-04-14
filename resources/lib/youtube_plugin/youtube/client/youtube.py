@@ -16,13 +16,13 @@ import traceback
 
 import requests
 import xbmcvfs
-from dateutil.parser import parse
 
 from .login_client import LoginClient
 from ..helper.video_info import VideoInfo
 from ..helper.utils import get_shelf_index_by_title
 from ...kodion import constants
 from ...kodion import Context
+from ...kodion.utils import datetime_parser
 
 _context = Context(plugin_id='plugin.video.youtube')
 
@@ -345,6 +345,7 @@ class YouTube(LoginClient):
             # YouTube has deprecated this API, so use history and related items to form
             # a recommended set. We cache aggressively because searches incur a high
             # quota cost of 100 on the YouTube API.
+            # Note this is a first stab attempt and can be refined a lot more.
 
             # Do we have a cached result?
             cache_key = 'get-activities-home'
@@ -386,7 +387,7 @@ class YouTube(LoginClient):
                     result['items'].append(candidate)
                 seen.append(vid)
             result['items'].sort(
-                key=lambda a: parse(a['snippet']['publishedAt']),
+                key=lambda a: datetime_parser.parse(a['snippet']['publishedAt']),
                 reverse=True
             )
 
