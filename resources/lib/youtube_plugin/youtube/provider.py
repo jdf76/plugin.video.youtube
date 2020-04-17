@@ -170,6 +170,7 @@ class Provider(kodion.AbstractProvider):
                  'youtube.uploads': 30726,
                  'youtube.video.play_ask_for_quality': 30730,
                  'youtube.key.requirement.notification': 30731,
+                 'youtube.video.comments': 30732,
                  }
 
     def __init__(self):
