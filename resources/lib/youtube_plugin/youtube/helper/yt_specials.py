@@ -28,6 +28,38 @@ def _process_related_videos(provider, context):
         result.extend(v3.response_to_items(provider, context, json_data, process_next_page=False))
 
     return result
+    
+    
+def _process_parent_comments(provider, context):
+    result = []
+
+    provider.set_content_type(context, kodion.constants.content_type.FILES)
+
+    page_token = context.get_param('page_token', '')
+    video_id = context.get_param('video_id', '')
+    if video_id:
+        json_data = provider.get_client(context).get_parent_comments(video_id=video_id, page_token=page_token)
+        if not v3.handle_error(provider, context, json_data):
+            return False
+        result.extend(v3.response_to_items(provider, context, json_data, process_next_page=False))
+
+    return result
+    
+    
+def _process_child_comments(provider, context):
+    result = []
+
+    provider.set_content_type(context, kodion.constants.content_type.FILES)
+
+    page_token = context.get_param('page_token', '')
+    parent_id = context.get_param('parent_id', '')
+    if parent_id:
+        json_data = provider.get_client(context).get_child_comments(parent_id=parent_id, page_token=page_token)
+        if not v3.handle_error(provider, context, json_data):
+            return False
+        result.extend(v3.response_to_items(provider, context, json_data, process_next_page=False))
+
+    return result
 
 
 def _process_recommendations(provider, context):
@@ -332,5 +364,9 @@ def process(category, provider, context):
         return _process_live_events(provider, context, event_type='completed')
     elif category == 'description_links':
         return _process_description_links(provider, context)
+    elif category == 'parent_comments':
+        return _process_parent_comments(provider, context)
+    elif category == 'child_comments':
+        return _process_child_comments(provider, context)
     else:
         raise kodion.KodionException("YouTube special category '%s' not found" % category)

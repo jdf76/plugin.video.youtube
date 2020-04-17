@@ -43,6 +43,27 @@ def extract_urls(text):
 
 def get_thumb_timestamp(minutes=15):
     return str(time.mktime(time.gmtime(minutes * 60 * (round(time.time() / (minutes * 60))))))
+    
+    
+def make_comment_item(snippet, uri, total_replies=0):
+    label = '[B]{}[/B]'.format(kodion.utils.to_utf8(snippet['authorDisplayName']))
+    if (snippet['publishedAt'] != snippet['updatedAt']):
+        label += ' (edited)'
+    
+    extra_info = [ ]
+    if snippet['likeCount']:
+        extra_info.append('Likes: {likes:d}'.format(likes=snippet['likeCount']))
+    if total_replies:
+        extra_info.append('Replies: {total_replies:d}'.format(total_replies=total_replies))
+    if extra_info:
+        label += ' - [I]{info}[/I]'.format(info=' | '.join(extra_info))
+    
+    comment_item = kodion.items.DirectoryItem(label, uri)
+    comment_item.set_plot(kodion.utils.to_utf8(snippet['textOriginal']))
+    comment_item.set_date_from_datetime(utils.datetime_parser.parse(snippet['publishedAt']))
+    if not uri:
+        comment_item.set_action(True)
+    return comment_item
 
 
 def update_channel_infos(provider, context, channel_id_dict, subscription_id_dict=None, channel_items_dict=None):
