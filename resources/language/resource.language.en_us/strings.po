@@ -1215,3 +1215,15 @@ msgstr ""
 msgctxt "#30732"
 msgid "Comments"
 msgstr ""
+
+msgctxt "#30733"
+msgid "Likes"
+msgstr ""
+
+msgctxt "#30734"
+msgid "Replies"
+msgstr ""
+
+msgctxt "#30735"
+msgid "Edited"
+msgstr ""
