@@ -57,26 +57,25 @@ def make_comment_item(context, provider, snippet, uri, total_replies=0):
     str_replies = ('%.1fK' % (total_replies / 1000.0)) if total_replies > 1000 else str(total_replies)
 
     if snippet['likeCount'] and total_replies:
-        label_props = ('[COLOR lime][B]+%s[/B][/COLOR]' % str_likes, '[COLOR cyan][B]%s[/B][/COLOR]' % str_replies)
-        plot_props = ('[COLOR lime][B]%s %s[/B][/COLOR]' % (str_likes,
-                                                            context.localize(provider.LOCAL_MAP['youtube.video.comments.likes'])),
-                      '[COLOR cyan][B]%s %s[/B][/COLOR]' % (str_replies,
-                                                            context.localize(provider.LOCAL_MAP['youtube.video.comments.replies'])))
+        label_props = '[COLOR lime][B]+%s[/B][/COLOR]|[COLOR cyan][B]%s[/B][/COLOR]' % (str_likes, str_replies)
+        plot_props = '[COLOR lime][B]%s %s[/B][/COLOR]|[COLOR cyan][B]%s %s[/B][/COLOR]' % (str_likes,
+                     context.localize(provider.LOCAL_MAP['youtube.video.comments.likes']), str_replies,
+                     context.localize(provider.LOCAL_MAP['youtube.video.comments.replies']))
     elif snippet['likeCount']:
-        label_props = ('[COLOR lime][B]+%s[/B][/COLOR]' % str_likes,)
-        plot_props = ('[COLOR lime][B]%s %s[/B][/COLOR]' % (str_likes,
-                                                            context.localize(provider.LOCAL_MAP['youtube.video.comments.likes'])),)
+        label_props = '[COLOR lime][B]+%s[/B][/COLOR]' % str_likes
+        plot_props = '[COLOR lime][B]%s %s[/B][/COLOR]' % (str_likes,
+                     context.localize(provider.LOCAL_MAP['youtube.video.comments.likes']))
     elif total_replies:
-        label_props = ('[COLOR cyan][B]%s[/B][/COLOR]' % str_replies,)
-        plot_props = ('[COLOR cyan][B]%s %s[/B][/COLOR]' % (str_replies,
-                                                            context.localize(provider.LOCAL_MAP['youtube.video.comments.replies'])),)
+        label_props = '[COLOR cyan][B]%s[/B][/COLOR]' % str_replies
+        plot_props = '[COLOR cyan][B]%s %s[/B][/COLOR]' % (str_replies,
+                     context.localize(provider.LOCAL_MAP['youtube.video.comments.replies']))
     else:
         pass # The comment has no likes or replies.
 
     # Format the label of the comment item.
     edited = '[B]*[/B]' if is_edited else ''
     if label_props:
-        label = '{author} ({props}){edited} "{body}"'.format(author=author, props='|'.join(label_props), edited=edited,
+        label = '{author} ({props}){edited} "{body}"'.format(author=author, props=label_props, edited=edited,
                                                              body=body.replace('\n', ' '))
     else:
         label = '{author}{edited} {body}'.format(author=author, edited=edited, body=body.replace('\n', ' '))
@@ -84,7 +83,7 @@ def make_comment_item(context, provider, snippet, uri, total_replies=0):
     # Format the plot of the comment item.
     edited = ' (%s)' % context.localize(provider.LOCAL_MAP['youtube.video.comments.edited']) if is_edited else ''
     if plot_props:
-        plot = '{author} ({props}){edited}[CR][CR]"{body}"'.format(author=author, props='|'.join(plot_props),
+        plot = '{author} ({props}){edited}[CR][CR]"{body}"'.format(author=author, props=plot_props,
                                                                edited=edited, body=body)
     else:
         plot = '{author}{edited}[CR][CR]"{body}"'.format(author=author, edited=edited, body=body)
