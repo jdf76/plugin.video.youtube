@@ -191,10 +191,10 @@ def _process_list_response(provider, context, json_data):
                 item_uri = context.create_uri(['special', 'child_comments'], item_params)
             else:
                 item_uri = ''
-            result.append(utils.make_comment_item(snippet, item_uri, total_replies))
+            result.append(utils.make_comment_item(context, provider, snippet, item_uri, total_replies))
         
         elif yt_kind == 'youtube#comment':
-            result.append(utils.make_comment_item(yt_item['snippet'], ''))
+            result.append(utils.make_comment_item(context, provider, yt_item['snippet'], uri=''))
             
         elif yt_kind == 'youtube#searchResult':
             yt_kind = yt_item.get('id', {}).get('kind', '')
