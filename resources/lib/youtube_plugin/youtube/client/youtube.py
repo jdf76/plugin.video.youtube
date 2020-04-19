@@ -11,11 +11,10 @@
 import copy
 import json
 import threading
-import time
 import traceback
+from datetime import datetime
 
 import requests
-import xbmcvfs
 
 from .login_client import LoginClient
 from ..helper.video_info import VideoInfo
@@ -23,53 +22,9 @@ from ..helper.utils import get_shelf_index_by_title
 from ...kodion import constants
 from ...kodion import Context
 from ...kodion.utils import datetime_parser
+from ...kodion.utils.data_cache import DataCache
 
 _context = Context(plugin_id='plugin.video.youtube')
-
-
-class Cache:
-    """A cache with TTL that persists to the filesystem.
-    """
-    def __init__(self):
-        # Initialize cache file and in-memory structure
-        self.filepath = 'special://temp/plugins.video.youtube.cache'
-        self._cache = {}
-        if xbmcvfs.exists(self.filepath):
-            fp = xbmcvfs.File(self.filepath)
-            buf = fp.read().strip()
-            if buf:
-                try:
-                    self._cache = json.loads(buf)
-                except ValueError:
-                    # Don't fail on corrupted file
-                    pass
-
-                # Prune old items
-                now = time.time()
-                to_delete = []
-                for key, di in self._cache.items():
-                    ttl = di['ttl']
-                    modified = di['modified']
-                    if ttl and (now - modified > ttl):
-                        to_delete.append(key)
-                for key in to_delete:
-                    del self._cache[key]
-
-    def get(self, key, default=None):
-        if key not in self._cache:
-            return default
-        di = self._cache.get(key, default)
-        ttl = di['ttl']
-        modified = di['modified']
-        if ttl and (time.time() - modified > ttl):
-            return default
-        return di['value']
-
-    def set(self, key, value, ttl=0):
-        self._cache[key] = {'value': value, 'modified': time.time(), 'ttl': ttl}
-        fp = xbmcvfs.File(self.filepath, 'w')
-        fp.write(json.dumps(self._cache))
-        fp.close()
 
 
 class YouTube(LoginClient):
@@ -80,7 +35,6 @@ class YouTube(LoginClient):
                              access_token_tv=access_token_tv)
 
         self._max_results = items_per_page
-        self._cache = Cache()
 
     def get_max_results(self):
         return self._max_results
@@ -346,61 +300,118 @@ class YouTube(LoginClient):
             # a recommended set. We cache aggressively because searches incur a high
             # quota cost of 100 on the YouTube API.
             # Note this is a first stab attempt and can be refined a lot more.
+            cache = _context.get_data_cache()
 
             # Do we have a cached result?
-            cache_key = 'get-activities-home'
-            cached = self._cache.get(cache_key)
-            if cached is not None:
-                return cached
+            cache_home_key = 'get-activities-home'
+            cached = cache.get_item(14400, cache_home_key)
+            if cache_home_key in cached:
+                return cached[cache_home_key]
+
+            # Fetch existing list of items, if any
+            items = []
+            cache_items_key = 'get-activities-home-items'
+            cached = cache.get_item(30 * 86400, cache_items_key)
+            if cache_items_key in cached:
+                items = cached[cache_items_key]
+
+            # Fetch history and recommended items. Use threads for faster execution.
+            def helper(video_id, responses):
+                _context.log_debug(
+                    'Method get_activities: doing expensive API fetch for related'
+                    'items for video %s' % video_id
+                )
+                di = self.get_related_videos(video_id, max_results=10)
+                if 'items' in di:
+                    # Record for which video we fetched the items
+                    for item in di['items']:
+                        item['plugin_fetched_for'] = video_id
+                    responses.extend(di['items'])
 
             history = self.get_watch_history()
             result = {'kind': 'youtube#activityListResponse', 'items': []}
-
-            # Fetch recommended in threads for faster execution
-            def helper(video_id, responses):
-                # Check cache, else hit API
-                key = 'get-activities-home-%s' % video_id
-                cached = self._cache.get(key)
-                if cached is not None:
-                    responses.extend(cached['items'])
-                else:
-                    di = self.get_related_videos(video_id, max_results=10)
-                    self._cache.set(key, di, ttl=14400)
-                    if 'items' in di:
-                        responses.extend(di['items'])
-
             threads = []
             candidates = []
+            already_fetched_for_video_ids = [item['plugin_fetched_for'] for item in items]
+            # TODO:
             # It would be nice to make this 8 user configurable
             for item in history['items'][:8]:
-                thread = threading.Thread(target=helper, args=(item['id'], candidates))
-                threads.append(thread)
-                thread.start()
+                video_id = item['id']
+                if video_id not in already_fetched_for_video_ids:
+                    thread = threading.Thread(target=helper, args=(video_id, candidates))
+                    threads.append(thread)
+                    thread.start()
             for thread in threads:
                 thread.join()
 
-            # Remove duplicates and sort
-            seen = []
+            # Prepend new candidates to items
+            seen = [item['id']['videoId'] for item in items]
             for candidate in candidates:
                 vid = candidate['id']['videoId']
                 if vid not in seen:
-                    result['items'].append(candidate)
-                seen.append(vid)
-            result['items'].sort(
-                key=lambda a: datetime_parser.parse(a['snippet']['publishedAt']),
+                    candidate['plugin_created_date'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
+                    items.insert(0, candidate)
+
+            # Truncate items to keep it manageable, and cache
+            items = items[:500]
+            cache.set(cache_items_key, json.dumps(items))
+
+            # Build the result set
+            items.sort(
+                key=lambda a: datetime_parser.parse(a['plugin_created_date']),
                 reverse=True
             )
+            sorted_items = []
+            counter = 0
+            items_count = len(items)
+            channel_counts = {}
+            while items:
+                counter += 1
 
-            # Result metadata
-            result['pageInfo'] = {'resultsPerPage': 50, 'totalResults': len(result['items'])}
+                # Hard stop on iteration. Good enough for our purposes.
+                if counter >= 1000:
+                    break
+
+                # Reset channel counts on a new page
+                if counter % 50 == 0:
+                    channel_counts = {}
+
+                # Ensure a single channel isn't hogging the page
+                item = items.pop()
+                channel_id = item['snippet']['channelId']
+                channel_counts.setdefault(channel_id, 0)
+                if channel_counts[channel_id] <= 3:
+                    # Use the item
+                    channel_counts[channel_id] = channel_counts[channel_id] + 1
+                    item["page_number"] = counter // 50
+                    sorted_items.append(item)
+                else:
+                    # Move the item to the end of the list
+                    items.append(item)
+
+            # Finally sort items per page by date for a better distribution
+            now = datetime.now()
+            sorted_items.sort(
+                 key=lambda a: (
+                    a['page_number'],
+                    datetime_parser.total_seconds(
+                        now - datetime_parser.parse(a['snippet']['publishedAt'])
+                    )
+                ),
+            )
+
+            # Finalize result
+            result['items'] = sorted_items
+            result['pageInfo'] = {
+                'resultsPerPage': 50,
+                'totalResults': len(sorted_items)
+            }
 
             # Update cache
-            self._cache.set(cache_key, result, ttl=14400)
+            cache.set(cache_home_key, json.dumps(result))
 
-            # If there are candidates then the set creation was successful. If there
-            # are no candidates then we've probably exceeded our quota, and we fall back
-            # to default API behaviour.
-            if candidates:
+            # If there are no sorted_items we fall back to default API behaviour
+            if sorted_items:
                 return result
 
             else:
