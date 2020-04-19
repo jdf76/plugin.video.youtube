@@ -1217,7 +1217,7 @@ msgstr "Comentarios"
 
 msgctxt "#30733"
 msgid "Likes"
-msgstr "Me gustas"
+msgstr "Me gusta"
 
 msgctxt "#30734"
 msgid "Replies"
