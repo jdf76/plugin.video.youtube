@@ -22,7 +22,6 @@ from ..helper.utils import get_shelf_index_by_title
 from ...kodion import constants
 from ...kodion import Context
 from ...kodion.utils import datetime_parser
-from ...kodion.utils.data_cache import DataCache
 
 _context = Context(plugin_id='plugin.video.youtube')
 
@@ -304,14 +303,14 @@ class YouTube(LoginClient):
 
             # Do we have a cached result?
             cache_home_key = 'get-activities-home'
-            cached = cache.get_item(14400, cache_home_key)
+            cached = cache.get_item(cache.ONE_HOUR * 4, cache_home_key)
             if cache_home_key in cached:
                 return cached[cache_home_key]
 
             # Fetch existing list of items, if any
             items = []
             cache_items_key = 'get-activities-home-items'
-            cached = cache.get_item(30 * 86400, cache_items_key)
+            cached = cache.get_item(cache.ONE_WEEK * 2, cache_items_key)
             if cache_items_key in cached:
                 items = cached[cache_items_key]
 
