@@ -1,4 +1,7 @@
 
+# Repository Moved
+Development will continue at https://github.com/anxdpanic/plugin.video.youtube
+
 ![](https://raw.githubusercontent.com/Kolifanes/plugin.video.youtube/master/icon.png)
 
 ![Build Status](https://img.shields.io/travis/jdf76/plugin.video.youtube/master.svg)
