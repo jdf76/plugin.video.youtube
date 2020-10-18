@@ -18,6 +18,7 @@ import requests
 import socket
 
 import xbmc
+import xmbcvfs
 import xbmcaddon
 import xbmcgui
 
@@ -35,9 +36,9 @@ class YouTubeRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.local_ranges = ('10.', '172.16.', '192.168.', '127.0.0.1', 'localhost', '::1')
         self.chunk_size = 1024 * 64
         try:
-            self.base_path = xbmc.translatePath('special://temp/%s' % self.addon_id).decode('utf-8')
+            self.base_path = xbmcvfs.translatepath('special://temp/%s' % self.addon_id).decode('utf-8')
         except AttributeError:
-            self.base_path = xbmc.translatePath('special://temp/%s' % self.addon_id)
+            self.base_path = xbmcvfs.translatepath('special://temp/%s' % self.addon_id)
         BaseHTTPServer.BaseHTTPRequestHandler.__init__(self, request, client_address, server)
 
     def connection_allowed(self):
@@ -463,7 +464,7 @@ def get_http_server(address=None, port=None):
     except socket.error as e:
         logger.log_debug('HTTPServer: Failed to start |{address}:{port}| |{response}|'.format(address=address, port=port, response=str(e)))
         xbmcgui.Dialog().notification(addon.getAddonInfo('name'), str(e),
-                                      xbmc.translatePath('special://home/addons/{0!s}/icon.png'.format(addon.getAddonInfo('id'))),
+                                      xbmcvfs.translatepath('special://home/addons/{0!s}/icon.png'.format(addon.getAddonInfo('id'))),
                                       5000, False)
         return None
 

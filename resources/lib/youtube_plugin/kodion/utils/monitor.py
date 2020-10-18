@@ -138,9 +138,9 @@ class YouTubeMonitor(xbmc.Monitor):
 
     def remove_temp_dir(self):
         try:
-            path = xbmc.translatePath('special://temp/%s' % self.addon_id).decode('utf-8')
+            path = xbmcvfs.translatepath('special://temp/%s' % self.addon_id).decode('utf-8')
         except AttributeError:
-            path = xbmc.translatePath('special://temp/%s' % self.addon_id)
+            path = xbmcvfs.translatepath('special://temp/%s' % self.addon_id)
 
         if os.path.isdir(path):
             try:

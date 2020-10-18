@@ -235,7 +235,7 @@ def print_items(items):
 def make_dirs(path):
     if not path.endswith('/'):
         path = ''.join([path, '/'])
-    path = xbmc.translatePath(path)
+    path = xbmcvfs.translatepath(path)
     if not xbmcvfs.exists(path):
         try:
             _ = xbmcvfs.mkdirs(path)

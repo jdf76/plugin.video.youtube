@@ -1239,7 +1239,7 @@ class Provider(kodion.AbstractProvider):
                     _file_w_path = os.path.join(context.get_data_path(), _file)
                 if context.get_ui().on_delete_content(_file):
                     if maint_type == 'temp_files':
-                        _trans_path = xbmc.translatePath(_file_w_path)
+                        _trans_path = xbmcvfs.translatepath(_file_w_path)
                         try:
                             xbmcvfs.rmdir(_trans_path, force=True)
                         except:

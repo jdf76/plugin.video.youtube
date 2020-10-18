@@ -24,9 +24,9 @@ class JSONStore(object):
         addon = xbmcaddon.Addon(addon_id)
 
         try:
-            self.base_path = xbmc.translatePath(addon.getAddonInfo('profile')).decode('utf-8')
+            self.base_path = xbmcvfs.translatepath(addon.getAddonInfo('profile')).decode('utf-8')
         except AttributeError:
-            self.base_path = xbmc.translatePath(addon.getAddonInfo('profile'))
+            self.base_path = xbmcvfs.translatepath(addon.getAddonInfo('profile'))
 
         self.filename = os.path.join(self.base_path, filename)
 
@@ -64,7 +64,7 @@ class JSONStore(object):
     def make_dirs(path):
         if not path.endswith('/'):
             path = ''.join([path, '/'])
-        path = xbmc.translatePath(path)
+        path = xbmcvfs.translatepath(path)
         if not xbmcvfs.exists(path):
             try:
                 _ = xbmcvfs.mkdirs(path)
