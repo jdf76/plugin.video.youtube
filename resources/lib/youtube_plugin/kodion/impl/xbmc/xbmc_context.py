@@ -308,7 +308,7 @@ class XbmcContext(AbstractContext):
             'vp9.2': '2.3.14',
             'vorbis': None,
             'opus': None,
-            'av1': None,
+            'av1': '20.3.0',
         }
 
         if capability is None:
